@@ -7,8 +7,8 @@ export default function Contacto() {
     {
       id: 1,
       title: 'Email',
-      contact: 'hola@qperu.org',
-      link: 'mailto:hola@qperu.org',
+      contact: 'info@qperu.net',
+      link: 'mailto:info@qperu.net',
       description: 'Para preguntas, propuestas o colaboraciones.'
     },
     {

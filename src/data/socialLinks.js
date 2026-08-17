@@ -36,7 +36,7 @@ export const socialLinks = [
   {
     id: 'email',
     label: 'Email',
-    href: 'mailto:contact@qperu.org.pe',
+    href: 'mailto:info@qperu.net',
     path: 'M4 5h16a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Zm1.4 2 6.6 5.4L18.6 7H5.4ZM19 8.4l-6.7 5.5a1 1 0 0 1-1.2 0L5 8.4V17h14V8.4Z'
   }
 ]

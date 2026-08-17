@@ -2,7 +2,7 @@ import { useRevealVariant } from '../hooks/useReveal'
 import { useParallax } from '../hooks/useParallax'
 import { useLanguage } from '../context/LanguageContext'
 import { WSP_COMUNIDAD } from '../data/socialLinks'
-import logo from '../assets/LOGO1 FINAL.svg'
+import logo from '../assets/LOGO3 FINAL.svg'
 
 export default function Hero() {
   const copyRef = useRevealVariant('left')

@@ -25,3 +25,6 @@ pnpm-debug.log*
 
 # OS
 .DS_Store
+PAST-README.md
+MIGRATION.md
+

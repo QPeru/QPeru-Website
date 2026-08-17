@@ -180,7 +180,7 @@ export default function Activities() {
         
 
 <h3 className="activities-subtitulo activities-subtitulo-futuras">
-  Actividades Futuras
+  Actividades futuras
 </h3>
 
 <div className="cards reveal-group" ref={futurasRef}>

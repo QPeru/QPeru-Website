@@ -149,7 +149,7 @@ export const content = {
       cta: 'Avísame primero'
     },
     footer: {
-      copy: '© 2026 QPerú. Todos los derechos reservados.'
+      copy: '© 2026 QPeru. Todos los derechos reservados.'
     }
   },
   en: {
@@ -300,7 +300,7 @@ export const content = {
       cta: 'Notify me first'
     },
     footer: {
-      copy: '© 2026 QPerú. All rights reserved.'
+      copy: '© 2026 QPeru. All rights reserved.'
     }
   }
 }

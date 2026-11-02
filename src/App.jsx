@@ -6,6 +6,7 @@ import Inicio from './pages/Inicio'
 import SobreNosotros from './pages/SobreNosotros'
 import Eventos from './pages/Eventos'
 import Contactanos from './pages/Contactanos'
+import VideoBackground from './components/VideoBackground'
 
 function ScrollManager() {
   const { pathname, hash } = useLocation()
@@ -27,6 +28,7 @@ function ScrollManager() {
 export default function App() {
   return (
     <>
+      <VideoBackground />
       <ScrollManager />
       <Navbar />
       <main>

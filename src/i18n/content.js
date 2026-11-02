@@ -49,12 +49,7 @@ export const content = {
         }
       ]
     },
-    cursos: {
-      eyebrow: '|cursos⟩',
-      title: 'Formación en computación cuántica',
-      estado: 'Próximamente',
-      texto: 'Estamos diseñando nuestros primeros cursos de computación cuántica. Únete a la comunidad para enterarte apenas se abran las inscripciones.'
-    },
+
     comunidad: {
       eyebrow: '|comunidad⟩',
       title: 'Hecha para el ecosistema peruano',
@@ -76,20 +71,6 @@ export const content = {
       discordTitulo: 'Discord',
       discordSub: 'Servidor de la comunidad',
       redesSociales: 'Redes sociales'
-    },
-    recursos: {
-      eyebrow: '|recursos⟩',
-      title: 'Recursos gratuitos',
-      intro: 'Acceso a materiales, tutoriales y herramientas para aprender computación cuántica.',
-      items: [
-        { id: 1, icon: '📚', title: 'Documentación', description: 'Guías y referencias completas sobre computación cuántica y Qiskit.' },
-        { id: 2, icon: '🎥', title: 'Video Tutoriales', description: 'Serie de vídeos educativos en español sobre fundamentos cuánticos.' },
-        { id: 3, icon: '💻', title: 'Repositorio GitHub', description: 'Código, ejercicios y proyectos disponibles para descargar y aprender.' },
-        { id: 4, icon: '🔗', title: 'Enlaces Útiles', description: 'Herramientas online, simuladores y plataformas para experimentar.' },
-        { id: 5, icon: '🔐', title: 'Quantum CyberSec Community', description: 'Canal de WhatsApp sobre criptografía y ciberseguridad cuántica.' },
-        { id: 6, icon: '🌐', title: 'QWorld', description: 'Recursos y cursos abiertos de la red educativa global QWorld.' },
-        { id: 7, icon: '🖥️', title: 'IBM Quantum Learning', description: 'Plataforma oficial de IBM para aprender computación cuántica y Qiskit.' }
-      ]
     },
     unete: {
       titulo: 'Únete a la comunidad de QPerú',

@@ -1,32 +1,41 @@
-import { useRevealVariant } from '../hooks/useReveal'
-import { useParallax } from '../hooks/useParallax'
-import { useLanguage } from '../context/LanguageContext'
-import { WSP_COMUNIDAD } from '../data/socialLinks'
-import logo from '../assets/LOGO3 FINAL.svg'
+import { Link } from 'react-router-dom'
 
 export default function Hero() {
-  const copyRef = useRevealVariant('left')
-  const visualRef = useRevealVariant('right')
-  const parallaxRef = useParallax(0.12)
-  const { t } = useLanguage()
-  const h = t.hero
+  const bajar = () => {
+    const siguiente = document.querySelector('#actividades') || document.querySelector('main > section:nth-of-type(2)')
+    if (siguiente) siguiente.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    else window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })
+  }
 
   return (
-    <section className="hero">
-      <div className="container hero-grid">
-        <div className="hero-copy" ref={copyRef}>
-          <p className="eyebrow">{h.eyebrow}</p>
-          <h1>{h.title1}<span className="rojo">{h.titleRojo}</span>{h.title2}</h1>
-          <p className="hero-sub">{h.sub}</p>
-          <div className="cta-row">
-            <a className="btn btn-rojo" href={WSP_COMUNIDAD} target="_blank" rel="noopener noreferrer">{h.ctaUnete}</a>
-            <a className="btn btn-linea" href="#actividades">{h.ctaConoce}</a>
-          </div>
-        </div>
-        <div className="hero-visual" ref={visualRef}>
-          <img ref={parallaxRef} src={logo} alt="QPerú" width="1200" height="1219" />
+    <section className="qhero" id="inicio">
+      <div className="qhero-inner">
+        <p className="qhero-kicker">Comunidad cuántica peruana</p>
+
+        <h1 className="qhero-title">
+          Democratizamos la computación <span>cuántica</span> en el Perú.
+        </h1>
+
+        <p className="qhero-sub">
+          Una comunidad abierta que acerca la cuántica a estudiantes,
+          profesionales y comunidades de todo el país con talleres, eventos,
+          recursos y colaboración global.
+        </p>
+
+        <div className="qhero-actions">
+          <Link to="/contactanos" className="qhero-btn qhero-btn-primary">
+            Únete a la comunidad
+          </Link>
+          <Link to="/sobre-nosotros" className="qhero-btn qhero-btn-ghost">
+            Conoce más
+          </Link>
         </div>
       </div>
+
+      <button type="button" className="qhero-scroll" onClick={bajar} aria-label="Bajar a la siguiente sección">
+        <span>Scroll down</span>
+        <i aria-hidden="true" />
+      </button>
     </section>
   )
 }

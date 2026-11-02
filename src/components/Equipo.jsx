@@ -3,7 +3,6 @@ import { useLanguage } from '../context/LanguageContext'
 import fotoMaria from '../assets/team/maria-julia-pareja.webp'
 import fotoRenzo from '../assets/team/renzo-cienfuegos.webp'
 import fotoKelvin from '../assets/team/kelvin-cahuana.webp'
-import fotoIsabel from '../assets/team/isabel-davila.webp'
 import fotoLuis from '../assets/team/luis-morales.webp'
 import fotoDiego from '../assets/team/diego-valera.webp'
 import fotoMarco from '../assets/team/marco-mayta.webp'
@@ -12,7 +11,6 @@ const fotos = {
   maria: fotoMaria,
   renzo: fotoRenzo,
   kelvin: fotoKelvin,
-  isabel: fotoIsabel,
   diego: fotoDiego,
   luis: fotoLuis,
   marco: fotoMarco

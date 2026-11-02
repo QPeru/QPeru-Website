@@ -1,6 +1,6 @@
 import { useReveal } from '../hooks/useReveal'
 import { useLanguage } from '../context/LanguageContext'
-import imagenActividad1 from '../assets/charla-1/01.webp'
+import imagenActividad1 from '../assets/charla-1/01.jpg'
 import imagenActividad2 from '../assets/charla-1/02.webp'
 import imagenActividad3 from '../assets/charla-1/03.webp'
 import imagenCSWeek from '../assets/cs-week/01.webp'
@@ -177,22 +177,22 @@ export default function Activities() {
           </article>
 
         </div>
-        
 
-<h3 className="activities-subtitulo activities-subtitulo-futuras">
-  Actividades futuras
-</h3>
 
-<div className="cards reveal-group" ref={futurasRef}>
-  <article className="card" key="3">
-    <h3>Qiskit Fall Fest 2026</h3>
-    <p>
-      Próximamente, en colaboración con IEEE Computer Society PUCP y la
-      Sociedad de Físicos de la PUCP.
-    </p>
-  </article>
-</div>
-    </div>
+        <h3 className="activities-subtitulo activities-subtitulo-futuras">
+          Actividades futuras
+        </h3>
+
+        <div className="cards reveal-group" ref={futurasRef}>
+          <article className="card" key="3">
+            <h3>Qiskit Fall Fest 2026</h3>
+            <p>
+              Próximamente, en colaboración con IEEE Computer Society PUCP y la
+              Sociedad de Físicos de la PUCP.
+            </p>
+          </article>
+        </div>
+      </div>
     </section>
   )
 }

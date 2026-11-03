@@ -26,10 +26,11 @@ const MENU = [
   {
     label: 'Organizacion',
     path: '/sobre-nosotros',
-    sub: [
-      { label: 'Misión', path: '/sobre-nosotros' },
-      { label: 'Equipo', path: '/sobre-nosotros', hash: '#equipo' },
-      { label: 'Red global', path: '/sobre-nosotros', hash: '#red' }
+sub: [
+  { label: 'Misión', path: '/sobre-nosotros' },
+  { label: 'Equipo', path: '/sobre-nosotros', hash: '#equipo' },
+  { label: 'Reglamento', path: '/reglamento' }
+
     ]
   },
   {

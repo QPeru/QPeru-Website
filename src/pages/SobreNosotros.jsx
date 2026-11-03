@@ -1,6 +1,5 @@
 import { useReveal } from '../hooks/useReveal'
 import { useLanguage } from '../context/LanguageContext'
-import Mission from '../components/Mission'
 import Equipo from '../components/Equipo'
 
 // NOTA: el párrafo de introducción, "Visión" y "Nuestros valores" son copy
@@ -15,15 +14,13 @@ export default function SobreNosotros() {
 
   return (
     <>
-      <section className="section">
+      <section className="section hero-blend">
         <div className="container" ref={introRef}>
           <p className="eyebrow">{s.eyebrow}</p>
           <h1>{s.title}</h1>
           <p className="lede" style={{ maxWidth: '62ch', marginTop: '1.5rem' }}>{s.intro}</p>
         </div>
       </section>
-
-      <Mission />
 
       <section className="section section-humo" id="vision">
         <div className="container split" ref={visionRef}>
@@ -34,21 +31,6 @@ export default function SobreNosotros() {
           <div>
             <p className="lede">{s.vision.lede}</p>
             <p>{s.vision.texto}</p>
-          </div>
-        </div>
-      </section>
-
-      <section className="section" id="valores">
-        <div className="container">
-          <p className="eyebrow">{s.valores.eyebrow}</p>
-          <h2>{s.valores.title}</h2>
-          <div className="cards reveal-group" ref={valoresRef}>
-            {s.valores.items.map((valor) => (
-              <article className="card" key={valor.id}>
-                <h3>{valor.title}</h3>
-                <p>{valor.description}</p>
-              </article>
-            ))}
           </div>
         </div>
       </section>

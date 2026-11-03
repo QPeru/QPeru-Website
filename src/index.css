@@ -18,9 +18,9 @@
   --azul-card: #11105F;
   --maxw: 1680px;
   --pad-x: 60px;
-  --f-display: "Archivo Black", "Archivo", sans-serif;
-  --f-body: "Archivo", system-ui, sans-serif;
-  --f-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --f-display: "League Spartan", system-ui, sans-serif;
+  --f-body: "League Spartan", system-ui, sans-serif;
+  --f-mono: "League Spartan", system-ui, sans-serif;
 
   --bg: #03061A;
   --fg: var(--tinta);
@@ -1751,9 +1751,8 @@ p + p { margin-top: 1rem; }
 .qnav-links a,
 .qnav-sub a,
 .qnav-mobile a:not(.qnav-cta) {
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: 'League Spartan', system-ui, sans-serif;
 }
-
 /* ===== Columna desplegable: solo las letras en blur ===== */
 .qnav-item { position: relative; }
 
@@ -1893,3 +1892,308 @@ p + p { margin-top: 1rem; }
 }
 
 .qnav-lang { gap: 2px; }
+
+/* ===== Portada y barra superior: tipografía original ===== */
+.qhero,
+.qnav,
+/* ===== Portada: tipografía original ===== */
+.qhero {
+  font-family: "Archivo", system-ui, sans-serif;
+}
+
+/* ===== Tipografía unificada (estilo de la introducción) ===== */
+body,
+button,
+input,
+textarea,
+select {
+  font-family: var(--f-body);
+}
+
+body { font-weight: 500; }
+
+h1, h2, h3, h4 {
+  font-family: var(--f-display);
+  font-weight: 700;
+}
+
+.lede,
+.section-intro,
+.hero-sub { font-weight: 500; }
+
+/* Pie de página: el nombre gigante también en League Spartan */
+.qfoot-mark {
+  font-family: var(--f-display);
+  font-weight: 800;
+}
+
+/* ===== Unión difuminada entre el video y las secciones ===== */
+.qhero::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: clamp(180px, 30vh, 340px);
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    rgba(3, 6, 26, 0) 0%,
+    rgba(3, 6, 26, 0.35) 40%,
+    rgba(3, 6, 26, 0.8) 75%,
+    #03061A 100%
+  );
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 70%);
+  mask-image: linear-gradient(to bottom, transparent 0%, #000 70%);
+}
+
+/* Unión borrosa: solo para la sección "Mision, visión y valores" */
+.hero-blend {
+  position: relative;
+}
+
+.hero-blend::before,
+.hero-blend::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: clamp(160px, 30vh, 300px);
+  pointer-events: none;
+}
+
+/* Desenfoque progresivo */
+.hero-blend::before {
+  z-index: 1;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 85%);
+  mask-image: linear-gradient(to bottom, transparent, #000 85%);
+}
+
+/* Degradado hacia el color de fondo */
+.hero-blend::after {
+  z-index: 2;
+  background: linear-gradient(
+    to bottom,
+    rgba(3, 6, 26, 0) 0%,
+    rgba(3, 6, 26, 0.6) 60%,
+    #03061A 100%
+  );
+}
+
+/* El texto queda por encima del degradado */
+.hero-blend > * {
+  position: relative;
+  z-index: 3;
+}
+
+/* Reglamento / Integrantes */
+.reglas {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.reglas li {
+  display: grid;
+  grid-template-columns: 4.5rem 1fr;
+  align-items: start;
+  gap: 1.25rem;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.reglas li:first-child {
+  padding-top: 0;
+}
+
+.reglas li:last-child {
+  border-bottom: none;
+}
+
+.regla-n {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  line-height: 1;
+  color: #c9a96e;
+}
+
+.reglas li:nth-child(even) .regla-n {
+  color: #b3171f;
+}
+
+.reglas p {
+  margin: 0;
+}
+
+@media (max-width: 700px) {
+  .reglas li {
+    grid-template-columns: 3.5rem 1fr;
+  }
+}
+/* ═══ Reglamento: título arriba + 2 columnas x 5 filas ═══ */
+/* Título: transparente, deja ver el video detrás */
+.reglamento-top {
+  position: relative;
+  padding: 140px 0 clamp(80px, 14vh, 160px);
+  background: transparent;
+}
+
+.reglamento-top h2 {
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  margin-bottom: 0;
+}
+
+.reglamento-top .eyebrow {
+  font-size: clamp(0.9rem, 1.2vw, 1.1rem);
+}
+
+/* Debajo del título: fondo azul sólido que tapa el video */
+.reglamento {
+  position: relative;
+  background: #03061A;
+  padding-top: 2rem;
+}
+
+/* Unión suave entre el video y el fondo azul */
+.reglamento::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 100%;
+  height: clamp(100px, 18vh, 200px);
+  pointer-events: none;
+  background: linear-gradient(to bottom, rgba(3, 6, 26, 0), #03061A);
+}
+
+.reglas {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(5, auto);
+  grid-auto-flow: column; /* columna 1 (01-05), luego columna 2 (06-10) */
+  gap: 1rem 1.5rem;
+  align-items: start;     /* al abrir una tarjeta, la vecina no se estira */
+}
+
+.reglas li {
+  display: grid;
+  grid-template-columns: 3.5rem 1fr;
+  align-items: start;
+  gap: 1rem;
+  padding: 1.1rem 1.25rem;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(3, 6, 26, 0.62);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.regla-n {
+  font-size: clamp(2.2rem, 3.6vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1;
+  color: #c9a96e;
+}
+
+.reglas li:nth-child(even) .regla-n {
+  color: #b3171f;
+}
+
+.reglas p {
+  margin: 0;
+  font-size: clamp(1.05rem, 1.5vw, 1.35rem);
+  line-height: 1.5;
+}
+
+/* Botón "Ver más" y texto desplegable */
+.regla-body {
+  min-width: 0;
+}
+
+.regla-btn {
+  margin-top: 0.75rem;
+  padding: 0.35rem 0.9rem;
+  font: inherit;
+  font-size: clamp(0.8rem, 1vw, 0.95rem);
+  font-weight: 600;
+  color: #fff;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.regla-btn:hover,
+.regla-btn:focus-visible {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: #c9a96e;
+  outline: none;
+}
+
+.regla-mas {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.3s ease;
+}
+
+.regla-mas.open {
+  grid-template-rows: 1fr;
+}
+
+.regla-mas > div {
+  overflow: hidden;
+}
+
+.reglas .regla-mas-texto {
+  padding-top: 0.9rem;
+  font-size: clamp(0.95rem, 1.25vw, 1.15rem);
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+/* Celular y tablet: una sola columna */
+@media (max-width: 800px) {
+  .reglas {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+    grid-auto-flow: row;
+  }
+}
+
+/* Portada: título en League Spartan, todo blanco */
+.qhero-title,
+.qhero-line1,
+.qhero-line2 {
+  font-family: var(--f-display);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+
+/* La "Q" también en blanco (antes era roja) */
+.qhero-title span span {
+  color: #fff;
+}
+/* Portada: solo "QPeru" más grande */
+.qhero-line1 {
+  font-size: clamp(9rem, 22vw, 22rem);
+  line-height: 0.9;
+}
+
+/* Reglamento: contenedor más ancho para que las tarjetas crezcan */
+.reglamento .container {
+  max-width: 1900px;
+  padding: 0 clamp(24px, 4vw, 80px);
+}

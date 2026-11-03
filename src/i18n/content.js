@@ -78,7 +78,7 @@ export const content = {
     },
     sobreNosotros: {
       eyebrow: '|sobre-nosotros⟩',
-      title: 'Areas de enfoque',
+      title: 'Mision, visión y valores',
       intro: 'QPerú nació para acercar la computación cuántica al Perú: una comunidad abierta que organiza talleres, charlas y espacios de estudio para estudiantes, profesionales y curiosos de todo el país.',
       mision: {
         eyebrow: '|misión⟩',
@@ -99,21 +99,10 @@ export const content = {
         lede: 'Ser la comunidad de referencia en computación cuántica del Perú.',
         texto: 'Buscamos formar una nueva generación de talento peruano capaz de participar como estudiantes, investigadores o profesionales en la segunda revolución cuántica, dentro y fuera del país.'
       },
-      valores: {
-        eyebrow: '|valores⟩',
-        title: 'Nuestros valores',
-        items: [
-          { id: 1, title: 'Apertura', description: 'Todo el conocimiento que generamos es accesible: sin costo, sin requisitos previos rígidos.' },
-          { id: 2, title: 'Colaboración', description: 'Construimos junto a universidades, comunidades técnicas y voluntariado activo, no en solitario.' },
-          { id: 3, title: 'Rigor', description: 'Divulgamos con precisión: explicamos qué es real, y qué no, en la cuántica de hoy.' },
-          { id: 4, title: 'Impacto local', description: 'Priorizamos que el conocimiento cuántico eche raíces en el ecosistema peruano.' }
-        ]
-      }
     },
     equipo: {
       eyebrow: '|equipo⟩',
-      title: 'Nuestro equipo',
-      intro: 'Profesionales y entusiastas dedicados a democratizar la computación cuántica en el Perú.',
+      title: 'EQUIPO DE TRABAJO',
       roleFundadora: 'Fundadora',
       roleFundador: 'Fundador',
       roleMiembro: 'Miembro del equipo',

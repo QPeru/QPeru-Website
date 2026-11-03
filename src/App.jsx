@@ -6,8 +6,9 @@ import Inicio from './pages/Inicio'
 import SobreNosotros from './pages/SobreNosotros'
 import Eventos from './pages/Eventos'
 import Contactanos from './pages/Contactanos'
+import Organizacion from './pages/Organizacion'
 import VideoBackground from './components/VideoBackground'
-
+import Reglamento from './pages/Reglamento'
 function ScrollManager() {
   const { pathname, hash } = useLocation()
 
@@ -35,8 +36,10 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Inicio />} />
           <Route path="/sobre-nosotros" element={<SobreNosotros />} />
+          <Route path="/organizacion" element={<Organizacion />} />
           <Route path="/eventos" element={<Eventos />} />
           <Route path="/contactanos" element={<Contactanos />} />
+          <Route path="/reglamento" element={<Reglamento />} />
         </Routes>
       </main>
       <Footer />

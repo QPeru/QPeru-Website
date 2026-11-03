@@ -1,0 +1,394 @@
+.tg {
+  --tg-panel: #0e1330;
+  --tg-text: #eceefb;
+  --tg-muted: #9aa0c3;
+  /* sin fondo propio: se ve el fondo del sitio */
+  background: transparent;
+  color: var(--tg-text);
+  font-family: 'League Spartan', system-ui, sans-serif;
+  padding: 24px 0 40px;
+}
+
+.tg__hint {
+  margin: 0 24px 12px;
+  font-size: 0.9rem;
+  color: var(--tg-muted);
+  max-width: 60ch;
+}
+
+.tg__scroll {
+  overflow-x: auto;
+  padding-bottom: 8px;
+}
+
+.tg__sizer {
+  margin: 0 auto;
+}
+
+.tg__stage {
+  position: relative;
+  transform-origin: top left;
+}
+
+.tg__edges {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.tg__edge {
+  fill: none;
+  stroke: var(--c);
+  stroke-width: 2;
+  opacity: 0.7;
+}
+
+.tg__edge--dash {
+  stroke-dasharray: 5 6;
+  opacity: 0.28;
+}
+
+/* ---------- Nodos ---------- */
+.tg-node {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+.tg-node.is-open {
+  z-index: 20;
+}
+
+.tg-person {
+  all: unset;
+  box-sizing: border-box;
+  width: 184px;
+  min-height: 124px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  text-align: center;
+  position: relative;
+  background: var(--tg-panel);
+  border: 2px solid color-mix(in srgb, var(--c) 30%, transparent);
+  border-radius: 14px;
+  box-shadow: 0 0 14px color-mix(in srgb, var(--c) 30%, transparent);
+  padding: 8px 10px;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.tg-person:hover,
+.tg-node.is-open .tg-person {
+  transform: translateY(-2px);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--c) 28%, transparent);
+}
+
+.tg-person:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 3px;
+}
+
+.tg-person strong {
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.tg-person span {
+  font-family: 'League Spartan', system-ui, sans-serif;
+  font-size: 0.68rem;
+  color: var(--tg-muted);
+}
+
+.tg-person--vacante {
+  cursor: default;
+  border-style: dashed;
+  opacity: 0.6;
+}
+
+.tg-person--vacante:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.tg-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--c);
+  flex: none;
+  background: #1b2250;
+}
+
+.tg-avatar--ini {
+  display: grid;
+  place-items: center;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--tg-text);
+}
+
+/* Áreas, hub y grupos */
+.tg-label {
+  min-width: 170px;
+  max-width: 196px;
+  padding: 10px 14px;
+  text-align: center;
+  border-radius: 10px;
+  background: var(--c);
+  color: #fff;
+}
+
+.tg-node--area .tg-label {
+  min-height: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.tg-node--area[style*='#c9a45c'] .tg-label,
+.tg-node--area[style*='#e0b84a'] .tg-label {
+  color: #1b1405;
+}
+
+.tg-node--hub .tg-label {
+  min-width: 260px;
+  border-radius: 999px;
+}
+
+.tg-node--group .tg-label {
+  background: transparent;
+  border: 2px dashed var(--c);
+}
+
+.tg-label strong {
+  display: block;
+  font-family: 'League Spartan', system-ui, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.tg-label span {
+  display: block;
+  font-size: 0.68rem;
+  opacity: 0.85;
+  margin-top: 2px;
+}
+
+/* ---------- Tarjeta de CV ---------- */
+.tg-pop {
+  position: absolute;
+  top: 100%;
+  padding-top: 8px;
+  width: 300px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.tg-pop--izq { left: 0; transform: none; }
+.tg-pop--der { left: auto; right: 0; transform: none; }
+
+.tg-pop--arriba {
+  top: auto;
+  bottom: 100%;
+  padding-top: 0;
+  padding-bottom: 8px;
+}
+
+.tg-cv {
+  background: #fff;
+  color: #14172b;
+  border-radius: 12px;
+  padding: 16px;
+  text-align: left;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.5);
+  max-height: 340px;
+  overflow-y: auto;
+}
+
+.tg-cv__head {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.tg-cv__head .tg-avatar {
+  width: 54px;
+  height: 54px;
+  border-color: #8b0000;
+  color: #14172b;
+  background: #eceefb;
+}
+
+.tg-cv__head div {
+  display: flex;
+  flex-direction: column;
+}
+
+.tg-cv__head strong {
+  font-size: 0.95rem;
+}
+
+.tg-cv__head span {
+  font-family: 'League Spartan', system-ui, sans-serif;
+  font-size: 0.72rem;
+  color: #666b8a;
+}
+
+.tg-cv__head em {
+  font-style: normal;
+  color: #8b0000;
+  font-weight: 600;
+  font-size: 0.76rem;
+}
+
+.tg-cv p { margin: 0 0 8px; }
+.tg-cv__vacio { color: #666b8a; font-style: italic; }
+
+.tg-cv h4 {
+  margin: 10px 0 4px;
+  font-size: 0.8rem;
+  color: #8b0000;
+}
+
+.tg-cv ul { margin: 0; padding-left: 18px; }
+
+.tg-cv .tg-chips {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.tg-chips li {
+  background: #f1f2fa;
+  border-radius: 999px;
+  padding: 2px 10px;
+  font-size: 0.72rem;
+}
+
+.tg-cv a {
+  display: inline-block;
+  margin-top: 10px;
+  color: #8b0000;
+  font-weight: 600;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tg-person { transition: none; }
+}
+
+/* ---------- Mascota (esquina superior izquierda) ---------- */
+.tg-mascota {
+  position: absolute;
+  left: 0;
+  top: 0;
+  max-width: 290px;
+  max-height: 290px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+  filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.45));
+}
+
+/* ================= Efecto LED ================= */
+@property --ang {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes tg-spin { to { --ang: 360deg; } }
+@keyframes tg-flow { to { stroke-dashoffset: -112; } }
+@keyframes tg-glow {
+  0%, 100% { box-shadow: 0 0 10px color-mix(in srgb, var(--c) 28%, transparent); }
+  50%      { box-shadow: 0 0 22px color-mix(in srgb, var(--c) 55%, transparent); }
+}
+
+/* Anillo de luz que recorre el borde de las personas */
+.tg-person::before,
+.tg-node--area .tg-label::before,
+.tg-node--hub .tg-label::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  padding: 2px;
+  pointer-events: none;
+  background: conic-gradient(
+    from var(--ang),
+    transparent 0deg,
+    var(--c) 50deg,
+    #ffffff 80deg,
+    transparent 120deg,
+    transparent 180deg,
+    var(--c) 230deg,
+    #ffffff 255deg,
+    transparent 295deg
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  animation: tg-spin 4s linear infinite;
+}
+
+/* Que no giren todas al mismo tiempo */
+.tg-node:nth-child(3n) .tg-person::before { animation-duration: 5.2s; }
+.tg-node:nth-child(3n + 1) .tg-person::before { animation-duration: 3.6s; animation-direction: reverse; }
+
+.tg-person { animation: tg-glow 3.2s ease-in-out infinite; }
+.tg-node:nth-child(2n) .tg-person { animation-delay: -1.2s; }
+
+.tg-person--vacante { animation: none; box-shadow: none; }
+.tg-person--vacante::before { display: none; }
+
+/* Áreas y hub: su borde es un destello blanco sobre el color */
+.tg-node--area .tg-label,
+.tg-node--hub .tg-label { position: relative; }
+
+.tg-node--area .tg-label::before,
+.tg-node--hub .tg-label::before {
+  background: conic-gradient(
+    from var(--ang),
+    transparent 0deg,
+    rgba(255, 255, 255, 0.95) 40deg,
+    transparent 90deg,
+    transparent 180deg,
+    rgba(255, 255, 255, 0.95) 220deg,
+    transparent 270deg
+  );
+  animation-duration: 5s;
+}
+
+.tg-node--hub .tg-label { box-shadow: 0 0 26px color-mix(in srgb, var(--c) 55%, transparent); }
+
+/* Luz que viaja por las líneas de conexión */
+.tg__edge--led {
+  stroke: #fff;
+  stroke-width: 3;
+  opacity: 0.95;
+  stroke-linecap: round;
+  stroke-dasharray: 14 98;
+  filter: drop-shadow(0 0 4px var(--c)) drop-shadow(0 0 8px var(--c));
+  animation: tg-flow 2.6s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tg-person,
+  .tg-person::before,
+  .tg-node--area .tg-label::before,
+  .tg-node--hub .tg-label::before,
+  .tg__edge--led { animation: none; }
+  .tg__edge--led { display: none; }
+}

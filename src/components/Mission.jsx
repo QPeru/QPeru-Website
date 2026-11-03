@@ -7,7 +7,7 @@ export default function Mission() {
   const m = t.sobreNosotros.mision
 
   return (
-    <section className="section" id="mision">
+    <section className="section fade-top" id="mision">
       <div className="container split">
         <div>
           <p className="eyebrow">{m.eyebrow}</p>
@@ -18,7 +18,10 @@ export default function Mission() {
           <p>{m.texto}</p>
           <ul className="facts reveal-group">
             {m.facts.map((fact) => (
-              <li key={fact.k}><span className="fact-k">{fact.k}</span><span>{fact.v}</span></li>
+              <li key={fact.k}>
+                <span className="fact-k">{fact.k}</span>
+                <span>{fact.v}</span>
+              </li>
             ))}
           </ul>
         </div>

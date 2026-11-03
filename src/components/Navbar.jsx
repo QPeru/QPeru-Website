@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { useTheme } from '../hooks/useTheme'
 import { useLanguage } from '../context/LanguageContext'
@@ -6,24 +6,76 @@ import logo from '../assets/LOGO2 FINAL.svg'
 
 // Pon aquí las URLs reales. Si dejas una vacía, ese ícono no se muestra.
 const SOCIAL = {
-  youtube: '',
-  instagram: ''
+  linkedin: 'https://www.linkedin.com/company/qperu/posts/?feedView=all',
+  instagram: 'https://www.instagram.com/qperu.pe/'
 }
 
 // Edita aquí los nombres y destinos del menú.
 // path = página, hash = sección dentro de esa página (opcional).
+// sub = pestañas que aparecen en la columna desplegable.
 const MENU = [
-  { label: 'Inicio', path: '/' },
-  { label: 'Sobre nosotros', path: '/sobre-nosotros' },
-  { label: 'Actividades', path: '/', hash: '#actividades' },
-  { label: 'Cursos', path: '/', hash: '#cursos' },
-  { label: 'Eventos', path: '/eventos' },
-  { label: 'Comunidad', path: '/', hash: '#comunidad' }
+  {
+    label: 'Inicio',
+    path: '/',
+    sub: [
+      { label: 'Portada', path: '/' },
+      { label: 'Actividades', path: '/', hash: '#actividades' },
+      { label: 'Cursos', path: '/', hash: '#cursos' }
+    ]
+  },
+  {
+    label: 'Sobre nosotros',
+    path: '/sobre-nosotros',
+    sub: [
+      { label: 'Misión', path: '/sobre-nosotros' },
+      { label: 'Equipo', path: '/sobre-nosotros', hash: '#equipo' },
+      { label: 'Red global', path: '/sobre-nosotros', hash: '#red' }
+    ]
+  },
+  {
+    label: 'Actividades',
+    path: '/',
+    hash: '#actividades',
+    sub: [
+      { label: 'Talleres', path: '/', hash: '#actividades' },
+      { label: 'Charlas', path: '/', hash: '#actividades' },
+      { label: 'Actividades pasadas', path: '/', hash: '#actividades' }
+    ]
+  },
+  {
+    label: 'Cursos',
+    path: '/',
+    hash: '#cursos',
+    sub: [
+      { label: 'Todos los cursos', path: '/', hash: '#cursos' }
+    ]
+  },
+  {
+    label: 'Eventos',
+    path: '/eventos',
+    sub: [
+      { label: 'Próximos eventos', path: '/eventos' },
+      { label: 'Eventos anteriores', path: '/eventos', hash: '#anteriores' }
+    ]
+  },
+  {
+    label: 'Comunidad',
+    path: '/',
+    hash: '#comunidad',
+    sub: [
+      { label: 'Para quién es', path: '/', hash: '#comunidad' },
+      { label: 'Contacto', path: '/contactanos' }
+    ]
+  }
 ]
+
+const toHref = (item) => (item.hash ? `${item.path}${item.hash}` : item.path)
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const [openMenu, setOpenMenu] = useState(null)
+  const navRef = useRef(null)
   const { theme, toggleTheme } = useTheme()
   const { lang, setLang, t } = useLanguage()
   const location = useLocation()
@@ -35,8 +87,10 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  // cierra menú móvil y columna al cambiar de ruta
   useEffect(() => {
     setMenuOpen(false)
+    setOpenMenu(null)
   }, [location.pathname, location.hash])
 
   useEffect(() => {
@@ -46,13 +100,27 @@ export default function Navbar() {
     return () => window.removeEventListener('keydown', onKey)
   }, [menuOpen])
 
+  // cierra la columna al hacer clic fuera o pulsar Esc
+  useEffect(() => {
+    const onDown = (e) => {
+      if (navRef.current && !navRef.current.contains(e.target)) setOpenMenu(null)
+    }
+    const onKey = (e) => e.key === 'Escape' && setOpenMenu(null)
+    document.addEventListener('mousedown', onDown)
+    window.addEventListener('keydown', onKey)
+    return () => {
+      document.removeEventListener('mousedown', onDown)
+      window.removeEventListener('keydown', onKey)
+    }
+  }, [])
+
   const isActive = (item) =>
     location.pathname === item.path && (item.hash ? location.hash === item.hash : !location.hash)
 
-  const renderItem = (item) => (
+  const renderLink = (item) => (
     <Link
       key={item.label}
-      to={item.hash ? `${item.path}${item.hash}` : item.path}
+      to={toHref(item)}
       className={isActive(item) ? 'qnav-active' : undefined}
       aria-current={isActive(item) ? 'page' : undefined}
     >
@@ -69,10 +137,10 @@ export default function Navbar() {
             <img src={logo} alt="QPerú" />
           </Link>
 
-          {SOCIAL.youtube && (
-            <a className="qnav-social" href={SOCIAL.youtube} target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+          {SOCIAL.linkedin && (
+            <a className="qnav-social" href={SOCIAL.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
               <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
-                <path fill="currentColor" d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8ZM9.6 15.6V8.4l6.2 3.6-6.2 3.6Z" />
+                 <path fill="currentColor" d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z" />
               </svg>
             </a>
           )}
@@ -88,9 +156,45 @@ export default function Navbar() {
           )}
         </div>
 
-        {/* CENTRO: menú */}
-        <nav className="qnav-links" aria-label="Navegación principal">
-          {MENU.map(renderItem)}
+        {/* CENTRO: menú con columna desplegable animada */}
+        <nav className="qnav-links" aria-label="Navegación principal" ref={navRef}>
+          {MENU.map((item) => {
+            const open = openMenu === item.label
+            return (
+              <div
+                className={`qnav-item${open ? ' open' : ''}`}
+                key={item.label}
+                onMouseEnter={() => setOpenMenu(item.label)}
+                onMouseLeave={() => setOpenMenu(null)}
+              >
+                <Link
+                  to={toHref(item)}
+                  className={isActive(item) ? 'qnav-active' : undefined}
+                  aria-haspopup={item.sub ? 'true' : undefined}
+                  aria-expanded={item.sub ? open : undefined}
+                  onClick={(e) => {
+                    // en pantallas táctiles: el primer toque abre la columna
+                    if (item.sub && !open) {
+                      e.preventDefault()
+                      setOpenMenu(item.label)
+                    }
+                  }}
+                >
+                  {item.label}
+                </Link>
+
+                {item.sub && (
+                  <div className="qnav-sub" aria-hidden={!open}>
+                    {item.sub.map((s, i) => (
+                      <Link key={s.label} to={toHref(s)} style={{ '--i': i }} tabIndex={open ? 0 : -1}>
+                        {s.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )
+          })}
         </nav>
 
         {/* DERECHA: idioma + tema + CTA + hamburguesa */}
@@ -113,7 +217,6 @@ export default function Navbar() {
             )}
           </button>
 
-          <Link className="qnav-cta" to="/contactanos">{t.nav.unete}</Link>
 
           <button
             type="button"
@@ -136,8 +239,17 @@ export default function Navbar() {
       {/* Panel móvil */}
       {menuOpen && (
         <nav className="qnav-mobile" aria-label="Navegación móvil">
-          {MENU.map(renderItem)}
-          <Link className="qnav-cta" to="/contactanos">{t.nav.unete}</Link>
+          {MENU.map((item) => (
+            <div key={item.label} className="qnav-mobile-group">
+              {renderLink(item)}
+              {item.sub &&
+                item.sub.map((s) => (
+                  <Link key={s.label} to={toHref(s)} className="qnav-mobile-sub">
+                    {s.label}
+                  </Link>
+                ))}
+            </div>
+          ))}
         </nav>
       )}
     </header>

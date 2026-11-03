@@ -8,11 +8,9 @@ export const content = {
       themeToggle: 'Cambiar tema claro/oscuro'
     },
     hero: {
-      eyebrow: 'Comunidad cuántica peruana',
-      title1: 'Democratizamos la computación ',
-      titleRojo: 'cuántica',
-      title2: ' en el Perú.',
-      sub: 'Una comunidad abierta que acerca la cuántica a estudiantes, profesionales y comunidades de todo el país con talleres, eventos, recursos y colaboración global.',
+      title1: 'Quantum ',
+      titleRojo: 'Peru',
+      title2: ' 2026',
       ctaUnete: 'Únete a la comunidad',
       ctaConoce: 'Conoce más'
     },

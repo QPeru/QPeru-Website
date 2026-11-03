@@ -10,26 +10,16 @@ export default function Hero() {
   return (
     <section className="qhero" id="inicio">
       <div className="qhero-inner">
-        <p className="qhero-kicker">Comunidad cuántica peruana</p>
 
         <h1 className="qhero-title">
-          Democratizamos la computación <span>cuántica</span> en el Perú.
+          Quantum <span>Peru</span> 2026
         </h1>
 
         <p className="qhero-sub">
-          Una comunidad abierta que acerca la cuántica a estudiantes,
-          profesionales y comunidades de todo el país con talleres, eventos,
-          recursos y colaboración global.
+         Fecha
         </p>
 
-        <div className="qhero-actions">
-          <Link to="/contactanos" className="qhero-btn qhero-btn-primary">
-            Únete a la comunidad
-          </Link>
-          <Link to="/sobre-nosotros" className="qhero-btn qhero-btn-ghost">
-            Conoce más
-          </Link>
-        </div>
+        
       </div>
 
       <button type="button" className="qhero-scroll" onClick={bajar} aria-label="Bajar a la siguiente sección">

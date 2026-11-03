@@ -9,6 +9,11 @@ const SOCIAL = {
   linkedin: 'https://www.linkedin.com/company/qperu/posts/?feedView=all',
   instagram: 'https://www.instagram.com/qperu.pe/'
 }
+const LANGS = [
+  { code: 'es', label: 'ES' },
+  { code: 'en', label: 'EN' },
+  { code: 'qu', label: 'QU' }
+]
 
 // Edita aquí los nombres y destinos del menú.
 // path = página, hash = sección dentro de esa página (opcional).
@@ -17,14 +22,9 @@ const MENU = [
   {
     label: 'Inicio',
     path: '/',
-    sub: [
-      { label: 'Portada', path: '/' },
-      { label: 'Actividades', path: '/', hash: '#actividades' },
-      { label: 'Cursos', path: '/', hash: '#cursos' }
-    ]
   },
   {
-    label: 'Sobre nosotros',
+    label: 'Organizacion',
     path: '/sobre-nosotros',
     sub: [
       { label: 'Misión', path: '/sobre-nosotros' },
@@ -199,15 +199,19 @@ export default function Navbar() {
 
         {/* DERECHA: idioma + tema + CTA + hamburguesa */}
         <div className="qnav-right">
-          <div className="qnav-lang" role="group" aria-label="Idioma / Language">
-            <button
-              type="button"
-              className={lang === 'es' ? 'qnav-lang-btn on' : 'qnav-lang-btn'}
-              onClick={() => setLang('es')}
-            >
-              ES
-            </button>
-          </div>
+         <div className="qnav-lang" role="group" aria-label="Idioma / Language">
+              {LANGS.map((l) => (
+              <button
+                  key={l.code}
+                  type="button"
+                  className={lang === l.code ? 'qnav-lang-btn on' : 'qnav-lang-btn'}
+                  onClick={() => setLang(l.code)}
+                  aria-pressed={lang === l.code}
+                           >
+              {l.label}
+             </button>
+           ))}
+        </div>
 
           <button type="button" className="qnav-theme" onClick={toggleTheme} aria-label={t.nav.themeToggle}>
             {theme === 'dark' ? (

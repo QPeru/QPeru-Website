@@ -12,7 +12,8 @@ export default function Hero() {
       <div className="qhero-inner">
 
         <h1 className="qhero-title">
-          Quantum <span>Peru</span> 2026
+        <span className="qhero-line1"><span>Q</span>Peru</span>
+        <span className="qhero-line2">2026</span>
         </h1>
 
         <p className="qhero-sub">

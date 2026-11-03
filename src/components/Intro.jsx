@@ -4,7 +4,7 @@ export default function Intro() {
       <div className="intro-inner">
         <div className="intro-left">
           <img className="intro-mascota" src="/mascota.png" alt="Mascota de QPerú: un cóndor andino" />
-          <h2 className="intro-title">Quantum Peru 2026</h2>
+          <h2 className="intro-title">QPeru 2026</h2>
         </div>
 
         <div className="intro-text">

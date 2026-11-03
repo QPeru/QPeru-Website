@@ -78,7 +78,7 @@ export const content = {
     },
     sobreNosotros: {
       eyebrow: '|sobre-nosotros⟩',
-      title: 'Quiénes somos',
+      title: 'Areas de enfoque',
       intro: 'QPerú nació para acercar la computación cuántica al Perú: una comunidad abierta que organiza talleres, charlas y espacios de estudio para estudiantes, profesionales y curiosos de todo el país.',
       mision: {
         eyebrow: '|misión⟩',

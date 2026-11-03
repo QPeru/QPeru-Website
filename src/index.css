@@ -12,7 +12,7 @@
   --dorado: #767676;
   --tinta: #FFFFFF;
   --gris: #E0E0EC;
-  --humo: #07063F;
+  --humo: #03061A;
   --linea: #E7E5E0;
   --blanco: #FFFFFF;
   --azul-card: #11105F;
@@ -22,9 +22,9 @@
   --f-body: "Archivo", system-ui, sans-serif;
   --f-mono: "IBM Plex Mono", ui-monospace, monospace;
 
-  --bg: #07063F;
+  --bg: #03061A;
   --fg: var(--tinta);
-  --bg-alt: #07063F;
+  --bg-alt: #03061A;
 }
 
 
@@ -1265,7 +1265,7 @@ p + p { margin-top: 1rem; }
   text-shadow: 0 4px 30px rgba(3, 5, 18, 0.6);
 }
 
-.qhero-title span {
+.qhero-title span span {
   color: #ff3b4a;
 }
 
@@ -1551,7 +1551,7 @@ p + p { margin-top: 1rem; }
 .qfoot {
   position: relative;
   overflow: hidden;
-  background: #07063f;
+  background: #03061A;
   color: #fff;
 }
 
@@ -1873,3 +1873,23 @@ p + p { margin-top: 1rem; }
   }
   .intro-mascota { height: 200px; }
 }
+
+/* ===== Título en dos líneas ===== */
+.qhero-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.qhero-line1 {
+  font-size: clamp(7rem, 16vw, 15rem);
+  line-height: 0.95;
+}
+
+.qhero-line2 {
+  font-size: clamp(3.5rem, 8vw, 7.5rem);
+  line-height: 1;
+  margin-top: 0.1em;
+}
+
+.qnav-lang { gap: 2px; }

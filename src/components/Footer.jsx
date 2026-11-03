@@ -64,7 +64,7 @@ export default function Footer() {
 
       {/* Nombre gigante tenue */}
       <div className="qfoot-bottom" aria-hidden="true">
-        <span className="qfoot-mark">Quantum Peru 2026</span>
+        <span className="qfoot-mark">QPeru 2026</span>
       </div>
     </footer>
   )

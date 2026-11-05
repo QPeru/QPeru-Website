@@ -1,4 +1,5 @@
 import { useMemo, useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { PEOPLE, FUNDADORES, AREAS, MIEMBROS_CORE } from '../data/team';
 import './TeamGraph.css';
 
@@ -11,7 +12,7 @@ const MITAD = { person: 62, vacant: 62, area: 30, hub: 30, group: 34 };
 // Escala: el grafo se ajusta al ancho disponible.
 // Sube ESCALA_MAX si quieres que crezca aún más en pantallas grandes.
 const ESCALA_MIN = 0.75;
-const ESCALA_MAX = 1.6;
+const ESCALA_MAX = 2;
 
 function iniciales(nombre) {
   return nombre
@@ -46,47 +47,76 @@ function Mascota() {
   );
 }
 
-function CvCard({ persona, foto, rol }) {
+// CV en ventana centrada. Se dibuja en <body> (portal) para que no la afecte
+// la escala del grafo. Se expande desde la tarjeta que se hizo clic.
+function CvModal({ persona, foto, rol, origen, onClose }) {
+  const ref = useRef(null);
   const { cv } = persona;
   const vacio = !cv.resumen && !cv.formacion.length && !cv.experiencia.length && !cv.habilidades.length;
-  return (
-    <div className="tg-cv" role="dialog" aria-label={`CV de ${persona.nombre}`}>
-      <header className="tg-cv__head">
-        <Avatar nombre={persona.nombre} foto={foto} />
-        <div>
-          <strong>{persona.nombre}</strong>
-          <span>{persona.universidad}</span>
-          <em>{rol}</em>
-        </div>
-      </header>
-      {vacio && <p className="tg-cv__vacio">CV pendiente de completar.</p>}
-      {cv.resumen && <p>{cv.resumen}</p>}
-      {cv.formacion.length > 0 && (
-        <section>
-          <h4>Formación</h4>
-          <ul>{cv.formacion.map((f) => <li key={f}>{f}</li>)}</ul>
-        </section>
-      )}
-      {cv.experiencia.length > 0 && (
-        <section>
-          <h4>Experiencia</h4>
-          <ul>{cv.experiencia.map((e) => <li key={e}>{e}</li>)}</ul>
-        </section>
-      )}
-      {cv.habilidades.length > 0 && (
-        <ul className="tg-chips">{cv.habilidades.map((h) => <li key={h}>{h}</li>)}</ul>
-      )}
-      {cv.linkedin && (
-        <a href={cv.linkedin} target="_blank" rel="noreferrer">Ver LinkedIn</a>
-      )}
-    </div>
+
+  useEffect(() => {
+    ref.current?.focus();
+  }, []);
+
+  return createPortal(
+    <div className="tg-modal-backdrop" onClick={onClose}>
+      <div
+        className="tg-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-label={`CV de ${persona.nombre}`}
+        tabIndex={-1}
+        ref={ref}
+        style={{ '--ox': `${origen.ox}px`, '--oy': `${origen.oy}px` }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button type="button" className="tg-modal__close" onClick={onClose} aria-label="Cerrar">
+          ×
+        </button>
+
+        <header className="tg-modal__head">
+          <Avatar nombre={persona.nombre} foto={foto} />
+          <div>
+            <h3>{persona.nombre}</h3>
+            <span className="tg-modal__uni">{persona.universidad}</span>
+            <em>{rol}</em>
+          </div>
+        </header>
+
+        {vacio && <p className="tg-modal__vacio">CV pendiente de completar.</p>}
+        {cv.resumen && <p>{cv.resumen}</p>}
+
+        {cv.formacion.length > 0 && (
+          <section>
+            <h4>Formación</h4>
+            <ul>{cv.formacion.map((f) => <li key={f}>{f}</li>)}</ul>
+          </section>
+        )}
+        {cv.experiencia.length > 0 && (
+          <section>
+            <h4>Experiencia</h4>
+            <ul>{cv.experiencia.map((e) => <li key={e}>{e}</li>)}</ul>
+          </section>
+        )}
+        {cv.habilidades.length > 0 && (
+          <ul className="tg-modal__chips">{cv.habilidades.map((h) => <li key={h}>{h}</li>)}</ul>
+        )}
+        {cv.linkedin && (
+          <a className="tg-modal__link" href={cv.linkedin} target="_blank" rel="noreferrer">
+            Ver LinkedIn
+          </a>
+        )}
+      </div>
+    </div>,
+    document.body
   );
 }
 
 // fotos: objeto { idPersona: urlImportada }, p. ej. { maria: fotoMaria }
 export default function TeamGraph({ fotos = {} }) {
-  const [hover, setHover] = useState(null);
-  const [fijo, setFijo] = useState(null);
+  // abierto: { key, ox, oy } -> ox/oy = distancia desde el centro de la pantalla
+  // hasta la tarjeta clicada (para animar la expansión desde ahí)
+  const [abierto, setAbierto] = useState(null);
   const [escala, setEscala] = useState(1);
   const contRef = useRef(null);
 
@@ -101,11 +131,18 @@ export default function TeamGraph({ fotos = {} }) {
     return () => ro.disconnect();
   }, []);
 
+  // Esc cierra la ventana y se bloquea el scroll de la página mientras está abierta
   useEffect(() => {
-    const onKey = (e) => e.key === 'Escape' && setFijo(null);
+    if (!abierto) return undefined;
+    const onKey = (e) => e.key === 'Escape' && setAbierto(null);
+    const previo = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
     window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
-  }, []);
+    return () => {
+      window.removeEventListener('keydown', onKey);
+      document.body.style.overflow = previo;
+    };
+  }, [abierto]);
 
   const { nodos, aristas } = useMemo(() => {
     const nodos = [];
@@ -158,7 +195,16 @@ export default function TeamGraph({ fotos = {} }) {
   }, []);
 
   const porKey = Object.fromEntries(nodos.map((n) => [n.key, n]));
-  const activo = hover || fijo;
+  const nodoAbierto = abierto ? porKey[abierto.key] : null;
+
+  const abrir = (e, key) => {
+    const r = e.currentTarget.getBoundingClientRect();
+    setAbierto({
+      key,
+      ox: r.left + r.width / 2 - window.innerWidth / 2,
+      oy: r.top + r.height / 2 - window.innerHeight / 2,
+    });
+  };
 
   const camino = ([a, b]) => {
     const n1 = porKey[a];
@@ -176,75 +222,67 @@ export default function TeamGraph({ fotos = {} }) {
     <div className="tg" aria-label="Estructura del equipo de QPerú">
       <div className="tg__scroll" ref={contRef}>
         <div className="tg__sizer" style={{ width: W * escala, height: H * escala }}>
-        <div
-          className="tg__stage"
-          style={{ width: W, height: H, transform: `scale(${escala})` }}
-          onClick={() => setFijo(null)}
-        >
-          <Mascota />
-          <svg className="tg__edges" width={W} height={H} viewBox={`0 0 ${W} ${H}`} aria-hidden="true">
-            {aristas.map((e) => (
-              <g key={`${e[0]}>${e[1]}`} style={{ '--c': porKey[e[1]].color }}>
-                <path d={camino(e)} className={e[2] ? 'tg__edge tg__edge--dash' : 'tg__edge'} />
-                {!e[2] && <path d={camino(e)} className="tg__edge tg__edge--led" />}
-              </g>
-            ))}
-          </svg>
+          <div className="tg__stage" style={{ width: W, height: H, transform: `scale(${escala})` }}>
+            <Mascota />
+            <svg className="tg__edges" width={W} height={H} viewBox={`0 0 ${W} ${H}`} aria-hidden="true">
+              {aristas.map((e) => (
+                <g key={`${e[0]}>${e[1]}`} style={{ '--c': porKey[e[1]].color }}>
+                  <path d={camino(e)} className={e[2] ? 'tg__edge tg__edge--dash' : 'tg__edge'} />
+                  {!e[2] && <path d={camino(e)} className="tg__edge tg__edge--led" />}
+                </g>
+              ))}
+            </svg>
 
-          {nodos.map((n) => {
-            const persona = n.personaId ? PEOPLE[n.personaId] : null;
-            const foto = n.personaId ? fotos[n.personaId] : null;
-            const abierto = activo === n.key && persona;
-            const arriba = n.y > 520;
-            const alineacion = n.x < 200 ? 'izq' : n.x > W - 200 ? 'der' : 'centro';
-            return (
-              <div
-                key={n.key}
-                className={`tg-node tg-node--${n.tipo}${abierto ? ' is-open' : ''}`}
-                style={{ left: n.x, top: n.y, '--c': n.color }}
-                onMouseEnter={() => persona && setHover(n.key)}
-                onMouseLeave={() => setHover(null)}
-              >
-                {persona && (
-                  <>
+            {nodos.map((n) => {
+              const persona = n.personaId ? PEOPLE[n.personaId] : null;
+              const foto = n.personaId ? fotos[n.personaId] : null;
+              return (
+                <div
+                  key={n.key}
+                  className={`tg-node tg-node--${n.tipo}`}
+                  style={{ left: n.x, top: n.y, '--c': n.color }}
+                >
+                  {persona && (
                     <button
                       type="button"
                       className="tg-person"
-                      aria-expanded={!!abierto}
-                      onClick={(e) => { e.stopPropagation(); setFijo(fijo === n.key ? null : n.key); }}
-                      onFocus={() => setHover(n.key)}
-                      onBlur={() => setHover(null)}
+                      aria-haspopup="dialog"
+                      onClick={(e) => abrir(e, n.key)}
                     >
                       <Avatar nombre={persona.nombre} foto={foto} />
                       <strong>{persona.nombre}</strong>
                       <span>{persona.universidad}</span>
                     </button>
-                    {abierto && (
-                      <div className={`tg-pop tg-pop--${alineacion}${arriba ? ' tg-pop--arriba' : ''}`} onClick={(e) => e.stopPropagation()}>
-                        <CvCard persona={persona} foto={foto} rol={n.rol} />
-                      </div>
-                    )}
-                  </>
-                )}
-                {n.tipo === 'vacant' && (
-                  <div className="tg-person tg-person--vacante">
-                    <span className="tg-avatar tg-avatar--ini">?</span>
-                    <strong>Vacante</strong>
-                    <span>{n.rol.split(' de ')[0]}</span>
-                  </div>
-                )}
-                {(n.tipo === 'area' || n.tipo === 'hub' || n.tipo === 'group') && (
-                  <div className="tg-label">
-                    <strong>{n.titulo}</strong>
-                    <span>{n.sub}</span>
-                  </div>
-                )}
-              </div>
-            );
-          })}
-        </div>
+                  )}
+                  {n.tipo === 'vacant' && (
+                    <div className="tg-person tg-person--vacante">
+                      <span className="tg-avatar tg-avatar--ini">?</span>
+                      <strong>Vacante</strong>
+                      <span>{n.rol.split(' de ')[0]}</span>
+                    </div>
+                  )}
+                  {(n.tipo === 'area' || n.tipo === 'hub' || n.tipo === 'group') && (
+                    <div className="tg-label">
+                      <strong>{n.titulo}</strong>
+                      <span>{n.sub}</span>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
+
+      {nodoAbierto && (
+        <CvModal
+          persona={PEOPLE[nodoAbierto.personaId]}
+          foto={fotos[nodoAbierto.personaId]}
+          rol={nodoAbierto.rol}
+          origen={abierto}
+          onClose={() => setAbierto(null)}
+        />
+      )}
     </div>
   );
 }

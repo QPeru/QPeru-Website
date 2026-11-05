@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 export default function Intro() {
   return (
     <section className="intro">
@@ -10,9 +12,9 @@ export default function Intro() {
             estudiantes, profesionales y comunidades para explorar el futuro de
             la computación cuántica desde el Perú.
           </p>
-          <a href="#actividades" className="intro-btn">Ver más</a>
+          <Link to="/actividades" className="intro-btn">Ver más</Link>
         </div>
       </div>
     </section>
-  );
+  )
 }

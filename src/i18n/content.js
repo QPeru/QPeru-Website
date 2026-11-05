@@ -14,6 +14,14 @@ export const content = {
       ctaUnete: 'Únete a la comunidad',
       ctaConoce: 'Conoce más'
     },
+    origen: {
+      eyebrow: '|origen⟩',
+      title: 'Origen de QPeru',
+      parrafos: [
+        'Aquí va la historia de cómo nació QPerú: quiénes lo impulsaron, en qué año y con qué motivación.',
+        'Puedes agregar más párrafos a esta lista si lo necesitas.'
+      ]
+    },
     activities: {
       eyebrow: '|actividades⟩',
       title: 'Actividades',
@@ -77,9 +85,14 @@ export const content = {
       qrSub: 'Grupo de WhatsApp'
     },
     sobreNosotros: {
-      eyebrow: '|sobre-nosotros⟩',
-      title: 'Mision, visión y valores',
+      eyebrow: '|organización⟩',
+      title: 'Organización',
       intro: 'QPerú nació para acercar la computación cuántica al Perú: una comunidad abierta que organiza talleres, charlas y espacios de estudio para estudiantes, profesionales y curiosos de todo el país.',
+      mvv: {
+        eyebrow: '|misión-visión-valores⟩',
+        title: 'Misión, visión y valores',
+        intro: 'Lo que nos mueve, hacia dónde vamos y los principios con los que construimos QPerú.'
+      },
       mision: {
         eyebrow: '|misión⟩',
         title1: 'Divulgar y',
@@ -99,10 +112,22 @@ export const content = {
         lede: 'Ser la comunidad de referencia en computación cuántica del Perú.',
         texto: 'Buscamos formar una nueva generación de talento peruano capaz de participar como estudiantes, investigadores o profesionales en la segunda revolución cuántica, dentro y fuera del país.'
       },
+      valores: {
+        eyebrow: '|valores⟩',
+        title: 'Nuestros valores',
+        items: [
+          { id: 1, title: 'Comunidad', description: 'Unir a las comunidades cuánticas del Perú mediante la colaboración y el conocimiento compartido.' },
+          { id: 2, title: 'Identidad', description: 'Dar a las comunidades cuánticas del Perú una voz más fuerte y visibilidad internacional.' },
+          { id: 3, title: 'Innovación', description: 'Fomentar la creatividad y la exploración científica.' },
+          { id: 4, title: 'Accesibilidad', description: 'Hacer que la educación cuántica sea abierta e inclusiva.' },
+          { id: 5, title: 'Rigor científico', description: 'Promover el aprendizaje basado en evidencia, la integridad en la investigación y la excelencia científica.' }
+        ]
+      }
     },
     equipo: {
       eyebrow: '|equipo⟩',
       title: 'EQUIPO DE TRABAJO',
+      intro: 'Profesionales y entusiastas dedicados a democratizar la computación cuántica en el Perú.',
       roleFundadora: 'Fundadora',
       roleFundador: 'Fundador',
       roleMiembro: 'Miembro del equipo',
@@ -134,6 +159,14 @@ export const content = {
       sub: 'An open community bringing quantum computing to students, professionals and communities across the country - through workshops, events, resources and global collaboration.',
       ctaUnete: 'Join the community',
       ctaConoce: 'Learn more'
+    },
+    origen: {
+      eyebrow: '|origin⟩',
+      title: 'Origin of QPeru',
+      parrafos: [
+        'Here goes the story of how QPerú was born: who started it, when, and why.',
+        'You can add more paragraphs to this list if needed.'
+      ]
     },
     activities: {
       eyebrow: '|activities⟩',
@@ -217,9 +250,14 @@ export const content = {
       qrSub: 'WhatsApp group'
     },
     sobreNosotros: {
-      eyebrow: '|about-us⟩',
-      title: 'Who we are',
+      eyebrow: '|organization⟩',
+      title: 'Organization',
       intro: 'QPerú was created to bring quantum computing to Peru: an open community that organizes workshops, talks and study spaces for students, professionals and curious minds across the country.',
+      mvv: {
+        eyebrow: '|mission-vision-values⟩',
+        title: 'Mission, vision and values',
+        intro: 'What drives us, where we are headed and the principles we build QPerú on.'
+      },
       mision: {
         eyebrow: '|mission⟩',
         title1: 'Spread and',
@@ -241,12 +279,13 @@ export const content = {
       },
       valores: {
         eyebrow: '|values⟩',
-        title: 'Our values',
+        title: 'Our core values',
         items: [
-          { id: 1, title: 'Openness', description: 'All the knowledge we produce is accessible: free of charge, without rigid prerequisites.' },
-          { id: 2, title: 'Collaboration', description: 'We build together with universities, technical communities and active volunteers, not alone.' },
-          { id: 3, title: 'Rigor', description: "We communicate with precision: explaining what's real - and what isn't - in quantum computing today." },
-          { id: 4, title: 'Local impact', description: 'We prioritize quantum knowledge taking root in the Peruvian ecosystem.' }
+          { id: 1, title: 'Community', description: 'Uniting quantum communities across Peru through collaboration and shared knowledge.' },
+          { id: 2, title: 'Identity', description: "Giving Peru's quantum communities a stronger voice and international visibility." },
+          { id: 3, title: 'Innovation', description: 'Encouraging creativity and scientific exploration.' },
+          { id: 4, title: 'Accessibility', description: 'Making quantum education open and inclusive.' },
+          { id: 5, title: 'Scientific Rigor', description: 'Promoting evidence-based learning, research integrity, and scientific excellence.' }
         ]
       }
     },

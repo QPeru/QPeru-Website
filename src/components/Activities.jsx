@@ -1,28 +1,10 @@
+import { useEffect, useState } from 'react'
 import { useReveal } from '../hooks/useReveal'
 import { useLanguage } from '../context/LanguageContext'
 import imagenActividad1 from '../assets/charla-1/01.jpg'
 import imagenActividad2 from '../assets/charla-1/02.webp'
 import imagenActividad3 from '../assets/charla-1/03.webp'
 import imagenCSWeek from '../assets/cs-week/01.webp'
-import { useEffect, useState } from 'react'
-
-//const links = {
-//  1: 'https://www.csweek2026.com/agenda',
-//  2: 'https://www.csweek2026.com/agenda'
-//}
-
-const links = {
-  1: 'https://luma.com/azxbqx8m',
-  2: 'https://luma.com/tbi68knv'
-}
-
-const imagenesPasadas = {
-  1: imagenActividad1,
-  2: imagenActividad2,
-  3: imagenActividad3,
-  4: imagenCSWeek,
-  5: imagenCSWeek
-}
 
 function ActivitySlideshow({ images, alt }) {
   const [current, setCurrent] = useState(0)
@@ -42,9 +24,7 @@ function ActivitySlideshow({ images, alt }) {
           key={image}
           src={image}
           alt={alt}
-          className={`slideshow-image ${
-            index === current ? 'active' : ''
-          }`}
+          className={`slideshow-image ${index === current ? 'active' : ''}`}
         />
       ))}
 
@@ -76,20 +56,17 @@ export default function Activities() {
         <p className="eyebrow">{a.eyebrow}</p>
         <h2>{a.title}</h2>
 
-        <h3 className="activities-subtitulo">{a.subtituloPasadas}</h3>
+        {/* ANCLA: Actividades pasadas */}
+        <h3 id="pasadas" className="activities-subtitulo">
+          {a.subtituloPasadas}
+        </h3>
 
         <div className="cards reveal-group" ref={pasadasRef}>
-
           {a.pasadas.map((item) => (
             <article className="card card-actividad-pasada" key={item.id}>
-
               {item.id === 1 ? (
                 <ActivitySlideshow
-                  images={[
-                    imagenActividad1,
-                    imagenActividad2,
-                    imagenActividad3
-                  ]}
+                  images={[imagenActividad1, imagenActividad2, imagenActividad3]}
                   alt={item.title}
                 />
               ) : (
@@ -102,23 +79,18 @@ export default function Activities() {
 
               <h3>{item.title}</h3>
               <p>{item.description}</p>
-
             </article>
           ))}
 
-
           {/* CSWeek - Workshop 1 */}
           <article className="card card-actividad-pasada">
-
             <img
               src={imagenCSWeek}
               alt="CSWeek Perú 2026"
               className="activity-image"
             />
 
-            <h3>
-              Workshop: Q-Day - Are You Shor You're Ready?
-            </h3>
+            <h3>Workshop: Q-Day - Are You Shor You're Ready?</h3>
 
             <p>
               Con Leonardo Cienfuegos. Una mirada a la amenaza cuántica para la
@@ -138,13 +110,10 @@ export default function Activities() {
             >
               Ver evento →
             </a>
-
           </article>
-
 
           {/* CSWeek - Workshop 2 */}
           <article className="card card-actividad-pasada">
-
             <img
               src={imagenCSWeek}
               alt="CSWeek Perú 2026"
@@ -152,7 +121,8 @@ export default function Activities() {
             />
 
             <h3>
-              Workshop: Más allá del Hype - Realidades y Estrategias Híbridas para la Ventaja Cuántica
+              Workshop: Más allá del Hype - Realidades y Estrategias Híbridas
+              para la Ventaja Cuántica
             </h3>
 
             <p>
@@ -173,18 +143,19 @@ export default function Activities() {
             >
               Ver evento →
             </a>
-
           </article>
-
         </div>
 
-
-        <h3 className="activities-subtitulo activities-subtitulo-futuras">
-          Actividades futuras
+        {/* ANCLA: Actividades futuras */}
+        <h3
+          id="futuras"
+          className="activities-subtitulo activities-subtitulo-futuras"
+        >
+          {a.subtituloFuturas}
         </h3>
 
         <div className="cards reveal-group" ref={futurasRef}>
-          <article className="card" key="3">
+          <article className="card">
             <h3>Qiskit Fall Fest 2026</h3>
             <p>
               Próximamente, en colaboración con IEEE Computer Society PUCP y la

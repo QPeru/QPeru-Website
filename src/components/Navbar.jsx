@@ -27,21 +27,21 @@ const MENU = [
     label: 'Organizacion',
     path: '/sobre-nosotros',
 sub: [
-  { label: 'Misión', path: '/sobre-nosotros' },
+  { label: 'Misión', path: '/mision' },
   { label: 'Equipo', path: '/sobre-nosotros', hash: '#equipo' },
   { label: 'Reglamento', path: '/reglamento' }
 
     ]
   },
   {
-    label: 'Actividades',
-    path: '/',
-    hash: '#actividades',
-    sub: [
-      { label: 'Talleres', path: '/', hash: '#actividades' },
-      { label: 'Charlas', path: '/', hash: '#actividades' },
-      { label: 'Actividades pasadas', path: '/', hash: '#actividades' }
-    ]
+  label: 'Actividades',
+  path: '/actividades',
+  sub: [
+    { label: 'Talleres', path: '/actividades' },
+    { label: 'Charlas', path: '/actividades' },
+    { label: 'Actividades pasadas', path: '/actividades', hash: '#pasadas' },
+    { label: 'Actividades futuras', path: '/actividades', hash: '#futuras' }
+  ]
   },
   {
     label: 'Cursos',

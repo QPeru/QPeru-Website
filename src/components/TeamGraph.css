@@ -6,14 +6,10 @@
   background: transparent;
   color: var(--tg-text);
   font-family: 'League Spartan', system-ui, sans-serif;
-  padding: 24px 0 40px;
-}
-
-.tg__hint {
-  margin: 0 24px 12px;
-  font-size: 0.9rem;
-  color: var(--tg-muted);
-  max-width: 60ch;
+  /* grafo a todo el ancho de la pantalla */
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  padding: 24px 2vw 40px;
 }
 
 .tg__scroll {
@@ -55,10 +51,6 @@
   z-index: 1;
 }
 
-.tg-node.is-open {
-  z-index: 20;
-}
-
 .tg-person {
   all: unset;
   box-sizing: border-box;
@@ -80,8 +72,7 @@
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-.tg-person:hover,
-.tg-node.is-open .tg-person {
+.tg-person:hover {
   transform: translateY(-2px);
   box-shadow: 0 0 0 4px color-mix(in srgb, var(--c) 28%, transparent);
 }
@@ -179,112 +170,181 @@
   margin-top: 2px;
 }
 
-/* ---------- Tarjeta de CV ---------- */
-.tg-pop {
-  position: absolute;
-  top: 100%;
-  padding-top: 8px;
-  width: 300px;
-  left: 50%;
-  transform: translateX(-50%);
+/* ---------- Ventana de CV (azul, bordes y letras blancas) ---------- */
+.tg-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000; /* por encima de la barra de navegación */
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(3, 6, 26, 0.72);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  animation: tg-fade 0.25s ease both;
 }
 
-.tg-pop--izq { left: 0; transform: none; }
-.tg-pop--der { left: auto; right: 0; transform: none; }
-
-.tg-pop--arriba {
-  top: auto;
-  bottom: 100%;
-  padding-top: 0;
-  padding-bottom: 8px;
-}
-
-.tg-cv {
-  background: #fff;
-  color: #14172b;
-  border-radius: 12px;
-  padding: 16px;
-  text-align: left;
-  font-size: 0.82rem;
-  line-height: 1.45;
-  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.5);
-  max-height: 340px;
+.tg-modal {
+  --tg-modal-bg: #1b3fa8; /* cambia aquí el tono de azul */
+  position: relative;
+  width: min(720px, 100%);
+  max-height: min(86vh, 780px);
   overflow-y: auto;
+  padding: 32px 36px;
+  background: var(--tg-modal-bg);
+  color: #fff;
+  border: 3px solid #fff;
+  border-radius: 20px;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.6);
+  font-family: 'League Spartan', system-ui, sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.55;
+  text-align: left;
+  outline: none;
+  /* se expande desde la tarjeta clicada hasta el centro */
+  animation: tg-expand 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-.tg-cv__head {
+.tg-modal__close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  padding: 0 0 4px;
+  font-size: 2rem;
+  line-height: 1;
+  color: #fff;
+  background: transparent;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.tg-modal__close:hover,
+.tg-modal__close:focus-visible {
+  background: #fff;
+  color: var(--tg-modal-bg);
+  outline: none;
+}
+
+.tg-modal__head {
   display: flex;
-  gap: 12px;
   align-items: center;
-  margin-bottom: 10px;
+  gap: 18px;
+  margin-bottom: 18px;
+  padding-right: 44px;
 }
 
-.tg-cv__head .tg-avatar {
-  width: 54px;
-  height: 54px;
-  border-color: #8b0000;
-  color: #14172b;
-  background: #eceefb;
+.tg-modal .tg-avatar {
+  width: 88px;
+  height: 88px;
+  border: 3px solid #fff;
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  font-size: 1.5rem;
 }
 
-.tg-cv__head div {
+.tg-modal__head div {
   display: flex;
   flex-direction: column;
+  gap: 2px;
 }
 
-.tg-cv__head strong {
-  font-size: 0.95rem;
+.tg-modal__head h3 {
+  margin: 0;
+  font-size: 1.7rem;
+  line-height: 1.1;
+  color: #fff;
 }
 
-.tg-cv__head span {
-  font-family: 'League Spartan', system-ui, sans-serif;
-  font-size: 0.72rem;
-  color: #666b8a;
+.tg-modal__uni {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.8);
 }
 
-.tg-cv__head em {
+.tg-modal__head em {
   font-style: normal;
-  color: #8b0000;
   font-weight: 600;
-  font-size: 0.76rem;
+  font-size: 1rem;
+  color: #fff;
 }
 
-.tg-cv p { margin: 0 0 8px; }
-.tg-cv__vacio { color: #666b8a; font-style: italic; }
+.tg-modal p { margin: 0 0 12px; }
+.tg-modal__vacio { font-style: italic; opacity: 0.85; }
 
-.tg-cv h4 {
-  margin: 10px 0 4px;
-  font-size: 0.8rem;
-  color: #8b0000;
+.tg-modal h4 {
+  margin: 18px 0 6px;
+  padding-bottom: 4px;
+  font-size: 1.05rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #fff;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
 }
 
-.tg-cv ul { margin: 0; padding-left: 18px; }
+.tg-modal ul { margin: 0; padding-left: 20px; }
+.tg-modal li + li { margin-top: 4px; }
 
-.tg-cv .tg-chips {
+.tg-modal .tg-modal__chips {
   list-style: none;
   padding: 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
-  margin-top: 10px;
+  gap: 8px;
+  margin-top: 18px;
 }
 
-.tg-chips li {
-  background: #f1f2fa;
+.tg-modal__chips li {
+  margin: 0;
+  padding: 3px 14px;
+  font-size: 0.9rem;
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: 999px;
-  padding: 2px 10px;
-  font-size: 0.72rem;
 }
 
-.tg-cv a {
+.tg-modal__link {
   display: inline-block;
-  margin-top: 10px;
-  color: #8b0000;
+  margin-top: 20px;
+  padding: 10px 24px;
   font-weight: 600;
+  color: #fff;
+  text-decoration: none;
+  border: 2px solid #fff;
+  border-radius: 999px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.tg-modal__link:hover,
+.tg-modal__link:focus-visible {
+  background: #fff;
+  color: var(--tg-modal-bg);
+  outline: none;
+}
+
+@keyframes tg-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes tg-expand {
+  from { opacity: 0; transform: translate(var(--ox, 0), var(--oy, 0)) scale(0.15); }
+  to   { opacity: 1; transform: none; }
+}
+
+@media (max-width: 600px) {
+  .tg-modal { padding: 24px 20px; }
+  .tg-modal__head { flex-direction: column; align-items: flex-start; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .tg-person { transition: none; }
+  .tg-modal-backdrop,
+  .tg-modal { animation: none; }
 }
 
 /* ---------- Mascota (esquina superior izquierda) ---------- */

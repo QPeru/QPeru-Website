@@ -1,0 +1,277 @@
+/* MiembrosEquipo: equipo en tarjetas (diseño tipo QTürkiye), ordenado por
+   los niveles de la jerarquía. Dos temas: .tm-wrap--claro (por defecto) y
+   .tm-wrap--oscuro. Los colores están en variables: cámbialos aquí.
+   Bordes originales + línea inferior en el color y grosor de "|equipo⟩". */
+
+.tm-wrap {
+  --tm-foto-w: 160px;
+  --tm-foto-h: 170px;
+  --tm-overhang: 112px; /* espacio para la foto que sobresale de la tarjeta */
+
+  /* línea inferior de cada tarjeta: pon aquí el color y grosor de "|equipo⟩" */
+  --tm-linea-inferior: #c8102e;
+  --tm-linea-grosor: 3px;
+
+  /* punto de color de TODAS las áreas: pon aquí el color del punto de Asuntos Académicos */
+  --tm-punto: #c9a45c;
+
+  /* tema claro (como la referencia) */
+  --tm-body-bg: #ffffff;
+  --tm-heading: #7a7a7a;
+  --tm-card-bg: #ffffff;
+  --tm-line: #222222;          /* línea oscura que sale de cada foto */
+  --tm-border: #e6e6e6;
+  --tm-name: #222222;
+  --tm-muted: #8a8a8a;
+  --tm-ring: #ffffff;          /* aro alrededor de la foto */
+  --tm-social-bg: #111111;
+  --tm-social-fg: #ffffff;
+
+  width: 100%;
+  padding: 64px 20px 90px;
+  background: var(--tm-body-bg);
+  border-radius: 24px;
+  font-family: 'Poppins', 'League Spartan', system-ui, sans-serif;
+  color: var(--tm-name);
+}
+
+/* tema oscuro: se funde con el fondo del sitio */
+.tm-wrap--oscuro {
+  --tm-body-bg: transparent;
+  --tm-heading: rgba(255, 255, 255, 0.9);
+  --tm-card-bg: rgba(3, 6, 26, 0.6);
+  --tm-line: rgba(255, 255, 255, 0.65);
+  --tm-border: rgba(255, 255, 255, 0.2);
+  --tm-name: #ffffff;
+  --tm-muted: rgba(255, 255, 255, 0.7);
+  --tm-ring: #03061a;
+  --tm-social-bg: #ffffff;
+  --tm-social-fg: #03061a;
+}
+
+/* sobre el video del fondo, las tarjetas llevan un leve desenfoque */
+.tm-wrap--oscuro .tm-card {
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+/* ── Niveles de la jerarquía ── */
+.tm-nivel + .tm-nivel { margin-top: 110px; }
+
+.tm-nivel__head {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.tm-nivel__head h2 {
+  margin: 0;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: clamp(1.6rem, 2.6vw, 2.2rem);
+  line-height: 1.15;
+  letter-spacing: 0;
+  color: var(--tm-heading);
+}
+
+.tm-nivel__head p {
+  margin: 10px 0 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--tm-muted);
+}
+
+/* barra con el color del nivel */
+.tm-nivel__bar {
+  display: block;
+  width: 64px;
+  height: 4px;
+  margin: 18px auto 0;
+  border-radius: 4px;
+  background: var(--nivel);
+}
+
+/* ── Áreas (dentro de "Coordinadores de Área") ── */
+.tm-area { margin-top: 64px; }
+.tm-area + .tm-area { margin-top: 100px; }
+
+.tm-area h3 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 0;
+  font-family: inherit;
+  font-weight: 600;
+  /* más grande que antes, pero siempre menor que el título del nivel (h2) */
+  font-size: clamp(1.4rem, 2.1vw, 1.8rem);
+  line-height: 1.2;
+  color: var(--tm-name);
+}
+
+/* punto de color: todas las áreas usan el mismo color (--tm-punto) */
+.tm-area h3::before {
+  content: "";
+  flex: 0 0 auto;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--tm-punto);
+}
+
+.tm-area > p {
+  margin: 4px 0 0;
+  text-align: center;
+  font-style: italic;
+  font-size: 0.88rem;
+  color: var(--tm-muted);
+}
+
+/* ── Filas de tarjetas: centradas (2, 3…) según el espacio ── */
+.tm-fila {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 125px 40px; /* el espacio vertical incluye la foto que sobresale */
+  max-width: 1200px;
+  margin: var(--tm-overhang) auto 0;
+}
+
+/* ── Tarjeta ── */
+.tm-card {
+  position: relative;
+  width: min(270px, 100%);
+  min-height: 215px;
+  padding: calc(var(--tm-foto-h) / 2 + 26px) 18px 22px;
+  text-align: center;
+  background: var(--tm-card-bg);
+  border: 1px solid var(--tm-border);
+  border-top: 3px solid var(--tm-line);
+  border-bottom: var(--tm-linea-grosor) solid var(--tm-linea-inferior); /* línea inferior */
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.06);
+}
+
+/* Foto cuadrada con esquinas redondeadas, mitad dentro y mitad fuera */
+.tm-foto {
+  position: absolute;
+  top: calc(var(--tm-foto-h) / -2 - 3px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: var(--tm-foto-w);
+  height: var(--tm-foto-h);
+  overflow: hidden;
+  border: 7px solid var(--tm-ring);
+  border-radius: 54px;
+  background: #d9d9d9;
+  box-shadow: 0 0 0 1px var(--tm-border), 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.tm-foto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%; /* evita cortar las cabezas en fotos verticales */
+  display: block;
+}
+
+.tm-foto span {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  font-size: 3rem;
+  font-weight: 600;
+  color: #6b6b6b;
+}
+
+.tm-nombre {
+  margin: 0;
+  font-family: inherit;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.1rem;
+  line-height: 1.3;
+  color: var(--tm-name);
+}
+
+.tm-rol,
+.tm-uni {
+  margin: 6px 0 0;
+  font-style: italic;
+  font-size: 0.85rem;
+  line-height: 1.35;
+  color: var(--tm-muted);
+}
+
+.tm-uni { margin-top: 2px; font-size: 0.78rem; }
+
+/* Puesto vacante */
+.tm-card--vacante {
+  border-style: dashed;
+  border-top-style: dashed;
+  opacity: 0.7;
+}
+
+.tm-card--vacante .tm-foto { background: #ececec; }
+.tm-card--vacante .tm-foto span { font-size: 3.4rem; color: #a5a5a5; }
+
+/* Ícono de red social (cuadro) */
+.tm-social {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  margin-top: 16px;
+  color: var(--tm-social-fg);
+  background: var(--tm-social-bg);
+  border-radius: 3px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.tm-social:hover,
+.tm-social:focus-visible {
+  background: #c8102e;
+  color: #fff;
+  outline: none;
+}
+
+/* ── Participantes ── */
+.tm-part {
+  max-width: 640px;
+  margin: 36px auto 0;
+  text-align: center;
+}
+
+.tm-part p {
+  margin: 0 0 24px;
+  line-height: 1.6;
+  color: var(--tm-muted);
+}
+
+.tm-btn {
+  display: inline-block;
+  padding: 12px 30px;
+  font-weight: 600;
+  color: var(--tm-name);
+  text-decoration: none;
+  border: 2px solid var(--tm-name);
+  border-radius: 999px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.tm-btn:hover,
+.tm-btn:focus-visible {
+  background: var(--tm-name);
+  color: var(--tm-body-bg, #fff);
+  outline: none;
+}
+
+.tm-wrap--oscuro .tm-btn:hover,
+.tm-wrap--oscuro .tm-btn:focus-visible { color: #03061a; }
+
+@media (max-width: 700px) {
+  .tm-wrap { padding: 48px 16px 70px; border-radius: 16px; }
+  .tm-fila { gap: 115px 24px; }
+  .tm-nivel + .tm-nivel { margin-top: 90px; }
+}

@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install *)",
+      "Bash(chromium-cli --help)",
+      "Bash(npx --yes playwright --version)",
+      "Bash(node -e \"require.resolve\\('playwright'\\)\")",
+      "Bash(npx --yes playwright install chromium)",
+      "Bash(ls ~/.cache/ms-playwright 2>&1)",
+      "Read(//home/adan1210/.cache/ms-playwright/**)",
+      "Bash(npm init *)",
+      "Bash(node verify.mjs)",
+      "Bash(lsof -ti:5183 -sTCP:LISTEN)",
+      "Bash(xargs -r kill)",
+      "Bash(npm uninstall *)",
+      "Bash(find /tmp /home/adan1210 -maxdepth 4 -newermt '-10 minutes' -iname \"*.png\" -o -newermt '-10 minutes' -iname \"*.jpg\" -o -newermt '-10 minutes' -iname \"*.jpeg\" 2>/dev/null | grep -v node_modules | head -20)",
+      "Read(//tmp/**)",
+      "Bash(python3 -c \"import PIL; print\\(PIL.__version__\\)\")",
+      "Bash(python3 -)",
+      "Bash(python3 -c ' *)"
+    ]
+  }
+}

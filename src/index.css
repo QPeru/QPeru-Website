@@ -1,0 +1,984 @@
+/* ═══════════════════════════════════════════════════
+   QPerú - landing
+   Tipografía: League Spartan en todo el sitio
+               (solo la portada usa Archivo de base)
+   Orden del archivo:
+     1. Tokens, reset y base
+     2. Tipografía y botones
+     3. Layout general
+     4. Secciones (misión, actividades, agenda, comunidad, contacto…)
+     5. Portada, video, intro, reglamento y pie de página
+     6. Utilidades y animaciones
+     7. Movimiento reducido
+   La barra de navegación vive en Navbar.css
+   ═══════════════════════════════════════════════════ */
+
+
+/* ═══ 1. TOKENS, RESET Y BASE ═══════════════════════ */
+
+:root {
+  /* Marca */
+  --rojo: #d10a11;
+  --rojo-oscuro: #333333;
+  --rojo-cta: #c8102e;
+  --rojo-cta-hover: #e11d3a;
+  --rojo-claro: #ff5a66;
+  --rojo-regla: #b3171f;
+  --oro: #c9a96e;
+  --dorado: #767676;
+
+  /* Neutros */
+  --tinta: #FFFFFF;
+  --blanco: #FFFFFF;
+  --gris: #E0E0EC;
+  --linea: #E7E5E0;
+  --humo: #03061A;
+  --azul-card: #11105F;
+
+  /* Layout */
+  --maxw: 1680px;
+  --pad-x: 60px;
+
+  /* Tipografía */
+  --f-display: "League Spartan", system-ui, sans-serif;
+  --f-body: "League Spartan", system-ui, sans-serif;
+  --f-mono: "League Spartan", system-ui, sans-serif;
+  --f-orig: "Archivo", system-ui, sans-serif;
+
+  /* Tamaños reutilizables de páginas internas
+     (título grande y párrafo de introducción) */
+  --fs-titulo-pagina: clamp(40px, 5.3vw, 84px);
+  --fs-lede-pagina: clamp(1.4rem, 2vw, 1.9rem);
+
+  /* Tema */
+  --bg: #03061A;
+  --fg: var(--tinta);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--f-body);
+  font-size: 1.05rem;
+  font-weight: 500;
+  line-height: 1.7;
+  color: var(--fg);
+  background: var(--bg);
+  overflow-x: clip; /* evita scroll horizontal con elementos de 100vw */
+}
+
+button, input, textarea, select { font-family: var(--f-body); }
+
+img { display: block; max-width: 100%; }
+
+a { color: inherit; }
+
+:focus-visible {
+  outline: 3px solid var(--rojo);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+
+/* ═══ 2. TIPOGRAFÍA Y BOTONES ═══════════════════════ */
+
+h1, h2, h3, h4 {
+  font-family: var(--f-display);
+  font-weight: 700;
+}
+
+h1, h2 {
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+/* Título de página: el h1 y "Equipo de trabajo" comparten tamaño */
+h1,
+#equipo h2 {
+  font-size: var(--fs-titulo-pagina);
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+}
+
+h2 { font-size: clamp(1.9rem, 4vw, 2.9rem); margin-bottom: 0.6em; }
+h3 { font-size: 1.2rem; }
+
+.rojo { color: var(--rojo); }
+
+.eyebrow {
+  font-family: var(--f-mono);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--rojo);
+  margin-bottom: 1.2rem;
+}
+
+.eyebrow-blanco { color: rgba(255, 255, 255, 0.85); }
+
+.lede { font-size: 1.25rem; font-weight: 500; margin-bottom: 1rem; text-wrap: pretty; }
+
+p + p { margin-top: 1rem; }
+
+/* Botones */
+.btn {
+  display: inline-block;
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  padding: 0.8rem 1.6rem;
+  border-radius: 6px;
+  transition: background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+}
+
+.btn-rojo { background: var(--rojo); color: var(--blanco); }
+.btn-rojo:hover { background: var(--rojo-oscuro); }
+
+.btn-linea { border: 2px solid var(--rojo); color: var(--rojo); background: transparent; }
+.btn-linea:hover { background: var(--rojo); color: var(--blanco); }
+
+.btn-blanco { background: var(--blanco); color: var(--rojo); }
+.btn-blanco:hover { background: #EDEDED; }
+
+.btn-blanco-linea { border: 2px solid rgba(255, 255, 255, 0.7); color: var(--blanco); }
+.btn-blanco-linea:hover { border-color: var(--blanco); background: rgba(255, 255, 255, 0.12); }
+
+.cta-row { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 2rem; }
+
+
+/* ═══ 3. LAYOUT GENERAL ═════════════════════════════ */
+
+.container {
+  width: 100%;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 var(--pad-x);
+}
+
+.section { padding: 96px 0; }
+.section-humo { background: var(--humo); }
+
+.split {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 56px;
+  align-items: start;
+}
+
+.section-intro {
+  font-size: 1.1rem;
+  color: var(--gris);
+  max-width: 600px;
+  margin-top: 1rem;
+  margin-bottom: 3rem;
+}
+
+/* Párrafo de introducción grande (Organización y Equipo de trabajo) */
+.sobre-intro,
+#equipo .section-intro {
+  max-width: 62ch;
+  font-size: var(--fs-lede-pagina);
+  line-height: 1.6;
+}
+
+.sobre-intro { margin-top: 1.5rem; }
+
+/* Grilla de 3 columnas; gap y margen van en cada bloque */
+.cards,
+.rows {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+
+/* ═══ 4. SECCIONES ══════════════════════════════════ */
+
+/* ── Misión: datos rápidos ── */
+.facts { list-style: none; margin-top: 2rem; border-top: 1px solid var(--linea); }
+
+.facts li {
+  display: flex;
+  gap: 20px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--linea);
+  align-items: baseline;
+}
+
+.fact-k {
+  font-family: var(--f-mono);
+  font-size: 0.85rem;
+  color: var(--rojo);
+  min-width: 6.5em;
+}
+
+/* ── Actividades ── */
+.cards { gap: 24px; margin-top: 3rem; }
+
+.card {
+  background: var(--blanco);
+  border: 1px solid var(--linea);
+  border-radius: 10px;
+  padding: 28px;
+}
+
+.card h3 { margin-bottom: 0.5rem; }
+.card p { color: var(--gris); font-size: 0.98rem; }
+
+.activities-subtitulo {
+  font-family: var(--f-body);
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-top: 3rem;
+}
+
+.activities-subtitulo-futuras { margin-top: 4rem; }
+
+#actividades .cards { gap: 2rem; align-items: stretch; }
+
+.activity-image {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.activity-image { margin-bottom: 20px; }
+
+.link-ext {
+  display: inline-block;
+  margin-top: 1.5rem;
+  font-weight: 600;
+  color: var(--rojo);
+  text-decoration: none;
+}
+
+.link-ext:hover { text-decoration: underline; }
+
+.activity-slideshow {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #000;
+  margin-bottom: 20px;
+}
+
+.slideshow-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transform: scale(1.02);
+  transition: opacity 0.8s ease, transform 3.5s ease;
+}
+
+.slideshow-image.active { opacity: 1; transform: scale(1); }
+
+.slideshow-dots {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 7px;
+  z-index: 2;
+}
+
+.slideshow-dots button {
+  width: 7px;
+  height: 7px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.slideshow-dots button.active { width: 20px; border-radius: 10px; background: white; }
+
+/* ── Equipo: video horizontal de fondo ──
+   El video mide lo mismo que la pantalla (100% de ancho x 100vh) y queda
+   "pegado" mientras se hace scroll por la sección: siempre se ve horizontal. */
+#equipo {
+  position: relative;
+  isolation: isolate;
+}
+
+.equipo-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  overflow: clip;           /* no crea scroll: el sticky sigue funcionando */
+  pointer-events: none;
+}
+
+.equipo-video {
+  position: sticky;
+  top: 0;
+  display: block;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  object-fit: cover;
+}
+
+/* capa oscura para que los textos se lean (sube/baja el 0.4) */
+#equipo::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: rgba(3, 6, 26, 0.4);
+  pointer-events: none;
+}
+
+/* ── Comunidad ── */
+.rows { gap: 24px; margin-top: 3rem; }
+.row { border-top: 3px solid var(--rojo); padding-top: 18px; }
+.row p { color: var(--gris); font-size: 0.98rem; margin-top: 0.4rem; }
+
+.idiomas { margin-top: 4rem; }
+.idiomas-titulo { font-weight: 500; }
+
+.chips { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 1rem; }
+
+.chip {
+  font-family: var(--f-mono);
+  font-size: 0.85rem;
+  padding: 0.5rem 1rem;
+  border-radius: 100px;
+  border: 1.5px dashed var(--gris);
+  color: var(--gris);
+}
+
+.chip-on { border: 1.5px solid var(--tinta); color: var(--tinta); background: var(--blanco); }
+
+/* ── Agenda ── */
+.agenda-card {
+  margin-top: 2.5rem;
+  border: 1px solid var(--linea);
+  border-left: 4px solid var(--rojo);
+  border-radius: 10px;
+  padding: 32px;
+  max-width: 640px;
+}
+
+.agenda-estado { font-family: var(--f-mono); font-size: 0.85rem; color: var(--rojo); margin-bottom: 0.8rem; }
+.agenda-card .btn { margin-top: 1.5rem; }
+
+/* ── Contacto ── */
+#contacto { background: var(--rojo); color: var(--blanco); padding: 60px 0; }
+#contacto h2 { color: var(--blanco); }
+#contacto .eyebrow { color: rgba(255, 255, 255, 0.85); }
+
+.contacto-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 32px;
+  margin-top: 2rem;
+  max-width: 800px;
+}
+
+/* WhatsApp + Discord destacados, luego redes sociales */
+.contacto-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 24px;
+  background: var(--blanco);
+  border: 1px solid var(--linea);
+  border-radius: 14px;
+  text-align: center;
+  text-decoration: none;
+  color: var(--tinta);
+  backdrop-filter: blur(10px);
+  transition: all 0.2s ease;
+}
+
+.contacto-card:hover {
+  border-color: var(--rojo);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 32px -18px rgba(0, 0, 0, 0.25);
+}
+
+.contacto-card h3 { font-size: 1.1rem; color: var(--blanco); }
+.contacto-card p { font-size: 0.95rem; color: rgba(255, 255, 255, 0.9); }
+.contacto-card a { color: var(--blanco); font-weight: 600; text-decoration: none; }
+.contacto-card a:hover { text-decoration: underline; opacity: 0.8; }
+
+.contacto-desc { color: rgba(255, 255, 255, 0.8); font-size: 0.85rem !important; font-weight: 400 !important; }
+
+/* ── Responsive de las secciones ── */
+@media (max-width: 1100px) {
+  :root { --pad-x: 40px; }
+  .split { grid-template-columns: 1fr; gap: 32px; }
+  .section { padding: 72px 0; }
+  .cards, .rows, .contacto-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 900px) {
+  #actividades .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 700px) {
+  :root { --pad-x: 20px; }
+}
+
+@media (max-width: 599px) {
+  #actividades .cards { grid-template-columns: 1fr; }
+}
+
+
+/* ═══ 5. PORTADA, VIDEO, INTRO, REGLAMENTO Y PIE ════ */
+
+/* ── Video de fondo ── */
+.video-bg {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  pointer-events: none;
+  background: #030512;
+}
+
+/* ── Portada (hero) ── */
+.qhero {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 140px 24px 120px;
+  color: #fff;
+  background: transparent;
+  font-family: var(--f-orig);
+}
+
+/* viñeta oscura para que el texto se lea sobre el video */
+.qhero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, rgba(3, 5, 18, 0.55) 0%, rgba(3, 5, 18, 0.15) 60%, rgba(3, 5, 18, 0.5) 100%);
+}
+
+/* unión difuminada entre el video y las secciones */
+.qhero::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: clamp(180px, 30vh, 340px);
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    rgba(3, 6, 26, 0) 0%,
+    rgba(3, 6, 26, 0.35) 40%,
+    rgba(3, 6, 26, 0.8) 75%,
+    var(--bg) 100%
+  );
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 70%);
+  mask-image: linear-gradient(to bottom, transparent 0%, #000 70%);
+}
+
+.qhero-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: qhero-in 0.9s ease-out both;
+}
+
+/* Título en dos líneas, todo blanco (el tamaño lo definen las dos líneas) */
+.qhero-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: var(--f-display);
+  font-weight: 800;
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  color: #fff;
+  text-wrap: balance;
+  text-shadow: 0 4px 30px rgba(3, 5, 18, 0.6);
+}
+
+.qhero-line1 { font-size: clamp(9rem, 22vw, 22rem); line-height: 0.9; }
+.qhero-line2 { font-size: clamp(3.5rem, 8vw, 7.5rem); line-height: 1; margin-top: 0.1em; }
+
+.qhero-sub {
+  margin-top: 26px;
+  max-width: 62ch;
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  line-height: 1.6;
+  color: #e3e9f7;
+  text-shadow: 0 2px 14px rgba(3, 5, 18, 0.8);
+}
+
+.qhero-scroll:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+
+/* indicador "scroll down" */
+.qhero-scroll {
+  position: absolute;
+  z-index: 1;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: none;
+  border: 0;
+  cursor: pointer;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.qhero-scroll i {
+  display: block;
+  width: 1px;
+  height: 46px;
+  background: linear-gradient(#fff, rgba(255, 255, 255, 0));
+  animation: qhero-line 2s ease-in-out infinite;
+  transform-origin: top;
+}
+
+@keyframes qhero-in {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes qhero-line {
+  0%   { transform: scaleY(0); opacity: 1; }
+  60%  { transform: scaleY(1); opacity: 1; }
+  100% { transform: scaleY(1); opacity: 0; }
+}
+
+@media (max-width: 600px) {
+  .qhero { padding: 120px 20px 110px; }
+}
+
+/* ── Video a todo el ancho ── */
+.videobox {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1980 / 500;
+  max-height: 500px;
+  overflow: hidden;
+  background: var(--azul-card);
+}
+
+.videobox video { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* Bordes borrosos: el video se funde con el azul arriba y abajo */
+.videobox::before,
+.videobox::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: clamp(60px, 22%, 110px);
+  z-index: 2;
+  pointer-events: none;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.videobox::before {
+  top: 0;
+  background: linear-gradient(to bottom, var(--bg) 0%, rgba(3, 6, 26, 0.65) 45%, rgba(3, 6, 26, 0) 100%);
+  -webkit-mask-image: linear-gradient(to bottom, #000 30%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 30%, transparent 100%);
+}
+
+.videobox::after {
+  bottom: 0;
+  background: linear-gradient(to top, var(--bg) 0%, rgba(3, 6, 26, 0.65) 45%, rgba(3, 6, 26, 0) 100%);
+  -webkit-mask-image: linear-gradient(to top, #000 30%, transparent 100%);
+  mask-image: linear-gradient(to top, #000 30%, transparent 100%);
+}
+
+/* ── Unión borrosa (solo "Misión, visión y valores") ── */
+.hero-blend { position: relative; }
+
+.hero-blend::before,
+.hero-blend::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: clamp(160px, 30vh, 300px);
+  pointer-events: none;
+}
+
+/* Desenfoque progresivo */
+.hero-blend::before {
+  z-index: 1;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 85%);
+  mask-image: linear-gradient(to bottom, transparent, #000 85%);
+}
+
+/* Degradado hacia el color de fondo */
+.hero-blend::after {
+  z-index: 2;
+  background: linear-gradient(to bottom, rgba(3, 6, 26, 0) 0%, rgba(3, 6, 26, 0.6) 60%, var(--bg) 100%);
+}
+
+/* El texto queda por encima del degradado */
+.hero-blend > * { position: relative; z-index: 3; }
+
+/* ── Introducción (también la usa la sección "Origen de QPeru") ── */
+.intro { background: var(--bg); padding: 120px 0; }
+
+.intro-inner {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  align-items: center;
+  gap: 60px;
+  max-width: 1680px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.intro-left { display: flex; align-items: center; gap: 32px; }
+
+.intro-mascota {
+  height: clamp(260px, 30vw, 480px);
+  width: auto;
+  flex-shrink: 0;
+  filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.45));
+}
+
+.intro-title {
+  font-family: var(--f-display);
+  font-weight: 700;
+  font-size: clamp(3.2rem, 5.5vw, 6.5rem);
+  line-height: 1.05;
+  color: #fff;
+  margin: 0;
+}
+
+.intro-text p {
+  font-family: var(--f-body);
+  font-weight: 500;
+  font-size: clamp(1.2rem, 1.7vw, 2rem);
+  line-height: 1.7;
+  color: #fff;
+}
+
+.intro-btn {
+  font-family: var(--f-body);
+  display: inline-block;
+  margin-top: 32px;
+  padding: 14px 32px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.intro-btn:hover { background: #fff; color: var(--bg); border-color: #fff; }
+
+@media (max-width: 900px) {
+  .intro { padding: 80px 0; }
+  .intro-inner { grid-template-columns: 1fr; gap: 32px; padding: 0 20px; }
+  .intro-left { flex-direction: column; align-items: flex-start; gap: 20px; }
+  .intro-mascota { height: 200px; }
+}
+
+/* ── Reglamento: título arriba + 2 columnas x 5 filas ── */
+
+/* Título: transparente, deja ver el video detrás */
+.reglamento-top {
+  position: relative;
+  padding: 140px 0 clamp(80px, 14vh, 160px);
+  background: transparent;
+}
+
+.reglamento-top h2 { font-size: clamp(2.4rem, 5vw, 4rem); margin-bottom: 0; }
+.reglamento-top .eyebrow { font-size: clamp(0.9rem, 1.2vw, 1.1rem); }
+
+/* Debajo del título: fondo sólido que tapa el video */
+.reglamento {
+  position: relative;
+  background: var(--bg);
+  padding-top: 2rem;
+}
+
+/* Unión suave entre el video y el fondo sólido */
+.reglamento::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 100%;
+  height: clamp(100px, 18vh, 200px);
+  pointer-events: none;
+  background: linear-gradient(to bottom, rgba(3, 6, 26, 0), var(--bg));
+}
+
+/* Contenedor más ancho para que las tarjetas crezcan */
+.reglamento .container {
+  max-width: 1900px;
+  padding: 0 clamp(24px, 4vw, 80px);
+}
+
+.reglas {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(5, auto);
+  grid-auto-flow: column; /* columna 1 (01-05), luego columna 2 (06-10) */
+  gap: 1rem 1.5rem;
+  align-items: start;     /* al abrir una tarjeta, la vecina no se estira */
+}
+
+.reglas li {
+  display: grid;
+  grid-template-columns: 3.5rem 1fr;
+  align-items: start;
+  gap: 1rem;
+  padding: 1.1rem 1.25rem;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(3, 6, 26, 0.62);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.regla-n {
+  font-size: clamp(2.2rem, 3.6vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--oro);
+}
+
+.reglas li:nth-child(even) .regla-n { color: var(--rojo-regla); }
+
+.reglas p {
+  margin: 0;
+  font-size: clamp(1.05rem, 1.5vw, 1.35rem);
+  line-height: 1.5;
+}
+
+/* Botón "Ver más" y texto desplegable */
+.regla-body { min-width: 0; }
+
+.regla-btn {
+  margin-top: 0.75rem;
+  padding: 0.35rem 0.9rem;
+  font: inherit;
+  font-size: clamp(0.8rem, 1vw, 0.95rem);
+  font-weight: 600;
+  color: #fff;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.regla-btn:hover,
+.regla-btn:focus-visible {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: var(--oro);
+  outline: none;
+}
+
+.regla-mas {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.3s ease;
+}
+
+.regla-mas.open { grid-template-rows: 1fr; }
+.regla-mas > div { overflow: hidden; }
+
+.reglas .regla-mas-texto {
+  padding-top: 0.9rem;
+  font-size: clamp(0.95rem, 1.25vw, 1.15rem);
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+/* Celular y tablet: una sola columna */
+@media (max-width: 800px) {
+  .reglas { grid-template-columns: 1fr; grid-template-rows: none; grid-auto-flow: row; }
+}
+
+/* ── Pie de página ── */
+.qfoot { position: relative; overflow: hidden; background: var(--bg); color: #fff; }
+
+.qfoot-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  max-width: 1680px;
+  margin: 0 auto;
+  padding: 90px 40px 70px;
+}
+
+.qfoot-info p { margin: 0 0 10px; line-height: 1.5; }
+.qfoot-info p + p { margin-top: 0; }
+.qfoot-name { font-weight: 600; font-size: 1.05rem; }
+.qfoot-info a { color: #fff; text-decoration: none; }
+.qfoot-info a:hover { text-decoration: underline; }
+.qfoot-copy { color: rgba(255, 255, 255, 0.6); font-size: 0.95rem; }
+
+.qfoot-side { display: flex; flex-direction: column; align-items: flex-end; gap: 28px; }
+
+.qfoot-logo { display: inline-flex; background: #fff; border-radius: 8px; padding: 6px 10px; }
+.qfoot-logo img { display: block; height: 40px; width: auto; }
+
+.qfoot-links { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; justify-content: flex-end; }
+
+.qfoot-privacy {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  padding-bottom: 4px;
+  border-bottom: 2px solid #fff;
+}
+
+.qfoot-privacy:hover { opacity: 0.8; }
+
+.qfoot-social {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: #fff;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.qfoot-social:hover { background: rgba(255, 255, 255, 0.14); border-color: #fff; }
+
+.qfoot a:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+
+/* Franja inferior con el nombre gigante */
+.qfoot-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 30px 20px 10px;
+  text-align: center;
+  user-select: none;
+}
+
+.qfoot-mark {
+  display: block;
+  font-family: var(--f-display);
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: clamp(2rem, 9vw, 10rem);
+  line-height: 1;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.07);
+  white-space: nowrap;
+}
+
+@media (max-width: 800px) {
+  .qfoot-top { flex-direction: column; padding: 60px 20px 50px; }
+  .qfoot-side { align-items: flex-start; }
+  .qfoot-links { justify-content: flex-start; }
+}
+
+
+/* ═══ 6. UTILIDADES Y ANIMACIONES ═══════════════════ */
+
+/* Reveal al hacer scroll */
+.reveal-group > * {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.9s cubic-bezier(.16, 1, .3, 1), transform 0.9s cubic-bezier(.16, 1, .3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-group.visto > * { opacity: 1; transform: none; }
+
+.reveal-group.visto > *:nth-child(1) { transition-delay: 0s; }
+.reveal-group.visto > *:nth-child(2) { transition-delay: 0.1s; }
+.reveal-group.visto > *:nth-child(3) { transition-delay: 0.2s; }
+.reveal-group.visto > *:nth-child(4) { transition-delay: 0.3s; }
+.reveal-group.visto > *:nth-child(5) { transition-delay: 0.4s; }
+.reveal-group.visto > *:nth-child(6) { transition-delay: 0.5s; }
+
+/* Reveal en elementos individuales */
+.reveal,
+.reveal-left,
+.reveal-right,
+.reveal-scale {
+  opacity: 0;
+  transition: opacity 0.9s cubic-bezier(.16, 1, .3, 1), transform 0.9s cubic-bezier(.16, 1, .3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal { transform: translateY(28px); }
+.reveal-left { transform: translateX(-32px); }
+.reveal-right { transform: translateX(32px); }
+.reveal-scale { transform: scale(.94) translateY(16px); }
+
+.reveal.active,
+.reveal-left.active,
+.reveal-right.active,
+.reveal-scale.active { opacity: 1; transform: none; }
+
+/* Punto pulsante (estado en vivo / próximamente) */
+.pulse-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--rojo);
+  animation: pulso 1.8s ease-in-out infinite;
+}
+
+@keyframes pulso { 50% { opacity: 0.4; } }
+
+/* Parallax sutil controlado por useParallax */
+[data-parallax] { will-change: transform; }
+
+
+/* ═══ 7. MOVIMIENTO REDUCIDO ════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  .qhero-inner,
+  .qhero-scroll i { animation: none; }
+
+  .reveal-group > *,
+  .reveal, .reveal-left, .reveal-right, .reveal-scale { opacity: 1; transform: none; transition: none; }
+  [data-parallax] { transform: none !important; }
+  .pulse-dot { animation: none; }
+}

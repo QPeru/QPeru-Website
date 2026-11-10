@@ -1,0 +1,126 @@
+/* ===== Valores en escalera =====
+   Todo se mide en "unidades de diseño" (--u), que se ajustan al ancho
+   disponible, así la composición escala completa sin deformarse. */
+
+.stairs {
+  container-type: inline-size;
+  width: 100%;
+  margin-top: 3rem;
+}
+
+.stairs__track {
+  --u: calc(100cqw / var(--d));
+  position: relative;
+  height: calc(var(--u) * var(--h));
+}
+
+/* Escalón base: 265 x 156, con la esquina inferior derecha doblada */
+.stair {
+  position: absolute;
+  left: calc(var(--u) * 219 * var(--i));
+  top: calc(var(--u) * (33 + 46 * (var(--n) - 1 - var(--i))));
+  width: calc(var(--u) * 265);
+  height: calc(var(--u) * 156);
+  padding: calc(var(--u) * 16) calc(var(--u) * 60) calc(var(--u) * 12) calc(var(--u) * 14);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - var(--u) * 46),
+    calc(100% - var(--u) * 46) 100%,
+    0 100%
+  );
+}
+
+/* Triángulo del doblez */
+.stair::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: calc(var(--u) * 46);
+  height: calc(var(--u) * 46);
+  background: rgba(255, 255, 255, 0.45);
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+}
+
+.stair h3 {
+  font-family: var(--f-display);
+  font-weight: 700;
+  font-size: calc(var(--u) * 25);
+  line-height: 1.1;
+  margin: 0 0 calc(var(--u) * 8);
+}
+
+.stair p {
+  font-size: calc(var(--u) * 14.5);
+  line-height: 1.35;
+  margin: 0;
+}
+
+/* Colores */
+.stair--rojo { background: #8b0000; }
+.stair--rojo h3,
+.stair--rojo p { color: #fff; }
+
+.stair--gris { background: #dcdcdc; }
+.stair--gris h3 { color: #8b0000; }
+.stair--gris p { color: #1b1b1b; }
+.stair--gris::after { background: rgba(255, 255, 255, 0.7); }
+
+/* Último escalón: flecha dorada */
+.stair--oro { background: #c0a068; }
+.stair--oro h3 { color: #fff; }
+.stair--oro p { color: #1b1b1b; }
+
+.stair--last {
+  top: 0;
+  width: calc(var(--u) * 347);
+  height: calc(var(--u) * 220);
+  padding: calc(var(--u) * 47) calc(var(--u) * 124) 0 calc(var(--u) * 14);
+  justify-content: flex-start;
+  clip-path: polygon(
+    0 calc(var(--u) * 33),
+    calc(var(--u) * 237) calc(var(--u) * 33),
+    calc(var(--u) * 237) 0,
+    100% 50%,
+    calc(var(--u) * 237) 100%,
+    calc(var(--u) * 237) calc(var(--u) * 187),
+    0 calc(var(--u) * 187)
+  );
+}
+
+.stair--last::after { display: none; }
+
+/* Pantallas pequeñas: tarjetas apiladas con el mismo estilo */
+@media (max-width: 1000px) {
+  .stairs__track {
+    height: auto;
+    display: grid;
+    gap: 14px;
+  }
+
+  .stair,
+  .stair.stair--last {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: auto;
+    height: auto;
+    padding: 22px 24px;
+    border-radius: 12px;
+    clip-path: none;
+    align-items: flex-start;
+    text-align: left;
+    z-index: auto !important;
+  }
+
+  .stair::after { display: none; }
+  .stair h3 { font-size: 1.5rem; margin-bottom: 6px; }
+  .stair p { font-size: 1rem; }
+}

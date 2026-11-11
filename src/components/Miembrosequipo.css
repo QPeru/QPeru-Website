@@ -91,9 +91,27 @@
   background: var(--nivel);
 }
 
-/* ── Áreas (dentro de "Coordinadores de Área") ── */
-.tm-area { margin-top: 64px; }
-.tm-area + .tm-area { margin-top: 100px; }
+/* ── Áreas (dentro de "Coordinadores de Área"): rejilla de 2 x 3 ──
+   Las 6 áreas (de "Asuntos Académicos" a "Operaciones y Logística")
+   se reparten en 2 columnas y 3 filas, una celda por área.
+   El diseño interno de cada área (título, lema y tarjetas) no cambia. */
+.tm-areas {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  column-gap: 56px;
+  row-gap: 100px; /* misma separación vertical que tenían apiladas */
+  margin-top: 64px; /* separación respecto al título del nivel */
+}
+
+/* en la rejilla el espacio entre áreas lo marca el gap, no los márgenes */
+.tm-area,
+.tm-area + .tm-area { margin-top: 0; }
+
+/* pantallas angostas: una sola columna (diseño apilado original) */
+@media (max-width: 1359px) {
+  .tm-areas { grid-template-columns: 1fr; }
+}
 
 .tm-area h3 {
   display: flex;

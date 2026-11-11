@@ -450,6 +450,34 @@ p + p { margin-top: 1rem; }
   background: #030512;
 }
 
+/* ── Fila de redes sociales (junto al copyright del pie) ── */
+.social-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.social-row-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: #fff;
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+}
+
+.social-row-btn:hover {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: #fff;
+  transform: translateY(-2px);
+}
+
+.social-row-btn:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+
 /* ── Portada (hero) ── */
 .qhero {
   position: relative;
@@ -619,7 +647,7 @@ p + p { margin-top: 1rem; }
   mask-image: linear-gradient(to top, #000 30%, transparent 100%);
 }
 
-/* ── Unión borrosa (solo "Misión, visión y valores") ── */
+/* ── Unión borrosa ("Misión, visión y valores" y encabezado de "Equipo de trabajo") ── */
 .hero-blend { position: relative; }
 
 .hero-blend::before,
@@ -853,6 +881,17 @@ p + p { margin-top: 1rem; }
 .qfoot-info a { color: #fff; text-decoration: none; }
 .qfoot-info a:hover { text-decoration: underline; }
 .qfoot-copy { color: rgba(255, 255, 255, 0.6); font-size: 0.95rem; }
+
+/* Fila del copyright: redes sociales a la izquierda y texto a la derecha */
+.qfoot-copy-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.qfoot-copy-row .qfoot-copy { margin: 0; flex: 1; min-width: fit-content; text-align: left; }
 
 .qfoot-side { display: flex; flex-direction: column; align-items: flex-end; gap: 28px; }
 

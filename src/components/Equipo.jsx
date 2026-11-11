@@ -9,16 +9,25 @@ export default function Equipo() {
   const eq = t.equipo
 
   return (
-    <section className="section section-humo" id="equipo">
-      <div className="container">
-        <p className="eyebrow">{eq.eyebrow}</p>
-        <h2>{eq.title}</h2>
-        <p className="section-intro">{eq.intro}</p>
-
-        <div className="reveal-group" ref={revealRef}>
-          <MiembrosEquipo fotos={fotos} tema="oscuro" video="/fondo.mp4" />
+    <>
+      {/* 1. Encabezado "Equipo de trabajo" sobre el video.
+          "hero-blend" añade el fundido borroso y degradado hacia el fondo sólido. */}
+      <section className="section hero-blend" id="equipo">
+        <div className="container">
+          <p className="eyebrow">{eq.eyebrow}</p>
+          <h2>{eq.title}</h2>
+          <p className="section-intro">{eq.intro}</p>
         </div>
-      </div>
-    </section>
+      </section>
+
+      {/* 2. Lista de integrantes sobre el fondo sólido del sitio */}
+      <section className="section section-humo">
+        <div className="container">
+          <div className="reveal-group" ref={revealRef}>
+            <MiembrosEquipo fotos={fotos} tema="oscuro" video="/fondo.mp4" />
+          </div>
+        </div>
+      </section>
+    </>
   )
 }

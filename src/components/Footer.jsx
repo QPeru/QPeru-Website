@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import SocialDock from './SocialDock'
 import logo from '../assets/LOGO2 FINAL.svg'
 
 // Completa tus datos. Si dejas un campo vacío, esa parte no se muestra.
@@ -25,7 +26,10 @@ export default function Footer() {
               <a href={`mailto:${INFO.email}`}>{INFO.email}</a>
             </p>
           )}
-          <p className="qfoot-copy">© {year} QPerú. Todos los derechos reservados.</p>
+          <div className="qfoot-copy-row">
+            <SocialDock />
+            <p className="qfoot-copy">© {year} QPerú. Todos los derechos reservados.</p>
+          </div>
         </div>
 
         {/* DERECHA: logo + enlaces */}

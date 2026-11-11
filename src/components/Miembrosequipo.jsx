@@ -163,18 +163,20 @@ export default function MiembrosEquipo({ fotos = {}, tema = 'claro' }) {
         {fila(LEADERSHIP_BOARD.map((id) => ({ key: `b-${id}`, id, rol: L.rolBoard })))}
       </Nivel>
 
-      {/* 3. Coordinadores de Área (una sección por área) */}
+      {/* 3. Coordinadores de Área: rejilla de 2 x 3, una celda por área */}
       <Nivel id="coord" color={COLOR.coord} titulo={L.coord.t} sub={L.coord.s}>
-        {AREAS.map((a) => (
-          <div className="tm-area" key={a.id} style={{ '--c': a.color }}>
-            <h3>{en ? a.nombreEn || a.nombre : a.nombre}</h3>
-            <p>{en ? a.lemaEn || a.lema : a.lema}</p>
-            {fila([
-              { key: `d-${a.id}`, id: a.director, rol: L.rolDir },
-              { key: `s-${a.id}`, id: a.subdirector, rol: L.rolSub },
-            ])}
-          </div>
-        ))}
+        <div className="tm-areas">
+          {AREAS.map((a) => (
+            <div className="tm-area" key={a.id} style={{ '--c': a.color }}>
+              <h3>{en ? a.nombreEn || a.nombre : a.nombre}</h3>
+              <p>{en ? a.lemaEn || a.lema : a.lema}</p>
+              {fila([
+                { key: `d-${a.id}`, id: a.director, rol: L.rolDir },
+                { key: `s-${a.id}`, id: a.subdirector, rol: L.rolSub },
+              ])}
+            </div>
+          ))}
+        </div>
       </Nivel>
 
       {/* Miembros core (junto a los coordinadores en la jerarquía) */}

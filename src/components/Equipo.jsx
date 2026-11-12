@@ -20,7 +20,7 @@ export default function Equipo() {
       </section>
 
       {/* 2. Lista de integrantes sobre el fondo sólido del sitio */}
-      <section className="section section-humo">
+      <section className="section section-humo equipo-lista">
         <div className="container">
           <div className="reveal-group" ref={revealRef}>
             <MiembrosEquipo fotos={fotos} tema="oscuro" video="/fondo.mp4" />

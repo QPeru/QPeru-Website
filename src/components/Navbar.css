@@ -2,8 +2,12 @@
 
 /* "header.nav" (y no solo ".nav") para ganarle a reglas antiguas en index.css. */
 header.nav {
-  --nav-bg: rgba(0, 0, 0, 0.45);
-  --nav-bg-fallback: rgba(0, 0, 0, 0.85); /* si el navegador no soporta blur */
+  /* Degradado suave azul sobre el mismo azul de fondo del sitio (#03061A).
+     Se mantiene translúcido para conservar el efecto de vidrio del navbar. */
+  --nav-bg:
+    linear-gradient(90deg, rgba(3, 6, 26, 0) 0%, rgba(48, 72, 176, 0.22) 50%, rgba(3, 6, 26, 0) 100%),
+    linear-gradient(180deg, rgba(3, 6, 26, 0.9) 0%, rgba(9, 17, 54, 0.88) 100%);
+  --nav-bg-fallback: #03061a; /* color de fondo de la página si no hay soporte de degradado/blur */
   --nav-blur: 16px;
   --nav-text: #fff;
   --nav-accent: #e8912d;
@@ -24,7 +28,7 @@ header.nav {
   align-items: center;
   gap: 24px;
   background: var(--nav-bg-fallback);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(120, 150, 255, 0.14);
   font-family: 'Poppins', 'League Spartan', 'Inter', system-ui, sans-serif;
 }
 
@@ -41,10 +45,11 @@ html {
   scroll-padding-top: var(--nav-height, 72px);
 }
 
-/* columna derecha vacía (equilibra al logo) */
-header.nav::after {
-  content: "";
-}
+/* Posición de cada zona de la barra (independiente del orden del HTML).
+   "grid-row: 1" mantiene las tres zonas en la misma fila. */
+.nav__logo { grid-column: 1; grid-row: 1; }
+.nav__menu { grid-column: 2; grid-row: 1; }
+.nav__actions { grid-column: 3; grid-row: 1; justify-self: end; }
 
 .nav__logo {
   justify-self: start;
@@ -59,8 +64,130 @@ header.nav::after {
 
 .nav__logo img {
   display: block;
-  height: 40px;
+  height: 52px;
   width: auto;
+}
+
+/* ── Selector de idioma (esquina superior derecha) ── */
+.nav__actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nav__lang {
+  position: relative;
+}
+
+.nav__lang-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 13px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  color: var(--nav-text);
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.nav__lang-btn:hover,
+.nav__lang.is-open .nav__lang-btn {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(232, 145, 45, 0.75);
+}
+
+.nav__lang-btn svg {
+  width: 17px;
+  height: 17px;
+  flex: none;
+}
+
+/* Flechita del selector */
+.nav__lang-caret {
+  width: 6px;
+  height: 6px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: translateY(-2px) rotate(45deg);
+  transition: transform 0.2s ease;
+}
+
+.nav__lang.is-open .nav__lang-caret {
+  transform: translateY(1px) rotate(225deg);
+}
+
+/* Menú desplegable en el mismo tono oscuro del navbar */
+.nav__lang-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  z-index: 2;
+  min-width: 196px;
+  margin: 0;
+  padding: 6px;
+  list-style: none;
+  background: rgba(6, 10, 32, 0.94);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(-6px);
+  transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s;
+}
+
+.nav__lang.is-open .nav__lang-menu {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.nav__lang-menu button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 12px;
+  background: none;
+  border: 0;
+  border-radius: 9px;
+  color: rgba(255, 255, 255, 0.86);
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-align: left;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.nav__lang-menu button:hover {
+  background: rgba(255, 255, 255, 0.09);
+  color: #fff;
+}
+
+.nav__lang-menu button[aria-selected="true"] {
+  color: var(--nav-accent);
+  font-weight: 600;
+}
+
+.nav__lang-menu button svg {
+  width: 16px;
+  height: 16px;
+  flex: none;
 }
 
 .nav__list {
@@ -119,7 +246,9 @@ header.nav::after {
 .nav__link:focus-visible,
 .nav__dropdown a:focus-visible,
 .nav__logo:focus-visible,
-.nav__toggle:focus-visible {
+.nav__toggle:focus-visible,
+.nav__lang-btn:focus-visible,
+.nav__lang-menu button:focus-visible {
   outline: 2px solid var(--nav-accent);
   outline-offset: 2px;
 }
@@ -215,6 +344,15 @@ header.nav::after {
     display: flex;
   }
 
+  /* El selector de idioma se pega a la derecha, junto a la hamburguesa */
+  .nav__actions {
+    margin-left: auto;
+  }
+
+  .nav__lang-btn {
+    padding: 7px 11px;
+  }
+
   .nav__menu {
     display: none;
     width: 100%;
@@ -269,7 +407,11 @@ header.nav::after {
   .nav__link,
   .nav__link::after,
   .nav__toggle span,
-  .nav__dropdown a {
+  .nav__dropdown a,
+  .nav__lang-btn,
+  .nav__lang-caret,
+  .nav__lang-menu,
+  .nav__lang-menu button {
     transition: none;
   }
 }

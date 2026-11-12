@@ -4,10 +4,15 @@ import { content } from '../i18n/content'
 const LanguageContext = createContext(null)
 const STORAGE_KEY = 'qperu-lang'
 
+// Idiomas disponibles en el selector del navbar.
+// "qu" (quechua) todavía no tiene traducción: hasta que se agregue
+// "qu" en src/i18n/content.js, se muestra el contenido en español.
+export const LANGS = ['es', 'en', 'qu']
+
 export function LanguageProvider({ children }) {
   const [lang, setLang] = useState(() => {
     const saved = localStorage.getItem(STORAGE_KEY)
-    return saved === 'en' || saved === 'es' ? saved : 'es'
+    return LANGS.includes(saved) ? saved : 'es'
   })
 
   useEffect(() => {
@@ -16,7 +21,7 @@ export function LanguageProvider({ children }) {
   }, [lang])
 
   return (
-    <LanguageContext.Provider value={{ lang, setLang, t: content[lang] }}>
+    <LanguageContext.Provider value={{ lang, setLang, t: content[lang] || content.es }}>
       {children}
     </LanguageContext.Provider>
   )

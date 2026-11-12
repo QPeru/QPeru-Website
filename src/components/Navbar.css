@@ -49,9 +49,12 @@ header.nav::after {
 .nav__logo {
   justify-self: start;
   display: inline-flex;
-  padding: 4px 8px;
-  background: #fff;
-  border-radius: 8px;
+  padding: 4px 0;
+  transition: opacity 0.2s ease;
+}
+
+.nav__logo:hover {
+  opacity: 0.85;
 }
 
 .nav__logo img {

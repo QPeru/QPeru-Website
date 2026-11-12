@@ -127,7 +127,6 @@ export const content = {
     equipo: {
       eyebrow: '|equipo⟩',
       title: 'EQUIPO DE TRABAJO',
-      intro: 'Profesionales y entusiastas dedicados a democratizar la computación cuántica en el Perú.',
       roleFundadora: 'Fundadora',
       roleFundador: 'Fundador',
       roleMiembro: 'Miembro del equipo',
@@ -140,6 +139,14 @@ export const content = {
       estado: 'Calendario 2026 en preparación',
       texto: 'Los primeros talleres y charlas se anunciarán pronto. Únete a la comunidad y sé de las primeras personas en enterarte.',
       cta: 'Avísame primero'
+    },
+    solicitud: {
+      eyebrow: '|participantes⟩',
+      title: 'Participantes de QPerú',
+      subtitulo: 'Personas que participan en las actividades, talleres, eventos y proyectos de QPerú',
+      texto: 'Los participantes son todas las personas que se suman a nuestros talleres, charlas, eventos y proyectos. Cualquiera puede serlo: solo tienes que unirte a la comunidad.',
+      unete: 'Únete a la comunidad',
+      mascota: 'Mascota (próximamente)'
     },
     footer: {
       copy: '© 2026 QPeru. Todos los derechos reservados.'
@@ -292,7 +299,6 @@ export const content = {
     equipo: {
       eyebrow: '|team⟩',
       title: 'Our team',
-      intro: 'Professionals and enthusiasts dedicated to democratizing quantum computing in Peru.',
       roleFundadora: 'Founder',
       roleFundador: 'Founder',
       roleMiembro: 'Team member',
@@ -305,6 +311,14 @@ export const content = {
       estado: '2026 calendar in the works',
       texto: "Our first workshops and talks will be announced soon. Join the community to be among the first to know.",
       cta: 'Notify me first'
+    },
+    solicitud: {
+      eyebrow: '|participants⟩',
+      title: 'QPeru Participants',
+      subtitulo: 'People who participate in QPerú’s activities, workshops, events and projects',
+      texto: 'Participants are everyone who joins our workshops, talks, events and projects. Anyone can be one: you just have to join the community.',
+      unete: 'Join the community',
+      mascota: 'Mascot (coming soon)'
     },
     footer: {
       copy: '© 2026 QPeru. All rights reserved.'

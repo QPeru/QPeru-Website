@@ -1,6 +1,5 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
-import { PEOPLE, FUNDADORES, LEADERSHIP_BOARD, AREAS, MIEMBROS_CORE } from '../data/team'
+import { PEOPLE, FUNDADORES, LEADERSHIP_BOARD, AREAS, MIEMBROS_CORE, UNIVERSIDADES } from '../data/team'
 import { useLanguage } from '../context/LanguageContext'
 import './Miembrosequipo.css'
 
@@ -33,6 +32,7 @@ const TXT = {
     rolSub: 'Subdirector/a',
     rolCore: 'Miembro core',
     linkedin: 'LinkedIn de',
+    github: 'GitHub de',
   },
   en: {
     fundadores: { t: 'QPeru Co-Founders', s: 'Creation and vision of QPeru' },
@@ -53,6 +53,7 @@ const TXT = {
     rolSub: 'Deputy director',
     rolCore: 'Core member',
     linkedin: 'LinkedIn of',
+    github: 'GitHub of',
   },
 }
 
@@ -64,6 +65,12 @@ function iniciales(nombre) {
     .map((p) => p[0])
     .join('')
     .toUpperCase()
+}
+
+// Nombre completo de la universidad junto a su sigla: "UNI (…)"
+function universidad(siglas) {
+  const nombre = UNIVERSIDADES[siglas]
+  return nombre ? `${nombre} (${siglas})` : siglas
 }
 
 // Tarjeta de persona. Si no hay id, es un puesto vacante.
@@ -96,23 +103,43 @@ function Tarjeta({ id, rol, foto, L }) {
 
       <h3 className="tm-nombre">{p.nombre}</h3>
       <p className="tm-rol">{rol}</p>
-      <p className="tm-uni">{p.universidad}</p>
+      <p className="tm-uni">{universidad(p.universidad)}</p>
 
-      {p.cv.linkedin && (
-        <a
-          className="tm-social"
-          href={p.cv.linkedin}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={`${L.linkedin} ${p.nombre}`}
-        >
-          <svg viewBox="0 0 24 24" width="12" height="12" aria-hidden="true">
-            <path
-              fill="currentColor"
-              d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45Z"
-            />
-          </svg>
-        </a>
+      {(p.cv.linkedin || p.cv.github) && (
+        <div className="tm-social-row">
+          {p.cv.linkedin && (
+            <a
+              className="tm-social"
+              href={p.cv.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`${L.linkedin} ${p.nombre}`}
+            >
+              <svg viewBox="0 0 24 24" width="12" height="12" aria-hidden="true">
+                <path
+                  fill="currentColor"
+                  d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45Z"
+                />
+              </svg>
+            </a>
+          )}
+          {p.cv.github && (
+            <a
+              className="tm-social"
+              href={p.cv.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`${L.github} ${p.nombre}`}
+            >
+              <svg viewBox="0 0 24 24" width="12" height="12" aria-hidden="true">
+                <path
+                  fill="currentColor"
+                  d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"
+                />
+              </svg>
+            </a>
+          )}
+        </div>
       )}
     </article>
   )
@@ -182,16 +209,6 @@ export default function MiembrosEquipo({ fotos = {}, tema = 'claro' }) {
       {/* Miembros core (junto a los coordinadores en la jerarquía) */}
       <Nivel id="core" color={COLOR.core} titulo={L.core.t} sub={L.core.s}>
         {fila(MIEMBROS_CORE.map((id) => ({ key: `c-${id}`, id, rol: L.rolCore })))}
-      </Nivel>
-
-      {/* 4. Participantes: no se listan personas */}
-      <Nivel id="part" color={COLOR.part} titulo={L.part.t} sub={L.part.s}>
-        <div className="tm-part">
-          <p>{L.partTexto}</p>
-          <Link className="tm-btn" to="/contactanos">
-            {L.unete}
-          </Link>
-        </div>
       </Nivel>
     </div>
   )

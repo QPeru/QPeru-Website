@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
-import logo from '../assets/LOGO2 FINAL.svg'
+import logo from '../assets/LOGO2 FINAL nav.svg'
 import './Navbar.css'
 
 // Estructura del menú: cada ítem puede tener "children" (submenú desplegable).
@@ -34,7 +34,7 @@ const MENU = [
     ],
   },
   { label: 'Miembros del equipo', href: '/sobre-nosotros#equipo' },
-  { label: 'Membresía', href: '#' },
+  { label: 'Solicitud', href: '/solicitud' },
 ]
 
 export default function Navbar() {

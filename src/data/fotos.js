@@ -5,14 +5,28 @@ import fotoMaria from '../assets/team/maria-julia-pareja.webp'
 import fotoRenzo from '../assets/team/renzo-cienfuegos.webp'
 import fotoKelvin from '../assets/team/kelvin-cahuana.webp'
 import fotoLuis from '../assets/team/luis-morales.webp'
-import fotoDiego from '../assets/team/diego-valera.webp'
-import fotoMarco from '../assets/team/marco-mayta.webp'
+import fotoMarco from '../assets/team/marco-mayta.png'
+import fotoNicole from '../assets/team/nicole.png'
+import fotoJimena from '../assets/team/jimena.png'
+import fotoAaron from '../assets/team/aaron.png'
+import fotoAdriana from '../assets/team/adriana.png'
+import fotoFabien from '../assets/team/fabian.png'
+import fotoDire from '../assets/team/dire.png'
+import fotoJoseph from '../assets/team/joseph.png'
+import fotoMarino from '../assets/team/marino.png'
 
 export const fotos = {
   maria: fotoMaria,
   renzo: fotoRenzo,
   kelvin: fotoKelvin,
-  diego: fotoDiego,
   luis: fotoLuis,
-  marco: fotoMarco
+  marco: fotoMarco,
+  nicole: fotoNicole,
+  jimena: fotoJimena,
+  aaron: fotoAaron,
+  adriana: fotoAdriana,
+  fabien: fotoFabien,
+  dire: fotoDire,
+  joseph: fotoJoseph,
+  farino: fotoMarino,
 }

@@ -12,8 +12,8 @@
   --tm-linea-inferior: #c8102e;
   --tm-linea-grosor: 3px;
 
-  /* punto de color de TODAS las áreas: pon aquí el color del punto de Asuntos Académicos */
-  --tm-punto: #c9a45c;
+  /* color de respaldo del punto del área (si un área no define color propio) */
+  --tm-punto: #c1a370;
 
   /* tema claro (como la referencia) */
   --tm-body-bg: #ffffff;
@@ -127,14 +127,19 @@
   color: var(--tm-name);
 }
 
-/* punto de color: todas las áreas usan el mismo color (--tm-punto) */
+/* punto de color: cada área usa su propio color (de team.js), con respaldo en --tm-punto */
 .tm-area h3::before {
   content: "";
   flex: 0 0 auto;
   width: 14px;
   height: 14px;
   border-radius: 50%;
-  background: var(--tm-punto);
+  background: var(--c, var(--tm-punto));
+}
+
+/* la línea inferior de las tarjetas de un área usa el mismo color de su círculo */
+.tm-area .tm-card {
+  border-bottom-color: var(--c, var(--tm-linea-inferior));
 }
 
 .tm-area > p {
@@ -233,14 +238,20 @@
 .tm-card--vacante .tm-foto { background: #ececec; }
 .tm-card--vacante .tm-foto span { font-size: 3.4rem; color: #a5a5a5; }
 
-/* Ícono de red social (cuadro) */
+/* Íconos de redes sociales (cuadros, en fila) */
+.tm-social-row {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 16px;
+}
+
 .tm-social {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 22px;
   height: 22px;
-  margin-top: 16px;
   color: var(--tm-social-fg);
   background: var(--tm-social-bg);
   border-radius: 3px;

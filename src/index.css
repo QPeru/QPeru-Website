@@ -850,6 +850,101 @@ p + p { margin-top: 1rem; }
 .regla-mas.open { grid-template-rows: 1fr; }
 .regla-mas > div { overflow: hidden; }
 
+/* ═══ Solicitud (Participantes de QPerú) ═════════════ */
+/* Réplica del nivel "Participantes" de Miembros de Equipo (ver
+   Miembrosequipo.css: tm-nivel__head, tm-part y tm-btn, tema oscuro),
+   en dos columnas: texto y botón a la izquierda, mascota a la derecha. */
+.sol-grid {
+  align-items: center;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+}
+
+.sol-part {
+  max-width: 640px;
+  margin: 0 auto;
+  font-family: 'Poppins', 'League Spartan', system-ui, sans-serif;
+  text-align: center;
+}
+
+/* Título y subtítulo (como .tm-nivel__head) */
+.sol-part h2 {
+  margin: 0;
+  font-weight: 700;
+  font-size: clamp(1.6rem, 2.6vw, 2.2rem);
+  line-height: 1.15;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.sol-sub {
+  margin: 10px 0 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Barra con el color del nivel Participantes (como .tm-nivel__bar) */
+.sol-bar {
+  display: block;
+  width: 64px;
+  height: 4px;
+  margin: 18px auto 0;
+  border-radius: 4px;
+  background: var(--nivel, #8b4dff);
+}
+
+/* Párrafo (como .tm-part p) */
+.sol-texto {
+  margin: 36px 0 24px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Botón píldora (como .tm-btn, tema oscuro) */
+.sol-btn {
+  display: inline-block;
+  padding: 12px 30px;
+  font-weight: 600;
+  color: #fff;
+  text-decoration: none;
+  border: 2px solid #fff;
+  border-radius: 999px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.sol-btn:hover,
+.sol-btn:focus-visible {
+  background: #fff;
+  color: #03061a;
+  outline: none;
+}
+
+/* Marcador de posición de la mascota.
+   Cuando exista la imagen, reemplaza este div por <img className="sol-mascota-img">. */
+.sol-mascota {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 380px;
+  border: 2px dashed rgba(255, 255, 255, 0.35);
+  border-radius: 16px;
+  font-family: 'Poppins', 'League Spartan', system-ui, sans-serif;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* Imagen de la mascota (lista para usarse) */
+.sol-mascota-img {
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  margin-inline: auto;
+  border-radius: 16px;
+}
+
+@media (max-width: 900px) {
+  .sol-mascota { min-height: 260px; }
+}
+
 .reglas .regla-mas-texto {
   padding-top: 0.9rem;
   font-size: clamp(0.95rem, 1.25vw, 1.15rem);
@@ -877,10 +972,10 @@ p + p { margin-top: 1rem; }
 
 .qfoot-info p { margin: 0 0 10px; line-height: 1.5; }
 .qfoot-info p + p { margin-top: 0; }
-.qfoot-name { font-weight: 600; font-size: 1.05rem; }
+.qfoot-name { font-weight: 600; font-size: 1.3rem; }
 .qfoot-info a { color: #fff; text-decoration: none; }
 .qfoot-info a:hover { text-decoration: underline; }
-.qfoot-copy { color: rgba(255, 255, 255, 0.6); font-size: 0.95rem; }
+.qfoot-copy { color: rgba(255, 255, 255, 0.6); font-size: 1.05rem; }
 
 /* Fila del copyright: redes sociales a la izquierda y texto a la derecha */
 .qfoot-copy-row {
@@ -895,8 +990,9 @@ p + p { margin-top: 1rem; }
 
 .qfoot-side { display: flex; flex-direction: column; align-items: flex-end; gap: 28px; }
 
-.qfoot-logo { display: inline-flex; background: #fff; border-radius: 8px; padding: 6px 10px; }
-.qfoot-logo img { display: block; height: 40px; width: auto; }
+.qfoot-logo { display: inline-flex; padding: 2px 0; transition: opacity 0.2s ease; }
+.qfoot-logo:hover { opacity: 0.85; }
+.qfoot-logo img { display: block; height: 52px; width: auto; }
 
 .qfoot-links { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; justify-content: flex-end; }
 

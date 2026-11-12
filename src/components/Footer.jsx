@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import SocialDock from './SocialDock'
-import logo from '../assets/LOGO2 FINAL.svg'
+import logo from '../assets/LOGO2 FINAL nav.svg'
 
 // Completa tus datos. Si dejas un campo vacío, esa parte no se muestra.
 const INFO = {

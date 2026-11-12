@@ -16,7 +16,6 @@ export default function Equipo() {
         <div className="container">
           <p className="eyebrow">{eq.eyebrow}</p>
           <h2>{eq.title}</h2>
-          <p className="section-intro">{eq.intro}</p>
         </div>
       </section>
 

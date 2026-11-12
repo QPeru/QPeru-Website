@@ -11,6 +11,7 @@ import VideoBackground from './components/VideoBackground'
 import Reglamento from './pages/Reglamento'
 import MisionVisionValores from './pages/MisionVisionValores'
 import Actividades from './pages/Actividades'
+import Solicitud from './pages/Solicitud'
 function ScrollManager() {
   const { pathname, hash } = useLocation()
 
@@ -44,6 +45,7 @@ export default function App() {
           <Route path="/reglamento" element={<Reglamento />} />
           <Route path="/actividades" element={<Actividades />} />
           <Route path="/mision" element={<MisionVisionValores />} />
+          <Route path="/solicitud" element={<Solicitud />} />
         </Routes>
       </main>
       <Footer />

@@ -8,12 +8,12 @@
   --tm-foto-h: 170px;
   --tm-overhang: 112px; /* espacio para la foto que sobresale de la tarjeta */
 
-  /* línea inferior de cada tarjeta: pon aquí el color y grosor de "|equipo⟩" */
-  --tm-linea-inferior: #c8102e;
+  /* línea inferior de cada tarjeta: rojo de marca */
+  --tm-linea-inferior: #E0272F;
   --tm-linea-grosor: 3px;
 
   /* color de respaldo del punto del área (si un área no define color propio) */
-  --tm-punto: #c1a370;
+  --tm-punto: #E0B04A;
 
   /* tema claro (como la referencia) */
   --tm-body-bg: #ffffff;
@@ -35,18 +35,18 @@
   color: var(--tm-name);
 }
 
-/* tema oscuro: se funde con el fondo del sitio */
+/* tema oscuro: se funde con el fondo negro del sitio */
 .tm-wrap--oscuro {
   --tm-body-bg: transparent;
-  --tm-heading: rgba(255, 255, 255, 0.9);
-  --tm-card-bg: rgba(3, 6, 26, 0.6);
-  --tm-line: rgba(255, 255, 255, 0.65);
-  --tm-border: rgba(255, 255, 255, 0.2);
-  --tm-name: #ffffff;
-  --tm-muted: rgba(255, 255, 255, 0.7);
-  --tm-ring: #03061a;
-  --tm-social-bg: #ffffff;
-  --tm-social-fg: #03061a;
+  --tm-heading: #F2F2F3;
+  --tm-card-bg: rgba(24, 24, 26, 0.7);
+  --tm-line: rgba(242, 242, 243, 0.65);
+  --tm-border: #2A2A2D;
+  --tm-name: #F2F2F3;
+  --tm-muted: #A1A1A6;
+  --tm-ring: #0E0E0F;
+  --tm-social-bg: #F2F2F3;
+  --tm-social-fg: #0E0E0F;
 }
 
 /* sobre el video del fondo, las tarjetas llevan un leve desenfoque */
@@ -260,7 +260,7 @@
 
 .tm-social:hover,
 .tm-social:focus-visible {
-  background: #c8102e;
+  background: #E0272F;
   color: #fff;
   outline: none;
 }
@@ -297,7 +297,7 @@
 }
 
 .tm-wrap--oscuro .tm-btn:hover,
-.tm-wrap--oscuro .tm-btn:focus-visible { color: #03061a; }
+.tm-wrap--oscuro .tm-btn:focus-visible { color: #0E0E0F; }
 
 @media (max-width: 700px) {
   .tm-wrap { padding: 48px 16px 70px; border-radius: 16px; }

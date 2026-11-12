@@ -1,21 +1,24 @@
-/* Navbar: logo a la izquierda, menú centrado, barra translúcida con blur. */
+/* Navbar: logo a la izquierda, menú centrado, barra translúcida con blur.
+   Paleta: fondo #0E0E0F · superficie #18181A · borde #2A2A2D
+           texto #F2F2F3 · secundario #A1A1A6 · rojo #E0272F · dorado #E0B04A
+   Los colores salen de los tokens de index.css (con respaldo por si faltan). */
 
 /* "header.nav" (y no solo ".nav") para ganarle a reglas antiguas en index.css. */
 header.nav {
-  /* Degradado suave azul sobre el mismo azul de fondo del sitio (#03061A).
-     Se mantiene translúcido para conservar el efecto de vidrio del navbar. */
-  --nav-bg:
-    linear-gradient(90deg, rgba(3, 6, 26, 0) 0%, rgba(48, 72, 176, 0.22) 50%, rgba(3, 6, 26, 0) 100%),
-    linear-gradient(180deg, rgba(3, 6, 26, 0.9) 0%, rgba(9, 17, 54, 0.88) 100%);
-  --nav-bg-fallback: #03061a; /* color de fondo de la página si no hay soporte de degradado/blur */
+  --nav-bg: linear-gradient(180deg, rgba(14, 14, 15, 0.92) 0%, rgba(14, 14, 15, 0.82) 100%);
+  --nav-bg-fallback: var(--bg, #0E0E0F);
   --nav-blur: 16px;
-  --nav-text: #fff;
-  --nav-accent: #e8912d;
+  --nav-text: var(--text, #F2F2F3);
+  --nav-text-muted: var(--text-muted, #A1A1A6);
+  --nav-border: var(--border, #2A2A2D);
+  --nav-surface: var(--surface, #18181A);
+  --nav-accent: var(--brand, #E0272F);   /* rojo de marca: subrayado, foco */
+  --nav-gold: var(--accent, #E0B04A);    /* dorado: detalles puntuales */
   --nav-gap: clamp(24px, 3.2vw, 64px);
   --nav-height: 72px;
-  --drop-bg: #fff;
-  --drop-text: #111;
-  --drop-hover-bg: #f2f2f2;
+  --drop-bg: var(--nav-surface);
+  --drop-text: var(--nav-text);
+  --drop-hover-bg: #222225;
 
   position: sticky;
   top: 0;
@@ -28,7 +31,7 @@ header.nav {
   align-items: center;
   gap: 24px;
   background: var(--nav-bg-fallback);
-  border-bottom: 1px solid rgba(120, 150, 255, 0.14);
+  border-bottom: 1px solid var(--nav-border);
   font-family: 'Poppins', 'League Spartan', 'Inter', system-ui, sans-serif;
 }
 
@@ -84,8 +87,8 @@ html {
   align-items: center;
   gap: 8px;
   padding: 8px 13px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: var(--nav-surface);
+  border: 1px solid var(--nav-border);
   border-radius: 999px;
   color: var(--nav-text);
   font: inherit;
@@ -100,8 +103,8 @@ html {
 
 .nav__lang-btn:hover,
 .nav__lang.is-open .nav__lang-btn {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(232, 145, 45, 0.75);
+  background: var(--drop-hover-bg);
+  border-color: var(--nav-accent);
 }
 
 .nav__lang-btn svg {
@@ -124,7 +127,7 @@ html {
   transform: translateY(1px) rotate(225deg);
 }
 
-/* Menú desplegable en el mismo tono oscuro del navbar */
+/* Menú desplegable en la superficie oscura */
 .nav__lang-menu {
   position: absolute;
   top: calc(100% + 10px);
@@ -134,10 +137,10 @@ html {
   margin: 0;
   padding: 6px;
   list-style: none;
-  background: rgba(6, 10, 32, 0.94);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(24, 24, 26, 0.96);
+  border: 1px solid var(--nav-border);
   border-radius: 14px;
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
   -webkit-backdrop-filter: blur(14px);
   backdrop-filter: blur(14px);
   opacity: 0;
@@ -164,7 +167,7 @@ html {
   background: none;
   border: 0;
   border-radius: 9px;
-  color: rgba(255, 255, 255, 0.86);
+  color: var(--nav-text-muted);
   font: inherit;
   font-size: 0.95rem;
   font-weight: 500;
@@ -175,12 +178,13 @@ html {
 }
 
 .nav__lang-menu button:hover {
-  background: rgba(255, 255, 255, 0.09);
-  color: #fff;
+  background: var(--drop-hover-bg);
+  color: var(--nav-text);
 }
 
+/* Idioma activo: dorado (detalle puntual) */
 .nav__lang-menu button[aria-selected="true"] {
-  color: var(--nav-accent);
+  color: var(--nav-gold);
   font-weight: 600;
 }
 
@@ -213,7 +217,7 @@ html {
   background: none;
   border: 0;
   border-bottom: 2px solid transparent;
-  color: var(--nav-text);
+  color: var(--nav-text-muted);
   font: inherit;
   font-weight: 600;
   font-size: clamp(1rem, 1.25vw, 1.4rem);
@@ -239,7 +243,10 @@ html {
 }
 
 .nav__link:hover,
-.nav__item.is-open > .nav__link {
+.nav__item.is-open > .nav__link,
+.nav__link[aria-current="page"],
+.nav__link.active {
+  color: var(--nav-text);
   border-bottom-color: var(--nav-accent);
 }
 
@@ -264,8 +271,10 @@ html {
   padding: 8px 0;
   list-style: none;
   background: var(--drop-bg);
+  border: 1px solid var(--nav-border);
+  border-top: 0;
   border-radius: 0 0 14px 14px;
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.55);
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
@@ -288,12 +297,13 @@ html {
   font-size: 1rem;
   line-height: 1.35;
   text-decoration: none;
-  transition: background 0.15s ease, color 0.15s ease;
+  border-left: 3px solid transparent;
+  transition: background 0.15s ease, border-color 0.15s ease;
 }
 
 .nav__dropdown a:hover {
   background: var(--drop-hover-bg);
-  color: var(--nav-accent);
+  border-left-color: var(--nav-accent);
 }
 
 /* Botón hamburguesa (solo móvil/tablet) */
@@ -378,7 +388,7 @@ html {
     padding: 16px 0;
     font-size: 1.15rem;
     text-align: left;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    border-bottom: 1px solid var(--nav-border);
   }
 
   /* En móvil el submenú se despliega dentro del flujo */
@@ -388,6 +398,7 @@ html {
     min-width: 0;
     max-width: none;
     margin: 8px 0 12px;
+    border-top: 1px solid var(--nav-border);
     opacity: 1;
     visibility: visible;
     pointer-events: auto;

@@ -17,7 +17,13 @@ export function LanguageProvider({ children }) {
 
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, lang)
+    const c = content[lang] || content.es
+
+    // Idioma del documento + título de la pestaña y meta description
     document.documentElement.setAttribute('lang', lang)
+    document.title = c.meta.titulo
+    const desc = document.querySelector('meta[name="description"]')
+    if (desc) desc.setAttribute('content', c.meta.descripcion)
   }, [lang])
 
   return (

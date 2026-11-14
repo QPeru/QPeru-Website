@@ -10,7 +10,7 @@ import fotoNicole from '../assets/team/nicole.png'
 import fotoJimena from '../assets/team/jimena.png'
 import fotoAaron from '../assets/team/aaron.png'
 import fotoAdriana from '../assets/team/adriana.png'
-import fotoFabien from '../assets/team/fabian.png'
+import fotoFabian from '../assets/team/fabian.png'
 import fotoDire from '../assets/team/dire.png'
 import fotoJoseph from '../assets/team/joseph.png'
 import fotoMarino from '../assets/team/marino.png'
@@ -25,8 +25,8 @@ export const fotos = {
   jimena: fotoJimena,
   aaron: fotoAaron,
   adriana: fotoAdriana,
-  fabien: fotoFabien,
+  fabian: fotoFabian,
   dire: fotoDire,
   joseph: fotoJoseph,
-  farino: fotoMarino,
+  marino: fotoMarino,
 }

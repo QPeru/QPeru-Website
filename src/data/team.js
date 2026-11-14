@@ -19,6 +19,22 @@ export const UNIVERSIDADES = {
   'ICMC-USP': 'Instituto de Ciências Matemáticas e de Computação da Universidade de São Paulo',
 };
 
+// Mismo mapa en inglés, para cuando el sitio está en EN.
+export const UNIVERSIDADES_EN = {
+  UNI: 'National University of Engineering',
+  UNMSM: 'National University of San Marcos',
+  PUCP: 'Pontifical Catholic University of Peru',
+  UTEC: 'University of Engineering and Technology',
+  UCV: 'César Vallejo University',
+  UCSM: 'Catholic University of Santa María',
+  USP: 'San Pedro University',
+  UCSP: 'Catholic University of San Pablo',
+  ISIL: 'San Ignacio de Loyola Institute',
+  UAM: 'Autonomous University of Madrid',
+  UPN: 'Private University of the North',
+  'ICMC-USP': 'Institute of Mathematical and Computer Sciences of the University of São Paulo',
+};
+
 export const PEOPLE = {
   maria: {
     nombre: 'María Julia Pareja Abarca',
@@ -75,15 +91,15 @@ export const PEOPLE = {
     universidad: 'UCSP',
     cv: { resumen: '', formacion: [], experiencia: [], habilidades: [], linkedin: 'https://www.linkedin.com/in/adriana-justo-nu%C3%B1ez-b182133a7/', github: '' },
   },
-  fabien: {
-    nombre: 'Fabien Simón',
+  fabian: {
+    nombre: 'Fabian Simón',
     universidad: 'ISIL',
     cv: { resumen: '', formacion: [], experiencia: [], habilidades: [], linkedin: 'https://www.linkedin.com/in/fabian-gabriel-sim%C3%B3n-quintanilla-163a71340/', github: '' },
   },
   dire: {
     nombre: 'Dire Espinal',
     universidad: 'UNI',
-    cv: { resumen: '', formacion: [], experiencia: [], habilidades: [], linkedin: 'https://www.linkedin.com/in/dire-espinal-pecho-369a70386/', github: '' },
+    cv: { resumen: '', formacion: [], experiencia: [], habilidades: [], linkedin: 'https://www.linkedin.com/in/dire-espinal-pecho-369a70386/', github: 'https://github.com/DireEspinalP' },
   },
   daniel: {
     nombre: 'Daniel Mamani',
@@ -170,7 +186,7 @@ export const AREAS = [
     lema: 'Comunicaciones · Marca · Difusión',
     lemaEn: 'Communications · Branding · Public Outreach',
     color: '#226646',
-    director: 'fabien',
+    director: 'fabian',
     subdirector: null,
   },
   {

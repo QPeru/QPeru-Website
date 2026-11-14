@@ -1,6 +1,11 @@
 // Links reales extraídos del linktree público de QPerú (linktr.ee/qperu).
-export const WSP_COMUNIDAD = 'https://chat.whatsapp.com/Fc8nZJAPDgE4DMM0PhcQYH'
+export const WSP_COMUNIDAD = 'https://chat.whatsapp.com/IBLFbCfOPKw1Ye4AgLyT7O?s=qt&p=a&mlu=4&ilr=4&iam=0'
 export const DISCORD_COMUNIDAD = 'https://discord.gg/rwYmaHmYHq'
+
+// Formulario de inscripción (Google Forms u otro).
+// TODO: pegar aquí la URL cuando esté listo; mientras esté vacío, el botón
+// "Únete a la comunidad" no tiene destino.
+export const FORM_URL = ''
 
 export const socialLinks = [
   {

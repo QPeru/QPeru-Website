@@ -8,6 +8,7 @@ import imagenCSWeek from '../assets/cs-week/01.webp'
 
 function ActivitySlideshow({ images, alt }) {
   const [current, setCurrent] = useState(0)
+  const { t } = useLanguage()
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -34,7 +35,7 @@ function ActivitySlideshow({ images, alt }) {
             key={index}
             className={index === current ? 'active' : ''}
             onClick={() => setCurrent(index)}
-            aria-label={`Ver imagen ${index + 1}`}
+            aria-label={`${t.activities.verImagen} ${index + 1}`}
           />
         ))}
       </div>
@@ -79,71 +80,25 @@ export default function Activities() {
 
               <h3>{item.title}</h3>
               <p>{item.description}</p>
+
+              {item.horario && (
+                <p>
+                  <strong>{item.horario}</strong>
+                </p>
+              )}
+
+              {item.href && (
+                <a
+                  className="link-ext"
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {item.cta}
+                </a>
+              )}
             </article>
           ))}
-
-          {/* CSWeek - Workshop 1 */}
-          <article className="card card-actividad-pasada">
-            <img
-              src={imagenCSWeek}
-              alt="CSWeek Perú 2026"
-              className="activity-image"
-            />
-
-            <h3>Workshop: Q-Day - Are You Shor You're Ready?</h3>
-
-            <p>
-              Con Leonardo Cienfuegos. Una mirada a la amenaza cuántica para la
-              criptografía actual y a cómo la industria se prepara mediante
-              agilidad criptográfica, migración post-cuántica y casos reales.
-            </p>
-
-            <p>
-              <strong>12:00 - 13:30</strong>
-            </p>
-
-            <a
-              className="link-ext"
-              href="https://luma.com/azxbqx8m"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Ver evento →
-            </a>
-          </article>
-
-          {/* CSWeek - Workshop 2 */}
-          <article className="card card-actividad-pasada">
-            <img
-              src={imagenCSWeek}
-              alt="CSWeek Perú 2026"
-              className="activity-image"
-            />
-
-            <h3>
-              Workshop: Más allá del Hype - Realidades y Estrategias Híbridas
-              para la Ventaja Cuántica
-            </h3>
-
-            <p>
-              Con María Julia Pareja. IA + HPC + algoritmos cuánticos como QAOA,
-              VQE y Annealing aplicados a logística, finanzas, farmacéutica y
-              ciencia de materiales, con demos en vivo y retos reales.
-            </p>
-
-            <p>
-              <strong>16:30 - 18:00</strong>
-            </p>
-
-            <a
-              className="link-ext"
-              href="https://luma.com/tbi68knv"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Ver evento →
-            </a>
-          </article>
         </div>
 
         {/* ANCLA: Actividades futuras */}
@@ -155,13 +110,12 @@ export default function Activities() {
         </h3>
 
         <div className="cards reveal-group" ref={futurasRef}>
-          <article className="card">
-            <h3>Qiskit Fall Fest 2026</h3>
-            <p>
-              Próximamente, en colaboración con IEEE Computer Society PUCP y la
-              Sociedad de Físicos de la PUCP.
-            </p>
-          </article>
+          {a.futuras.slice(-1).map((item) => (
+            <article className="card" key={item.id}>
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </article>
+          ))}
         </div>
       </div>
     </section>

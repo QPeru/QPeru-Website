@@ -1,15 +1,17 @@
 import { useState, useRef, useEffect } from 'react'
 import { useLanguage } from '../context/LanguageContext'
+import { useTheme } from '../hooks/useTheme'
 import logo from '../assets/LOGO2 FINAL nav.svg'
 import './Navbar.css'
 
 // Estructura del menú: cada ítem puede tener "children" (submenú desplegable).
 // Los href "#" son páginas que aún no existen: cámbialos cuando las crees.
 // Para secciones de la portada usa "/#id" (funciona desde cualquier página).
+// Las etiquetas visibles vienen de t.nav.menu (ver src/i18n/content.js).
 // Los submenús se nombran automáticamente "Subíndice 1..n" (ver más abajo).
 const MENU = [
   {
-    label: 'Acerca de',
+    key: 'acercaDe',
     children: [
       { href: '#' },
       { href: '#' },
@@ -17,7 +19,7 @@ const MENU = [
     ],
   },
   {
-    label: 'Eventos',
+    key: 'eventos',
     children: [
       { href: '/#actividades' },
       { href: '#' },
@@ -27,22 +29,23 @@ const MENU = [
     ],
   },
   {
-    label: 'Nuestras publicaciones',
+    key: 'publicaciones',
     children: [
       { href: '#' },
       { href: '#' },
       { href: '#' },
     ],
   },
-  { label: 'Miembros del equipo', href: '/sobre-nosotros#equipo' },
-  { label: 'Solicitud', href: '/solicitud' },
+  { key: 'equipo', href: '/sobre-nosotros#equipo' },
+  { key: 'solicitud', href: '/solicitud' },
 ]
 
 // Opciones del selector de idioma (esquina superior derecha).
+// El nombre visible se traduce con t.nav.idiomas[id].
 const IDIOMAS = [
-  { id: 'es', label: 'Español', corto: 'ES' },
-  { id: 'en', label: 'Inglés', corto: 'EN' },
-  { id: 'qu', label: 'Quechua', corto: 'QU' },
+  { id: 'es', corto: 'ES' },
+  { id: 'en', corto: 'EN' },
+  { id: 'qu', corto: 'QU' },
 ]
 
 export default function Navbar() {
@@ -50,9 +53,13 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false) // menú hamburguesa
   const [langOpen, setLangOpen] = useState(false) // selector de idioma abierto
   const navRef = useRef(null)
-  const { lang, setLang } = useLanguage()
+  const { lang, setLang, t } = useLanguage()
+  const { theme, toggleTheme } = useTheme()
 
+  const nav = t.nav
   const idiomaActual = IDIOMAS.find((i) => i.id === lang) || IDIOMAS[0]
+  const nombreIdioma = nav.idiomas[idiomaActual.id] || idiomaActual.corto
+  const temaOscuro = theme !== 'light'
 
   // Cerrar submenú al hacer clic fuera o presionar Escape
   useEffect(() => {
@@ -88,7 +95,7 @@ export default function Navbar() {
 
   return (
     <header className="nav" ref={navRef}>
-      <a href="/" className="nav__logo" aria-label="QPerú - inicio" onClick={closeAll}>
+      <a href="/" className="nav__logo" aria-label={nav.aria.inicio} onClick={closeAll}>
         <img src={logo} alt="QPerú" />
       </a>
 
@@ -100,7 +107,7 @@ export default function Navbar() {
             className="nav__lang-btn"
             aria-haspopup="listbox"
             aria-expanded={langOpen}
-            aria-label={`Idioma: ${idiomaActual.label}`}
+            aria-label={`${nav.aria.idioma}: ${nombreIdioma}`}
             onClick={() => setLangOpen((v) => !v)}
           >
             <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.7">
@@ -111,7 +118,7 @@ export default function Navbar() {
             <span className="nav__lang-caret" aria-hidden="true" />
           </button>
 
-          <ul className="nav__lang-menu" role="listbox" aria-label="Elegir idioma">
+          <ul className="nav__lang-menu" role="listbox" aria-label={nav.aria.elegirIdioma}>
             {IDIOMAS.map((idioma) => {
               const activo = idioma.id === lang
               return (
@@ -122,7 +129,7 @@ export default function Navbar() {
                     aria-selected={activo}
                     onClick={() => elegirIdioma(idioma.id)}
                   >
-                    <span>{idioma.label}</span>
+                    <span>{nav.idiomas[idioma.id] || idioma.corto}</span>
                     {activo && (
                       <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2.2">
                         <path d="m5 12.5 4.5 4.5L19 7" />
@@ -134,11 +141,40 @@ export default function Navbar() {
             })}
           </ul>
         </div>
+
+        {/* Cambio de tema (oscuro / claro): mismo estilo que el selector de idioma */}
+        <button
+          type="button"
+          className="nav__theme-btn"
+          aria-label={temaOscuro ? nav.aria.temaClaro : nav.aria.temaOscuro}
+          title={temaOscuro ? nav.aria.temaClaro : nav.aria.temaOscuro}
+          onClick={toggleTheme}
+        >
+          <svg
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.7"
+            strokeLinecap="round"
+          >
+            {temaOscuro ? (
+              /* sol: al estar en oscuro, el clic pasa a claro */
+              <>
+                <circle cx="12" cy="12" r="4" />
+                <path d="M12 2v2.5M12 19.5V22M4.93 4.93l1.77 1.77M17.3 17.3l1.77 1.77M2 12h2.5M19.5 12H22M4.93 19.07l1.77-1.77M17.3 6.7l1.77-1.77" />
+              </>
+            ) : (
+              /* luna: al estar en claro, el clic pasa a oscuro */
+              <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" />
+            )}
+          </svg>
+        </button>
       </div>
 
       <button
         className="nav__toggle"
-        aria-label="Abrir menú"
+        aria-label={nav.aria.abrirMenu}
         aria-expanded={mobileOpen}
         onClick={() => setMobileOpen((v) => !v)}
       >
@@ -149,14 +185,14 @@ export default function Navbar() {
 
       <nav
         className={`nav__menu ${mobileOpen ? 'is-open' : ''}`}
-        aria-label="Navegación principal"
+        aria-label={nav.aria.navegacion}
       >
         <ul className="nav__list">
           {MENU.map((item, i) => {
             const isOpen = openIndex === i
             return (
               <li
-                key={item.label}
+                key={item.key}
                 className={`nav__item ${isOpen ? 'is-open' : ''}`}
                 onMouseEnter={() => item.children && setOpenIndex(i)}
                 onMouseLeave={() => item.children && setOpenIndex(null)}
@@ -169,13 +205,13 @@ export default function Navbar() {
                       aria-expanded={isOpen}
                       onClick={() => setOpenIndex(isOpen ? null : i)}
                     >
-                      {item.label}
+                      {nav.menu[item.key]}
                     </button>
                     <ul className="nav__dropdown">
                       {item.children.map((sub, j) => (
                         <li key={j}>
                           <a href={sub.href} onClick={closeAll}>
-                            Subíndice {j + 1}
+                            {nav.menu.subindice} {j + 1}
                           </a>
                         </li>
                       ))}
@@ -183,7 +219,7 @@ export default function Navbar() {
                   </>
                 ) : (
                   <a href={item.href} className="nav__link" onClick={closeAll}>
-                    {item.label}
+                    {nav.menu[item.key]}
                   </a>
                 )}
               </li>

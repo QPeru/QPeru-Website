@@ -2,21 +2,47 @@
 // se traducen. El selector de idioma en el navbar cambia `lang` vía contexto.
 export const content = {
   es: {
+    // Título de la pestaña y meta description (se actualizan al cambiar de idioma)
+    meta: {
+      titulo: 'QPeru - Comunidad de computación cuántica y áreas afines',
+      descripcion: 'QPerú es una comunidad peruana abierta que divulga y democratiza la computación cuántica con talleres, charlas y comunidad activa - en español, inglés y pronto quechua.'
+    },
     nav: {
-      tabs: { inicio: 'Inicio', sobreNosotros: 'Sobre nosotros', eventos: 'Eventos' },
-      unete: 'Contáctanos',
-      themeToggle: 'Cambiar tema claro/oscuro'
+      // Menú hamburguesa, selector de idioma y textos de accesibilidad
+      menu: {
+        acercaDe: 'Acerca de',
+        eventos: 'Eventos',
+        publicaciones: 'Nuestras publicaciones',
+        equipo: 'Miembros del equipo',
+        solicitud: 'Solicitud',
+        subindice: 'Subíndice'
+      },
+      idiomas: { es: 'Español', en: 'Inglés', qu: 'Quechua' },
+      aria: {
+        idioma: 'Idioma',
+        elegirIdioma: 'Elegir idioma',
+        temaClaro: 'Cambiar a tema claro',
+        temaOscuro: 'Cambiar a tema oscuro',
+        abrirMenu: 'Abrir menú',
+        navegacion: 'Navegación principal',
+        inicio: 'QPerú - inicio',
+        redes: 'Redes sociales de QPerú'
+      }
     },
     hero: {
-      title1: 'Quantum ',
-      titleRojo: 'Peru',
-      title2: ' 2026',
-      ctaUnete: 'Únete a la comunidad',
-      ctaConoce: 'Conoce más'
+      fecha: 'Fecha',
+      scroll: 'Scroll down',
+      bajar: 'Bajar a la siguiente sección'
+    },
+    intro: {
+      altMascota: 'Mascota de QPerú: un cóndor andino',
+      titulo: 'QPeru 2026',
+      texto: 'QPerú nació para acercar la computación cuántica al Perú: una comunidad abierta que organiza talleres, charlas y espacios de estudio para estudiantes, profesionales y curiosos de todo el país.',
+      cta: 'Ver más'
     },
     origen: {
-      eyebrow: '|origen⟩',
       title: 'Origen de QPeru',
+      cta: 'Conoce más',
       parrafos: [
         'Aquí va la historia de cómo nació QPerú: quiénes lo impulsaron, en qué año y con qué motivación.',
         'Puedes agregar más párrafos a esta lista si lo necesitas.'
@@ -27,67 +53,59 @@ export const content = {
       title: 'Actividades',
       subtituloPasadas: 'Actividades pasadas',
       subtituloFuturas: 'Actividades futuras',
-      imgPendiente: 'Imagen pendiente',
+      verImagen: 'Ver imagen',
       pasadas: [
         {
           id: 1,
           title: 'Charla de computación cuántica en UCSM, Arequipa',
           description: 'Primera charla presencial de QPerú, en la Universidad Católica de Santa María. Introducción a los principios de la computación cuántica y a la comunidad para estudiantes de Arequipa.'
+        },
+        {
+          id: 2,
+          title: 'Workshop: Q-Day - Are You Shor You’re Ready?',
+          description: 'Con Leonardo Cienfuegos. Una mirada a la amenaza cuántica para la criptografía actual y a cómo la industria se prepara mediante agilidad criptográfica, migración post-cuántica y casos reales.',
+          horario: '12:00 - 13:30',
+          cta: 'Ver evento →',
+          href: 'https://luma.com/azxbqx8m'
+        },
+        {
+          id: 3,
+          title: 'Workshop: Más allá del Hype - Realidades y Estrategias Híbridas para la Ventaja Cuántica',
+          description: 'Con María Julia Pareja. IA + HPC + algoritmos cuánticos como QAOA, VQE y Annealing aplicados a logística, finanzas, farmacéutica y ciencia de materiales, con demos en vivo y retos reales.',
+          horario: '16:30 - 18:00',
+          cta: 'Ver evento →',
+          href: 'https://luma.com/tbi68knv'
         }
       ],
       futuras: [
         {
           id: 1,
           title: 'Charla en la CSWeek - Leo',
-          description: 'Sábado 15, tema por confirmar.',
-          linkLabel: 'Ver agenda de CSWeek 2026'
+          description: 'Sábado 15, tema por confirmar.'
         },
         {
           id: 2,
           title: 'Charla en la CSWeek - Maju',
-          description: 'Sábado 15, tema por confirmar.',
-          linkLabel: 'Ver agenda de CSWeek 2026'
+          description: 'Sábado 15, tema por confirmar.'
         },
         {
           id: 3,
-          title: 'Qiskit Fall Fest',
+          title: 'Qiskit Fall Fest 2026',
           description: 'Próximamente, en colaboración con IEEE Computer Society PUCP y la Sociedad de Físicos de la PUCP.'
         }
       ]
     },
 
-    comunidad: {
-      eyebrow: '|comunidad⟩',
-      title: 'Hecha para el ecosistema peruano',
-      audiencias: [
-        { id: 1, title: 'Estudiantes', description: 'Universitarios que quieren ir más allá del sílabo y explorar lo que viene.' },
-        { id: 2, title: 'Profesionales', description: 'De tecnología, ciencia, seguridad y más, que necesitan entender el impacto real de la cuántica.' },
-        { id: 3, title: 'Comunidades', description: 'Clubes, grupos técnicos y organizaciones que quieren llevar la cuántica a su gente.' }
-      ],
-      idiomasTitulo: 'La divulgación también es una decisión de idioma:',
-      chipEs: 'ES · Español',
-      chipEn: 'EN · English',
-      chipQu: 'QU · Quechua - en camino'
-    },
     contacto: {
-      eyebrow: '|contáctanos⟩',
-      title: 'Contáctanos',
-      intro: 'Encuéntranos en nuestras redes sociales o únete directo a la comunidad.',
       whatsappTitulo: 'WhatsApp',
       discordTitulo: 'Discord',
-      discordSub: 'Servidor de la comunidad',
-      redesSociales: 'Redes sociales'
+      discordSub: 'Servidor de la comunidad'
     },
     unete: {
-      titulo: 'Únete a la comunidad de QPerú',
-      texto: 'Sigue de más cerca las actualizaciones, talleres, charlas y todo lo que viene en nuestra comunidad. Escanea el QR o toca para unirte al grupo de WhatsApp.',
-      qrTitulo: 'QPerú · Init',
       qrSub: 'Grupo de WhatsApp'
     },
     sobreNosotros: {
-      eyebrow: '|organización⟩',
       title: 'Organización',
-      intro: 'QPerú nació para acercar la computación cuántica al Perú: una comunidad abierta que organiza talleres, charlas y espacios de estudio para estudiantes, profesionales y curiosos de todo el país.',
       mvv: {
         eyebrow: '|misión-visión-valores⟩',
         title: 'Misión, visión y valores',
@@ -126,12 +144,7 @@ export const content = {
     },
     equipo: {
       eyebrow: '|equipo⟩',
-      title: 'EQUIPO DE TRABAJO',
-      roleFundadora: 'Fundadora',
-      roleFundador: 'Fundador',
-      roleMiembro: 'Miembro del equipo',
-      bioMaria: 'Apasionada por democratizar la computación cuántica y crear oportunidades en educación tecnológica para el Perú. Lidera la visión y las alianzas de QPerú.',
-      bioRenzo: 'Experto en computación cuántica comprometido con impulsar innovación en el Perú. Diseña el contenido técnico de talleres y charlas.'
+      title: 'EQUIPO DE TRABAJO'
     },
     eventos: {
       eyebrow: '|agenda⟩',
@@ -141,35 +154,67 @@ export const content = {
       cta: 'Avísame primero'
     },
     solicitud: {
-      eyebrow: '|participantes⟩',
       title: 'Participantes de QPerú',
-      subtitulo: 'Personas que participan en las actividades, talleres, eventos y proyectos de QPerú',
-      texto: 'Los participantes son todas las personas que se suman a nuestros talleres, charlas, eventos y proyectos. Cualquiera puede serlo: solo tienes que unirte a la comunidad.',
       unete: 'Únete a la comunidad',
-      mascota: 'Mascota (próximamente)'
+      // Mensajes que van apareciendo en la burbuja al tocar al oso
+      burbujas: [
+        '¡Únete a la comunidad y participa con nosotros!',
+        'Escanea el QR y entra al grupo de WhatsApp.',
+        'Aquí nadie aprende solo: comparte lo que descubres.',
+        '¿Tienes una idea? Tráela a nuestros talleres y charlas.',
+        'Síguenos en las redes y entérate primero de cada evento.'
+      ],
+      cambiarMensaje: 'Toca al oso para cambiar el mensaje',
+      altMascota: 'Mascota de QPerú'
     },
     footer: {
-      copy: '© 2026 QPeru. Todos los derechos reservados.'
+      nombre: 'QPerú · Comunidad cuántica peruana',
+      correo: 'Correo',
+      privacidad: 'Política de privacidad',
+      derechos: 'Todos los derechos reservados.'
     }
   },
   en: {
+    meta: {
+      titulo: 'QPeru - Quantum computing and related fields community',
+      descripcion: 'QPerú is an open Peruvian community that spreads and democratizes quantum computing through workshops, talks and an active community - in Spanish, English and soon Quechua.'
+    },
     nav: {
-      tabs: { inicio: 'Home', sobreNosotros: 'About us', eventos: 'Events' },
-      unete: 'Contact us',
-      themeToggle: 'Toggle light/dark theme'
+      // Hamburger menu, language selector and accessibility labels
+      menu: {
+        acercaDe: 'About',
+        eventos: 'Events',
+        publicaciones: 'Our publications',
+        equipo: 'Team members',
+        solicitud: 'Join us',
+        subindice: 'Item'
+      },
+      idiomas: { es: 'Spanish', en: 'English', qu: 'Quechua' },
+      aria: {
+        idioma: 'Language',
+        elegirIdioma: 'Choose language',
+        temaClaro: 'Switch to light theme',
+        temaOscuro: 'Switch to dark theme',
+        abrirMenu: 'Open menu',
+        navegacion: 'Main navigation',
+        inicio: 'QPerú - home',
+        redes: 'QPerú social media'
+      }
     },
     hero: {
-      eyebrow: 'Peruvian quantum community',
-      title1: 'We are democratizing ',
-      titleRojo: 'quantum computing',
-      title2: ' in Peru.',
-      sub: 'An open community bringing quantum computing to students, professionals and communities across the country - through workshops, events, resources and global collaboration.',
-      ctaUnete: 'Join the community',
-      ctaConoce: 'Learn more'
+      fecha: 'Date',
+      scroll: 'Scroll down',
+      bajar: 'Scroll to the next section'
+    },
+    intro: {
+      altMascota: 'QPerú mascot: an Andean condor',
+      titulo: 'QPeru 2026',
+      texto: 'QPerú was created to bring quantum computing to Peru: an open community that organizes workshops, talks and study spaces for students, professionals and curious minds across the country.',
+      cta: 'Learn more'
     },
     origen: {
-      eyebrow: '|origin⟩',
       title: 'Origin of QPeru',
+      cta: 'Learn more',
       parrafos: [
         'Here goes the story of how QPerú was born: who started it, when, and why.',
         'You can add more paragraphs to this list if needed.'
@@ -180,86 +225,58 @@ export const content = {
       title: 'Activities',
       subtituloPasadas: 'Past activities',
       subtituloFuturas: 'Upcoming activities',
-      imgPendiente: 'Image pending',
+      verImagen: 'View image',
       pasadas: [
         {
           id: 1,
           title: 'Quantum computing talk at UCSM, Arequipa',
           description: "QPerú's first in-person talk, held at Universidad Católica de Santa María. An introduction to quantum computing principles and our community for students in Arequipa."
+        },
+        {
+          id: 2,
+          title: 'Workshop: Q-Day - Are You Shor You’re Ready?',
+          description: 'With Leonardo Cienfuegos. A look at the quantum threat to today’s cryptography and how the industry is getting ready through cryptographic agility, post-quantum migration and real-world cases.',
+          horario: '12:00 - 13:30',
+          cta: 'View event →',
+          href: 'https://luma.com/azxbqx8m'
+        },
+        {
+          id: 3,
+          title: 'Workshop: Beyond the Hype - Hybrid Realities and Strategies for Quantum Advantage',
+          description: 'With María Julia Pareja. AI + HPC + quantum algorithms such as QAOA, VQE and Annealing applied to logistics, finance, pharmaceuticals and materials science, with live demos and real challenges.',
+          horario: '16:30 - 18:00',
+          cta: 'View event →',
+          href: 'https://luma.com/tbi68knv'
         }
       ],
       futuras: [
         {
           id: 1,
           title: 'CSWeek talk - Leo',
-          description: 'Saturday 15, topic to be confirmed.',
-          linkLabel: 'See CSWeek 2026 agenda'
+          description: 'Saturday 15, topic to be confirmed.'
         },
         {
           id: 2,
           title: 'CSWeek talk - Maju',
-          description: 'Saturday 15, topic to be confirmed.',
-          linkLabel: 'See CSWeek 2026 agenda'
+          description: 'Saturday 15, topic to be confirmed.'
         },
         {
           id: 3,
-          title: 'Qiskit Fall Fest',
+          title: 'Qiskit Fall Fest 2026',
           description: 'Coming soon, in collaboration with IEEE Computer Society PUCP and the PUCP Physics Society.'
         }
       ]
     },
-    cursos: {
-      eyebrow: '|courses⟩',
-      title: 'Quantum computing courses',
-      estado: 'Coming soon',
-      texto: "We're designing our first quantum computing courses. Join the community to find out as soon as enrollment opens."
-    },
-    comunidad: {
-      eyebrow: '|community⟩',
-      title: 'Built for the Peruvian ecosystem',
-      audiencias: [
-        { id: 1, title: 'Students', description: 'University students who want to go beyond the syllabus and explore what comes next.' },
-        { id: 2, title: 'Professionals', description: 'From tech, science, security and beyond, who need to understand the real impact of quantum computing.' },
-        { id: 3, title: 'Communities', description: 'Clubs, tech groups and organizations that want to bring quantum computing to their people.' }
-      ],
-      idiomasTitulo: 'Outreach is also a language decision:',
-      chipEs: 'ES · Spanish',
-      chipEn: 'EN · English',
-      chipQu: 'QU · Quechua - coming soon'
-    },
     contacto: {
-      eyebrow: '|contact-us⟩',
-      title: 'Contact us',
-      intro: 'Find us on our social networks or join the community directly.',
       whatsappTitulo: 'WhatsApp',
       discordTitulo: 'Discord',
-      discordSub: 'Community server',
-      redesSociales: 'Social media'
-    },
-    recursos: {
-      eyebrow: '|resources⟩',
-      title: 'Free resources',
-      intro: 'Access to materials, tutorials and tools to learn quantum computing.',
-      items: [
-        { id: 1, icon: '📚', title: 'Documentation', description: 'Complete guides and references on quantum computing and Qiskit.' },
-        { id: 2, icon: '🎥', title: 'Video Tutorials', description: 'A series of educational videos on quantum fundamentals.' },
-        { id: 3, icon: '💻', title: 'GitHub Repository', description: 'Code, exercises and projects available to download and learn from.' },
-        { id: 4, icon: '🔗', title: 'Useful Links', description: 'Online tools, simulators and platforms to experiment with.' },
-        { id: 5, icon: '🔐', title: 'Quantum CyberSec Community', description: 'WhatsApp channel about cryptography and quantum cybersecurity.' },
-        { id: 6, icon: '🌐', title: 'QWorld', description: 'Open resources and courses from the global QWorld education network.' },
-        { id: 7, icon: '🖥️', title: 'IBM Quantum Learning', description: "IBM's official platform for learning quantum computing and Qiskit." }
-      ]
+      discordSub: 'Community server'
     },
     unete: {
-      titulo: 'Join the QPerú community',
-      texto: 'Keep up with updates, workshops, talks and everything coming up in our community. Scan the QR code or tap to join the WhatsApp group.',
-      qrTitulo: 'QPerú · Init',
       qrSub: 'WhatsApp group'
     },
     sobreNosotros: {
-      eyebrow: '|organization⟩',
       title: 'Organization',
-      intro: 'QPerú was created to bring quantum computing to Peru: an open community that organizes workshops, talks and study spaces for students, professionals and curious minds across the country.',
       mvv: {
         eyebrow: '|mission-vision-values⟩',
         title: 'Mission, vision and values',
@@ -298,12 +315,7 @@ export const content = {
     },
     equipo: {
       eyebrow: '|team⟩',
-      title: 'Our team',
-      roleFundadora: 'Founder',
-      roleFundador: 'Founder',
-      roleMiembro: 'Team member',
-      bioMaria: "Passionate about democratizing quantum computing and creating opportunities in tech education for Peru. Leads QPerú's vision and partnerships.",
-      bioRenzo: 'Quantum computing expert committed to driving innovation in Peru. Designs the technical content for workshops and talks.'
+      title: 'Our team'
     },
     eventos: {
       eyebrow: '|agenda⟩',
@@ -313,15 +325,24 @@ export const content = {
       cta: 'Notify me first'
     },
     solicitud: {
-      eyebrow: '|participants⟩',
       title: 'QPeru Participants',
-      subtitulo: 'People who participate in QPerú’s activities, workshops, events and projects',
-      texto: 'Participants are everyone who joins our workshops, talks, events and projects. Anyone can be one: you just have to join the community.',
       unete: 'Join the community',
-      mascota: 'Mascot (coming soon)'
+      // Messages shown in the speech bubble when you tap the bear
+      burbujas: [
+        'Join the community and take part with us!',
+        'Scan the QR code and join the WhatsApp group.',
+        'Nobody learns quantum alone: share what you discover.',
+        'Got an idea? Bring it to our workshops and talks.',
+        'Follow us on social media and hear about every event first.'
+      ],
+      cambiarMensaje: 'Tap the bear to change the message',
+      altMascota: 'QPerú mascot'
     },
     footer: {
-      copy: '© 2026 QPeru. All rights reserved.'
+      nombre: 'QPerú · Peruvian quantum community',
+      correo: 'Email',
+      privacidad: 'Privacy policy',
+      derechos: 'All rights reserved.'
     }
   }
 }

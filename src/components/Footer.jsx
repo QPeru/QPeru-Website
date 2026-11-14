@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom'
 import SocialDock from './SocialDock'
 import logo from '../assets/LOGO2 FINAL nav.svg'
+import { useLanguage } from '../context/LanguageContext'
 
 // Completa tus datos. Si dejas un campo vacío, esa parte no se muestra.
+// Los textos visibles (nombre, "Correo", copyright...) vienen de t.footer.
 const INFO = {
-  nombre: 'QPerú · Comunidad cuántica peruana',
   email: '',
   privacidad: '', // ruta o URL de tu política de privacidad
   youtube: '',
@@ -13,35 +14,38 @@ const INFO = {
 
 export default function Footer() {
   const year = new Date().getFullYear()
+  const { t } = useLanguage()
+  const f = t.footer
+  const aria = t.nav.aria
 
   return (
     <footer className="qfoot">
       <div className="qfoot-top">
         {/* IZQUIERDA: datos de contacto */}
         <div className="qfoot-info">
-          <p className="qfoot-name">{INFO.nombre}</p>
+          <p className="qfoot-name">{f.nombre}</p>
           {INFO.email && (
             <p>
-              <strong>Correo</strong>{' '}
+              <strong>{f.correo}</strong>{' '}
               <a href={`mailto:${INFO.email}`}>{INFO.email}</a>
             </p>
           )}
           <div className="qfoot-copy-row">
             <SocialDock />
-            <p className="qfoot-copy">© {year} QPerú. Todos los derechos reservados.</p>
+            <p className="qfoot-copy">© {year} QPerú. {f.derechos}</p>
           </div>
         </div>
 
         {/* DERECHA: logo + enlaces */}
         <div className="qfoot-side">
-          <Link className="qfoot-logo" to="/" aria-label="QPerú - inicio">
+          <Link className="qfoot-logo" to="/" aria-label={aria.inicio}>
             <img src={logo} alt="QPerú" />
           </Link>
 
           <div className="qfoot-links">
             {INFO.privacidad && (
               <Link className="qfoot-privacy" to={INFO.privacidad}>
-                Política de privacidad
+                {f.privacidad}
               </Link>
             )}
 

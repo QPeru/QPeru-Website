@@ -5,7 +5,8 @@ const STORAGE_KEY = 'qperu-theme'
 function getInitialTheme() {
   const saved = localStorage.getItem(STORAGE_KEY)
   if (saved === 'light' || saved === 'dark') return saved
-  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+  // El diseño por defecto de la web es oscuro: solo cambia si el usuario ya eligió
+  return 'dark'
 }
 
 export function useTheme() {

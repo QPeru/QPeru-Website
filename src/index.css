@@ -57,13 +57,26 @@
   --f-mono: "League Spartan", system-ui, sans-serif;
   --f-orig: "Archivo", system-ui, sans-serif;
 
-  /* Tamaños reutilizables de páginas internas
-     (título grande y párrafo de introducción) */
+  /* Tamaños reutilizables de páginas internas (título grande) */
   --fs-titulo-pagina: clamp(40px, 5.3vw, 84px);
-  --fs-lede-pagina: clamp(1.4rem, 2vw, 1.9rem);
 
   /* Tema */
   --fg: var(--text);
+}
+
+/* Tema claro (se activa con el botón del navbar; el oscuro sigue siendo el
+   predeterminado). Invierte solo los tokens base: el diseño no cambia. */
+:root[data-theme="light"] {
+  --bg: #F5F1E8;
+  --surface: #FBF9F4;
+  --border: #E3DDD0;
+  --text: #1C1B19;
+  --text-muted: #6B665C;
+  --superficie-alta: #F0ECE2;
+  --rojo-oscuro: #C8102E;
+  --rojo-claro: #C8102E;
+  --accent: #A87A14;
+  color-scheme: light;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -128,8 +141,6 @@ h3 { font-size: 1.2rem; }
   margin-bottom: 1.2rem;
 }
 
-.eyebrow-blanco { color: rgba(242, 242, 243, 0.85); }
-
 .lede { font-size: 1.25rem; font-weight: 500; margin-bottom: 1rem; text-wrap: pretty; }
 
 p + p { margin-top: 1rem; }
@@ -145,19 +156,8 @@ p + p { margin-top: 1rem; }
   transition: background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease;
 }
 
-.btn-rojo { background: var(--rojo); color: var(--blanco); }
-.btn-rojo:hover { background: var(--rojo-oscuro); }
-
 .btn-linea { border: 2px solid var(--rojo); color: var(--rojo); background: transparent; }
 .btn-linea:hover { background: var(--rojo); color: var(--blanco); }
-
-.btn-blanco { background: var(--blanco); color: var(--rojo); }
-.btn-blanco:hover { background: #DADADC; }
-
-.btn-blanco-linea { border: 2px solid rgba(242, 242, 243, 0.5); color: var(--blanco); }
-.btn-blanco-linea:hover { border-color: var(--blanco); background: rgba(242, 242, 243, 0.1); }
-
-.cta-row { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 2rem; }
 
 
 /* ═══ 3. LAYOUT GENERAL ═════════════════════════════ */
@@ -179,27 +179,8 @@ p + p { margin-top: 1rem; }
   align-items: start;
 }
 
-.section-intro {
-  font-size: 1.1rem;
-  color: var(--gris);
-  max-width: 600px;
-  margin-top: 1rem;
-  margin-bottom: 3rem;
-}
-
-/* Párrafo de introducción grande (Organización y Equipo de trabajo) */
-.sobre-intro,
-#equipo .section-intro {
-  max-width: 62ch;
-  font-size: var(--fs-lede-pagina);
-  line-height: 1.6;
-}
-
-.sobre-intro { margin-top: 1.5rem; }
-
 /* Grilla de 3 columnas; gap y margen van en cada bloque */
-.cards,
-.rows {
+.cards {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
@@ -314,30 +295,10 @@ p + p { margin-top: 1rem; }
 
 .slideshow-dots button.active { width: 20px; border-radius: 10px; background: var(--tinta); }
 
-/* ── Equipo: video horizontal de fondo ──
-   El video mide lo mismo que la pantalla (100% de ancho x 100vh) y queda
-   "pegado" mientras se hace scroll por la sección: siempre se ve horizontal. */
+/* ── Equipo: capa oscura sobre el video de fondo del sitio ── */
 #equipo {
   position: relative;
   isolation: isolate;
-}
-
-.equipo-bg {
-  position: absolute;
-  inset: 0;
-  z-index: -2;
-  overflow: clip;           /* no crea scroll: el sticky sigue funcionando */
-  pointer-events: none;
-}
-
-.equipo-video {
-  position: sticky;
-  top: 0;
-  display: block;
-  width: 100%;
-  height: 100vh;
-  height: 100dvh;
-  object-fit: cover;
 }
 
 /* capa oscura para que los textos se lean (sube/baja el 0.45) */
@@ -349,27 +310,6 @@ p + p { margin-top: 1rem; }
   background: rgba(14, 14, 15, 0.45);
   pointer-events: none;
 }
-
-/* ── Comunidad ── */
-.rows { gap: 24px; margin-top: 3rem; }
-.row { border-top: 3px solid var(--rojo); padding-top: 18px; }
-.row p { color: var(--gris); font-size: 0.98rem; margin-top: 0.4rem; }
-
-.idiomas { margin-top: 4rem; }
-.idiomas-titulo { font-weight: 500; }
-
-.chips { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 1rem; }
-
-.chip {
-  font-family: var(--f-mono);
-  font-size: 0.85rem;
-  padding: 0.5rem 1rem;
-  border-radius: 100px;
-  border: 1.5px dashed var(--gris);
-  color: var(--gris);
-}
-
-.chip-on { border: 1.5px solid var(--oro); color: var(--tinta); background: var(--superficie-alta); }
 
 /* ── Agenda ── */
 .agenda-card {
@@ -384,25 +324,7 @@ p + p { margin-top: 1rem; }
 .agenda-estado { font-family: var(--f-mono); font-size: 0.85rem; color: var(--rojo); margin-bottom: 0.8rem; }
 .agenda-card .btn { margin-top: 1.5rem; }
 
-/* ── Contacto (fondo negro) ── */
-#contacto {
-  background: var(--bg);
-  border-top: 1px solid var(--border);
-  color: var(--tinta);
-  padding: 60px 0;
-}
-#contacto h2 { color: var(--tinta); }
-#contacto .eyebrow { color: var(--rojo); }
-
-.contacto-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 32px;
-  margin-top: 2rem;
-  max-width: 800px;
-}
-
-/* WhatsApp + Discord destacados, luego redes sociales */
+/* Tarjetas de comunidad (WhatsApp + Discord) */
 .contacto-card {
   display: flex;
   align-items: center;
@@ -424,19 +346,12 @@ p + p { margin-top: 1rem; }
   box-shadow: 0 16px 32px -18px rgba(0, 0, 0, 0.55);
 }
 
-.contacto-card h3 { font-size: 1.1rem; color: var(--tinta); }
-.contacto-card p { font-size: 0.95rem; color: var(--gris); }
-.contacto-card a { color: var(--tinta); font-weight: 600; text-decoration: none; }
-.contacto-card a:hover { text-decoration: underline; opacity: 0.8; }
-
-.contacto-desc { color: var(--gris); font-size: 0.85rem !important; font-weight: 400 !important; }
-
 /* ── Responsive de las secciones ── */
 @media (max-width: 1100px) {
   :root { --pad-x: 40px; }
   .split { grid-template-columns: 1fr; gap: 32px; }
   .section { padding: 72px 0; }
-  .cards, .rows, .contacto-grid { grid-template-columns: 1fr; }
+  .cards { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 900px) {
@@ -897,34 +812,28 @@ p + p { margin-top: 1rem; }
 
 /* ═══ Solicitud (Participantes de QPerú) ═════════════ */
 /* Réplica del nivel "Participantes" de Miembros de Equipo (ver
-   Miembrosequipo.css: tm-nivel__head, tm-part y tm-btn, tema oscuro),
-   en dos columnas: texto y botón a la izquierda, mascota a la derecha. */
+   Miembrosequipo.css: tm-nivel__head, tema oscuro),
+   en dos columnas: mascota a la izquierda, texto y botón a la derecha. */
 .sol-grid {
   align-items: center;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
 }
 
 .sol-part {
   max-width: 640px;
   margin: 0 auto;
+  padding-bottom: clamp(24px, 4vw, 64px); /* con align-items:center sube el bloque */
   font-family: 'Poppins', 'League Spartan', system-ui, sans-serif;
   text-align: center;
 }
 
-/* Título y subtítulo (como .tm-nivel__head) */
+/* Título (como .tm-nivel__head) */
 .sol-part h2 {
   margin: 0;
   font-weight: 700;
-  font-size: clamp(1.6rem, 2.6vw, 2.2rem);
+  font-size: clamp(1.9rem, 3.1vw, 2.6rem);
   line-height: 1.15;
   color: var(--tinta);
-}
-
-.sol-sub {
-  margin: 10px 0 0;
-  font-size: 0.95rem;
-  line-height: 1.5;
-  color: var(--gris);
 }
 
 /* Barra con el color del nivel Participantes (como .tm-nivel__bar) */
@@ -932,22 +841,16 @@ p + p { margin-top: 1rem; }
   display: block;
   width: 64px;
   height: 4px;
-  margin: 18px auto 0;
+  margin: 18px auto 28px;
   border-radius: 4px;
   background: var(--nivel, #8b4dff);
 }
 
-/* Párrafo (como .tm-part p) */
-.sol-texto {
-  margin: 36px 0 24px;
-  line-height: 1.6;
-  color: rgba(242, 242, 243, 0.7);
-}
-
-/* Botón píldora (como .tm-btn, tema oscuro) */
+/* Botón píldora (tema oscuro) */
 .sol-btn {
   display: inline-block;
-  padding: 12px 30px;
+  padding: 14px 34px;
+  font-size: 1.12rem;
   font-weight: 600;
   color: var(--tinta);
   text-decoration: none;
@@ -963,31 +866,151 @@ p + p { margin-top: 1rem; }
   outline: none;
 }
 
-/* Marcador de posición de la mascota.
-   Cuando exista la imagen, reemplaza este div por <img className="sol-mascota-img">. */
+/* Tarjetas de comunidad (WhatsApp + Discord) dentro de la sección */
+.sol-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 28px 0 32px;
+  text-align: left;
+}
+
+.sol-cards .contacto-card {
+  justify-content: center;
+  gap: 22px;
+  padding: 20px 24px;
+}
+
+.contacto-qr {
+  flex: 0 0 auto;
+  width: 96px;
+  height: 96px;
+  padding: 6px;
+  background: #fff;
+  border-radius: 10px;
+  object-fit: contain;
+}
+
+.contacto-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 96px;
+  height: 96px;
+  background: var(--superficie-alta);
+  border: 1px solid var(--linea);
+  border-radius: 10px;
+  color: var(--tinta);
+}
+
+.contacto-card-texto h3 {
+  margin: 0 0 4px;
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.contacto-card-texto p {
+  margin: 0;
+  font-size: 1.12rem;
+  color: var(--gris);
+}
+
+/* Mascota de la sección (public/oso.png) */
 .sol-mascota {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 380px;
-  border: 2px dashed rgba(242, 242, 243, 0.35);
-  border-radius: 16px;
-  font-family: 'Poppins', 'League Spartan', system-ui, sans-serif;
-  font-size: 0.9rem;
-  color: rgba(242, 242, 243, 0.55);
 }
 
-/* Imagen de la mascota (lista para usarse) */
+/* Imagen de la mascota (public/oso.png).
+   Al tocarla cambia el mensaje de la burbuja (ver Solicitud.jsx):
+   cursor, hover, pulsación y foco para que se note que es clicable.
+   El desplazamiento a la izquierda vive en --shift-x para no pelearse
+   con la escala del hover. */
 .sol-mascota-img {
   width: 100%;
   max-width: 420px;
   height: auto;
   margin-inline: auto;
-  border-radius: 16px;
+  cursor: pointer;
+  transform: translateX(var(--shift-x, 0px)) scale(var(--escala, 1));
+  transition: transform 0.25s ease;
+  filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.28));
+}
+
+.sol-mascota-img:hover { --escala: 1.03; }
+.sol-mascota-img:active { --escala: 0.97; transition-duration: 0.08s; }
+.sol-mascota-img:focus-visible {
+  outline: 3px solid var(--nivel, #8b4dff);
+  outline-offset: 8px;
+  border-radius: 10px;
+}
+
+/* La mascota se corre un poco a la izquierda para dejar aire con la burbuja.
+   Solo desde 560px: por debajo la imagen ya toca el borde de la columna. */
+@media (min-width: 560px) {
+  .sol-mascota-img { --shift-x: -10%; }
+}
+
+/* Burbuja de diálogo: el oso invita a unirse a la comunidad */
+.sol-burbuja {
+  position: absolute;
+  top: 1%;
+  right: -16%;
+  z-index: 2;
+  max-width: 62%;
+  margin: 0;
+  padding: 16px 20px;
+  background: var(--superficie);
+  border: 1px solid var(--linea);
+  border-radius: 16px 16px 16px 4px;
+  font-family: 'Poppins', 'League Spartan', system-ui, sans-serif;
+  font-size: clamp(1.05rem, 1.35vw, 1.2rem);
+  font-weight: 500;
+  line-height: 1.45;
+  color: var(--tinta);
+  text-align: left;
+  box-shadow: 0 14px 30px -16px rgba(0, 0, 0, 0.65);
+  animation: burbuja-pop 0.45s cubic-bezier(.16, 1, .3, 1) both;
+  animation-delay: 0.35s;
+}
+
+/* Cola de la burbuja, apuntando hacia el oso (abajo-izquierda) */
+.sol-burbuja::after {
+  content: "";
+  position: absolute;
+  left: 26px;
+  bottom: -9px;
+  width: 18px;
+  height: 18px;
+  background: var(--superficie);
+  border-right: 1px solid var(--linea);
+  border-bottom: 1px solid var(--linea);
+  transform: rotate(45deg);
+}
+
+@keyframes burbuja-pop {
+  from { opacity: 0; transform: translateY(8px) scale(.94); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* En tablet/celular la columna va apilada (ver @media 1100px de .split):
+   la burbuja se ancla un poco fuera del borde derecho y se estrecha para
+   que su borde izquierdo quede a la derecha de la cabeza del oso. */
+@media (max-width: 1100px) {
+  .sol-burbuja { top: 0; right: -3%; max-width: 52%; }
 }
 
 @media (max-width: 900px) {
   .sol-mascota { min-height: 260px; }
+}
+
+/* Celular: se sube para que no pise la coronilla del oso */
+@media (max-width: 700px) {
+  .sol-burbuja { top: -10%; }
 }
 
 .reglas .regla-mas-texto {
@@ -1113,26 +1136,6 @@ p + p { margin-top: 1rem; }
 .reveal-group.visto > *:nth-child(5) { transition-delay: 0.4s; }
 .reveal-group.visto > *:nth-child(6) { transition-delay: 0.5s; }
 
-/* Reveal en elementos individuales */
-.reveal,
-.reveal-left,
-.reveal-right,
-.reveal-scale {
-  opacity: 0;
-  transition: opacity 0.9s cubic-bezier(.16, 1, .3, 1), transform 0.9s cubic-bezier(.16, 1, .3, 1);
-  will-change: opacity, transform;
-}
-
-.reveal { transform: translateY(28px); }
-.reveal-left { transform: translateX(-32px); }
-.reveal-right { transform: translateX(32px); }
-.reveal-scale { transform: scale(.94) translateY(16px); }
-
-.reveal.active,
-.reveal-left.active,
-.reveal-right.active,
-.reveal-scale.active { opacity: 1; transform: none; }
-
 /* Punto pulsante (estado en vivo / próximamente) */
 .pulse-dot {
   display: inline-block;
@@ -1145,9 +1148,6 @@ p + p { margin-top: 1rem; }
 
 @keyframes pulso { 50% { opacity: 0.4; } }
 
-/* Parallax sutil controlado por useParallax */
-[data-parallax] { will-change: transform; }
-
 
 /* ═══ 7. MOVIMIENTO REDUCIDO ════════════════════════ */
 
@@ -1157,8 +1157,8 @@ p + p { margin-top: 1rem; }
   .qhero-inner,
   .qhero-scroll i { animation: none; }
 
-  .reveal-group > *,
-  .reveal, .reveal-left, .reveal-right, .reveal-scale { opacity: 1; transform: none; transition: none; }
-  [data-parallax] { transform: none !important; }
+  .reveal-group > * { opacity: 1; transform: none; transition: none; }
   .pulse-dot { animation: none; }
+  .sol-burbuja, .sol-burbuja::after { animation: none; }
+  .sol-mascota-img { transition: none; }
 }

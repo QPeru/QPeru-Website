@@ -265,40 +265,6 @@
   outline: none;
 }
 
-/* ── Participantes ── */
-.tm-part {
-  max-width: 640px;
-  margin: 36px auto 0;
-  text-align: center;
-}
-
-.tm-part p {
-  margin: 0 0 24px;
-  line-height: 1.6;
-  color: var(--tm-muted);
-}
-
-.tm-btn {
-  display: inline-block;
-  padding: 12px 30px;
-  font-weight: 600;
-  color: var(--tm-name);
-  text-decoration: none;
-  border: 2px solid var(--tm-name);
-  border-radius: 999px;
-  transition: background 0.2s, color 0.2s;
-}
-
-.tm-btn:hover,
-.tm-btn:focus-visible {
-  background: var(--tm-name);
-  color: var(--tm-body-bg, #fff);
-  outline: none;
-}
-
-.tm-wrap--oscuro .tm-btn:hover,
-.tm-wrap--oscuro .tm-btn:focus-visible { color: #0E0E0F; }
-
 @media (max-width: 700px) {
   .tm-wrap { padding: 48px 16px 70px; border-radius: 16px; }
   .tm-fila { gap: 115px 24px; }

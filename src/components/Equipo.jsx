@@ -23,7 +23,7 @@ export default function Equipo() {
       <section className="section section-humo equipo-lista">
         <div className="container">
           <div className="reveal-group" ref={revealRef}>
-            <MiembrosEquipo fotos={fotos} tema="oscuro" video="/fondo.mp4" />
+            <MiembrosEquipo fotos={fotos} tema="oscuro" />
           </div>
         </div>
       </section>

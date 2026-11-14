@@ -4,6 +4,7 @@
 // Si dejas un campo vacío, ese botón no se muestra.
 
 import { socialLinks } from '../data/socialLinks'
+import { useLanguage } from '../context/LanguageContext'
 
 const SOCIALS = [
   {
@@ -59,12 +60,13 @@ const LINKS = [
 ]
 
 export default function SocialDock() {
+  const { t } = useLanguage()
   const active = LINKS.filter((s) => s.href)
 
   if (active.length === 0) return null
 
   return (
-    <div className="social-row" aria-label="Redes sociales de QPerú">
+    <div className="social-row" aria-label={t.nav.aria.redes}>
       {active.map((s) => {
         const externo = !s.href.startsWith('mailto:')
         return (

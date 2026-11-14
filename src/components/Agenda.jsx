@@ -13,7 +13,7 @@ export default function Agenda() {
         <div className="agenda-card">
           <p className="agenda-estado"><span className="pulse-dot" aria-hidden="true"></span>&nbsp; {e.estado}</p>
           <p>{e.texto}</p>
-          <Link className="btn btn-linea" to="/contactanos">{e.cta}</Link>
+          <Link className="btn btn-linea" to="/solicitud">{e.cta}</Link>
         </div>
       </div>
     </section>

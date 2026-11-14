@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { PEOPLE, FUNDADORES, LEADERSHIP_BOARD, AREAS, MIEMBROS_CORE, UNIVERSIDADES } from '../data/team'
+import { PEOPLE, FUNDADORES, LEADERSHIP_BOARD, AREAS, MIEMBROS_CORE, UNIVERSIDADES, UNIVERSIDADES_EN } from '../data/team'
 import { useLanguage } from '../context/LanguageContext'
 import './Miembrosequipo.css'
 
@@ -18,13 +18,6 @@ const TXT = {
     board: { t: 'Leadership Board de QPerú', s: 'Dirección estratégica y coordinación general' },
     coord: { t: 'Coordinadores de Área', s: 'Líderes y miembros de cada área' },
     core: { t: 'Miembros Core', s: 'Miembros sin un área específica' },
-    part: {
-      t: 'Participantes de QPerú',
-      s: 'Personas que participan en las actividades, talleres, eventos y proyectos de QPerú',
-    },
-    partTexto:
-      'Los participantes son todas las personas que se suman a nuestros talleres, charlas, eventos y proyectos. Cualquiera puede serlo: solo tienes que unirte a la comunidad.',
-    unete: 'Únete a la comunidad',
     vacante: 'Vacante',
     rolFund: 'Co-fundador/a',
     rolBoard: 'Leadership Board',
@@ -39,13 +32,6 @@ const TXT = {
     board: { t: 'QPeru Leadership Board', s: 'Strategic direction and general coordination' },
     coord: { t: 'Area Coordinators', s: 'Leaders and members of each area' },
     core: { t: 'Core Members', s: 'Members without a specific area' },
-    part: {
-      t: 'QPeru Participants',
-      s: 'People who participate in QPeru’s activities, workshops, events, and projects',
-    },
-    partTexto:
-      'Participants are everyone who joins our workshops, talks, events and projects. Anyone can be one: you just have to join the community.',
-    unete: 'Join the community',
     vacante: 'Vacant',
     rolFund: 'Co-founder',
     rolBoard: 'Leadership Board',
@@ -68,13 +54,13 @@ function iniciales(nombre) {
 }
 
 // Nombre completo de la universidad junto a su sigla: "UNI (…)"
-function universidad(siglas) {
-  const nombre = UNIVERSIDADES[siglas]
+function universidad(siglas, en) {
+  const nombre = (en ? UNIVERSIDADES_EN : UNIVERSIDADES)[siglas]
   return nombre ? `${nombre} (${siglas})` : siglas
 }
 
 // Tarjeta de persona. Si no hay id, es un puesto vacante.
-function Tarjeta({ id, rol, foto, L }) {
+function Tarjeta({ id, rol, foto, L, en }) {
   const [falla, setFalla] = useState(false)
 
   if (!id) {
@@ -103,7 +89,7 @@ function Tarjeta({ id, rol, foto, L }) {
 
       <h3 className="tm-nombre">{p.nombre}</h3>
       <p className="tm-rol">{rol}</p>
-      <p className="tm-uni">{universidad(p.universidad)}</p>
+      <p className="tm-uni">{universidad(p.universidad, en)}</p>
 
       {(p.cv.linkedin || p.cv.github) && (
         <div className="tm-social-row">
@@ -173,7 +159,7 @@ export default function MiembrosEquipo({ fotos = {}, tema = 'claro' }) {
   const fila = (items) => (
     <div className="tm-fila">
       {items.map((it) => (
-        <Tarjeta key={it.key} id={it.id} rol={it.rol} foto={it.id ? fotos[it.id] : null} L={L} />
+        <Tarjeta key={it.key} id={it.id} rol={it.rol} foto={it.id ? fotos[it.id] : null} L={L} en={en} />
       ))}
     </div>
   )

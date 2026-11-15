@@ -12,8 +12,8 @@ export const content = {
       menu: {
         acercaDe: 'Acerca de',
         eventos: 'Eventos',
-        publicaciones: 'Nuestras publicaciones',
-        equipo: 'Miembros del equipo',
+        publicaciones: 'Blog',
+        equipo: 'Equipo',
         solicitud: 'Solicitud',
         subindice: 'Subíndice'
       },
@@ -183,8 +183,8 @@ export const content = {
       menu: {
         acercaDe: 'About',
         eventos: 'Events',
-        publicaciones: 'Our publications',
-        equipo: 'Team members',
+        publicaciones: 'Blog',
+        equipo: 'Team',
         solicitud: 'Join us',
         subindice: 'Item'
       },

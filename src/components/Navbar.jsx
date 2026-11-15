@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 import { useLanguage } from '../context/LanguageContext'
 import { useTheme } from '../hooks/useTheme'
+import { AREAS } from '../data/team'
 import logo from '../assets/LOGO2 FINAL nav.svg'
 import './Navbar.css'
 
@@ -36,7 +37,18 @@ const MENU = [
       { href: '#' },
     ],
   },
-  { key: 'equipo', href: '/sobre-nosotros#equipo' },
+  {
+    key: 'equipo',
+    // href: pulsar "Equipo" lleva al equipo completo.
+    // Subíndices: cada área de coordinación de "Miembros del Equipo"
+    // (nombres tomados de AREAS en src/data/team.js, una sola fuente).
+    href: '/sobre-nosotros#equipo',
+    children: AREAS.map((a) => ({
+      href: `/sobre-nosotros#area-${a.id}`,
+      es: a.nombre,
+      en: a.nombreEn,
+    })),
+  },
   { key: 'solicitud', href: '/solicitud' },
 ]
 
@@ -60,6 +72,13 @@ export default function Navbar() {
   const idiomaActual = IDIOMAS.find((i) => i.id === lang) || IDIOMAS[0]
   const nombreIdioma = nav.idiomas[idiomaActual.id] || idiomaActual.corto
   const temaOscuro = theme !== 'light'
+
+  // Texto de cada subíndice: si trae es/en se muestra traducido; si no,
+  // se numera como "Subíndice 1..n" (menús antiguos: acerca de, eventos…)
+  const textoSub = (sub, j) => {
+    if (sub.es || sub.en) return lang === 'en' && sub.en ? sub.en : sub.es
+    return `${nav.menu.subindice} ${j + 1}`
+  }
 
   // Cerrar submenú al hacer clic fuera o presionar Escape
   useEffect(() => {
@@ -199,19 +218,42 @@ export default function Navbar() {
               >
                 {item.children ? (
                   <>
-                    <button
-                      className="nav__link"
-                      aria-haspopup="true"
-                      aria-expanded={isOpen}
-                      onClick={() => setOpenIndex(isOpen ? null : i)}
-                    >
-                      {nav.menu[item.key]}
-                    </button>
+                    {item.href ? (
+                      /* Enlace con submenú: en escritorio el clic navega a la
+                         página (el submenú ya abre al pasar el cursor); en el
+                         menú hamburguesa no hay hover, así que el primer
+                         toque abre el submenú y el segundo navega. */
+                      <a
+                        href={item.href}
+                        className="nav__link"
+                        aria-haspopup="true"
+                        aria-expanded={isOpen}
+                        onClick={(e) => {
+                          if (mobileOpen && !isOpen) {
+                            e.preventDefault()
+                            setOpenIndex(i)
+                          } else {
+                            closeAll()
+                          }
+                        }}
+                      >
+                        {nav.menu[item.key]}
+                      </a>
+                    ) : (
+                      <button
+                        className="nav__link"
+                        aria-haspopup="true"
+                        aria-expanded={isOpen}
+                        onClick={() => setOpenIndex(isOpen ? null : i)}
+                      >
+                        {nav.menu[item.key]}
+                      </button>
+                    )}
                     <ul className="nav__dropdown">
                       {item.children.map((sub, j) => (
                         <li key={j}>
                           <a href={sub.href} onClick={closeAll}>
-                            {nav.menu.subindice} {j + 1}
+                            {textoSub(sub, j)}
                           </a>
                         </li>
                       ))}

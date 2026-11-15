@@ -650,6 +650,30 @@ p + p { margin-top: 1rem; }
 /* El texto queda por encima del degradado */
 .hero-blend > * { position: relative; z-index: 3; }
 
+/* ── Fondeado por área (subíndices de "Equipo") ──
+   Capa de color que se monta sobre el video cuando se entra a un área.
+   Va por debajo del texto (z-index 3) y el ::after de .hero-blend, al ser
+   el último hijo, la va oscureciendo hacia abajo hasta fundirla con el
+   fondo del sitio. El color llega por --area-color (lo pone Equipo.jsx).
+   Se redefine aquí para ganarle a .hero-blend > * (misma especificidad). */
+.area-wash {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(
+    to bottom,
+    var(--area-color, transparent) 0%,
+    var(--area-color, transparent) 40%,
+    transparent 100%
+  );
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* Tema claro: el texto del encabezado pasa a oscuro, así que el fondeado
+   se suelta para no restarle contraste sobre el video. */
+:root[data-theme="light"] .area-wash { opacity: 0.3; }
+
 /* La lista de integrantes arranca más cerca del encabezado */
 .equipo-lista { padding-top: 24px; }
 

@@ -143,7 +143,6 @@ export const content = {
       }
     },
     equipo: {
-      eyebrow: '|equipo⟩',
       title: 'EQUIPO DE TRABAJO'
     },
     eventos: {

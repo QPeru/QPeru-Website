@@ -62,8 +62,16 @@ function universidad(siglas, en) {
 // Tarjeta de persona. Si no hay id, es un puesto vacante.
 function Tarjeta({ id, rol, foto, L, en }) {
   const [falla, setFalla] = useState(false)
+  // id ausente o id que no existe en PEOPLE (clave mal escrita en team.js)
+  const p = id ? PEOPLE[id] : undefined
 
-  if (!id) {
+  // Seguro: una clave que no exista no debería dejar la página entera en
+  // negro; la tarjeta sale como vacante y se avisa por consola.
+  if (id && !p) {
+    console.warn(`[QPeru] Falta PEOPLE["${id}"] en src/data/team.js`)
+  }
+
+  if (!p) {
     return (
       <article className="tm-card tm-card--vacante">
         <div className="tm-foto">
@@ -74,8 +82,6 @@ function Tarjeta({ id, rol, foto, L, en }) {
       </article>
     )
   }
-
-  const p = PEOPLE[id]
 
   return (
     <article className="tm-card">
@@ -147,7 +153,10 @@ function Nivel({ id, color, titulo, sub, children }) {
 
 // fotos: objeto { idPersona: urlImportada }, p. ej. { maria: fotoMaria }
 // tema:  'claro' (fondo blanco, como la referencia) o 'oscuro' (fondo del sitio)
-export default function MiembrosEquipo({ fotos = {}, tema = 'claro' }) {
+// area:  si se pasa un área de AREAS (subíndice del menú), se muestra SOLO
+//        su director y su subdirector; la lista oficial de la jerarquía se
+//        omite. Sin área, se muestra la lista completa.
+export default function MiembrosEquipo({ fotos = {}, tema = 'claro', area = null }) {
   const { lang } = useLanguage()
   const L = TXT[lang] || TXT.es
   const en = lang === 'en'
@@ -164,6 +173,24 @@ export default function MiembrosEquipo({ fotos = {}, tema = 'claro' }) {
     </div>
   )
 
+  // ── Vista de una sola área ──
+  // Sin cabecera (título, subtítulo y barra): solo las tarjetas.
+  // El envoltorio .tm-area es lo que hace que la línea inferior de cada
+  // tarjeta tome el color del área (--c), igual que en la lista completa;
+  // sin él caería a --tm-linea-inferior (rojo de marca).
+  if (area) {
+    return (
+      <div className={`tm-wrap tm-wrap--${tema}`}>
+        <div className="tm-area" style={{ '--c': area.color }}>
+          {fila([
+            { key: `d-${area.id}`, id: area.director, rol: L.rolDir },
+            { key: `s-${area.id}`, id: area.subdirector, rol: L.rolSub },
+          ])}
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className={`tm-wrap tm-wrap--${tema}`}>
       {/* 1. Co-fundadores */}
@@ -179,6 +206,9 @@ export default function MiembrosEquipo({ fotos = {}, tema = 'claro' }) {
       {/* 3. Coordinadores de Área: rejilla de 2 x 3, una celda por área */}
       <Nivel id="coord" color={COLOR.coord} titulo={L.coord.t} sub={L.coord.s}>
         <div className="tm-areas">
+          {/* Sin id en .tm-area: los enlaces del submenú no tienen ancla
+              destino, para que el navegador no salte al área y el encabezado
+              (con el título y el fondeado del área) quede a la vista. */}
           {AREAS.map((a) => (
             <div className="tm-area" key={a.id} style={{ '--c': a.color }}>
               <h3>{en ? a.nombreEn || a.nombre : a.nombre}</h3>

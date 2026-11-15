@@ -346,24 +346,28 @@ p + p { margin-top: 1rem; }
   box-shadow: 0 16px 32px -18px rgba(0, 0, 0, 0.55);
 }
 
-/* ── Responsive de las secciones ── */
+/* ── Responsive de las secciones ──
+   Dos modos:
+   · Laptop (≥ 1101px): .split en 2 columnas, .cards en 3 columnas.
+   · Celular (≤ 1100px): columnas apiladas; .cards pasa a 2 y, por debajo
+     de 640px, a 1 sola columna. */
 @media (max-width: 1100px) {
   :root { --pad-x: 40px; }
   .split { grid-template-columns: 1fr; gap: 32px; }
   .section { padding: 72px 0; }
-  .cards { grid-template-columns: 1fr; }
-}
-
-@media (max-width: 900px) {
-  #actividades .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (max-width: 700px) {
   :root { --pad-x: 20px; }
+
+  /* Las etiquetas de .facts dejan de competir horizontalmente con su valor */
+  .facts li { flex-direction: column; gap: 2px; align-items: flex-start; }
+  .fact-k { min-width: 0; }
 }
 
-@media (max-width: 599px) {
-  #actividades .cards { grid-template-columns: 1fr; }
+@media (max-width: 640px) {
+  .cards { grid-template-columns: 1fr; }
 }
 
 
@@ -481,7 +485,10 @@ p + p { margin-top: 1rem; }
   text-shadow: 0 4px 30px rgba(14, 14, 15, 0.6);
 }
 
-.qhero-line1 { font-size: clamp(9rem, 22vw, 22rem); line-height: 0.9; }
+/* El mínimo del clamp baja a 4rem: con 9rem el título medía ~419px y se
+   salía en teléfonos de 375px (el overflow-x: clip del body lo recortaba).
+   Por encima de 654px el valor sigue siendo 22vw, igual que antes. */
+.qhero-line1 { font-size: clamp(4rem, 22vw, 22rem); line-height: 0.9; }
 .qhero-line2 { font-size: clamp(3.5rem, 8vw, 7.5rem); line-height: 1; margin-top: 0.1em; }
 
 .qhero-sub {
@@ -576,6 +583,15 @@ p + p { margin-top: 1rem; }
   background: linear-gradient(to top, var(--bg) 0%, rgba(14, 14, 15, 0.65) 45%, rgba(14, 14, 15, 0) 100%);
   -webkit-mask-image: linear-gradient(to top, #000 30%, transparent 100%);
   mask-image: linear-gradient(to top, #000 30%, transparent 100%);
+}
+
+/* Celular: con 1980/500 el video medía ~95px de alto y los dos desenfocados
+   (mínimo 60px cada uno = 120px) lo cubrían por completo. Se le da más alto
+   y se reducen los bordes para que el video se vea. */
+@media (max-width: 700px) {
+  .videobox { aspect-ratio: 16 / 10; max-height: none; }
+  .videobox::before,
+  .videobox::after { height: clamp(34px, 16%, 60px); }
 }
 
 /* ── Unión borrosa ("Misión, visión y valores" y encabezado de "Equipo de trabajo") ── */
@@ -814,9 +830,12 @@ p + p { margin-top: 1rem; }
 /* Réplica del nivel "Participantes" de Miembros de Equipo (ver
    Miembrosequipo.css: tm-nivel__head, tema oscuro),
    en dos columnas: mascota a la izquierda, texto y botón a la derecha. */
+/* .split en la página "Solicitud": solo centra en vertical.
+   NO se repite grid-template-columns aquí: es idéntico al de .split y, al
+   estar declarado más abajo que la media query de 1100px, ganaba por orden
+   de origen y dejaba la página siempre en 2 columnas. */
 .sol-grid {
   align-items: center;
-  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
 }
 
 .sol-part {
@@ -950,8 +969,9 @@ p + p { margin-top: 1rem; }
 }
 
 /* La mascota se corre un poco a la izquierda para dejar aire con la burbuja.
-   Solo desde 560px: por debajo la imagen ya toca el borde de la columna. */
-@media (min-width: 560px) {
+   Solo por encima de 700px: en celular la columna es única, la imagen ya
+   toca el borde y -10% la sacaría del contenedor. */
+@media (min-width: 701px) {
   .sol-mascota-img { --shift-x: -10%; }
 }
 
@@ -1008,9 +1028,27 @@ p + p { margin-top: 1rem; }
   .sol-mascota { min-height: 260px; }
 }
 
-/* Celular: se sube para que no pise la coronilla del oso */
+/* Celular: la burbuja pasa al flujo (encima del oso) en vez de flotar
+   encima de él. En una sola columna no queda sitio a la derecha y el texto
+   quedaba aplastado en ~134px, tapando además la cabeza del oso. */
 @media (max-width: 700px) {
-  .sol-burbuja { top: -10%; }
+  .sol-mascota {
+    flex-direction: column-reverse; /* el DOM es [oso, burbuja] */
+    justify-content: center;
+    gap: 6px;
+    min-height: 0;
+  }
+
+  /* relative (no static): la cola ::after es absoluta y debe seguir
+     anclada a la burbuja, no al contenedor .sol-mascota */
+  .sol-burbuja {
+    position: relative;
+    top: auto;
+    right: auto;
+    max-width: 100%;
+    align-self: stretch;
+    margin-bottom: 6px;
+  }
 }
 
 .reglas .regla-mas-texto {

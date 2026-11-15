@@ -462,6 +462,23 @@ html[data-theme="light"] header.nav {
   }
 }
 
+/* Modo celular: la barra se compacta para que logo + idioma + tema +
+   hamburguesa quepan en una sola fila (a 52px el logo mide ~163px y el
+   conjunto superaba los 375px, haciendo saltar la hamburguesa de línea). */
+@media (max-width: 700px) {
+  header.nav { padding: 8px 14px; gap: 14px; }
+  .nav__logo img { height: 40px; }
+  .nav__lang-btn { padding: 6px 10px; gap: 6px; font-size: 0.78rem; }
+  .nav__lang-btn svg { width: 15px; height: 15px; }
+}
+
+/* Muy angosto (320–420px): se recorta el globo del selector de idioma */
+@media (max-width: 420px) {
+  .nav__logo img { height: 34px; }
+  .nav__lang-btn svg { display: none; }
+  .nav__theme-btn { width: 30px; height: 30px; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .nav__dropdown,
   .nav__link,

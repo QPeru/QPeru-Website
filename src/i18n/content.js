@@ -155,7 +155,6 @@ export const content = {
     },
     solicitud: {
       title: 'Participantes de QPerú',
-      unete: 'Únete a la comunidad',
       // Mensajes que van apareciendo en la burbuja al tocar al oso
       burbujas: [
         '¡Únete a la comunidad y participa con nosotros!',
@@ -326,7 +325,6 @@ export const content = {
     },
     solicitud: {
       title: 'QPeru Participants',
-      unete: 'Join the community',
       // Messages shown in the speech bubble when you tap the bear
       burbujas: [
         'Join the community and take part with us!',

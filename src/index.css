@@ -865,26 +865,6 @@ p + p { margin-top: 1rem; }
   background: var(--nivel, #8b4dff);
 }
 
-/* Botón píldora (tema oscuro) */
-.sol-btn {
-  display: inline-block;
-  padding: 14px 34px;
-  font-size: 1.12rem;
-  font-weight: 600;
-  color: var(--tinta);
-  text-decoration: none;
-  border: 2px solid var(--tinta);
-  border-radius: 999px;
-  transition: background 0.2s, color 0.2s;
-}
-
-.sol-btn:hover,
-.sol-btn:focus-visible {
-  background: var(--tinta);
-  color: var(--bg);
-  outline: none;
-}
-
 /* Tarjetas de comunidad (WhatsApp + Discord) dentro de la sección */
 .sol-cards {
   display: flex;

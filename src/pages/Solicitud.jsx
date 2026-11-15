@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useLanguage } from '../context/LanguageContext'
 import { useReveal } from '../hooks/useReveal'
-import { comunidadLinks, FORM_URL } from '../data/socialLinks'
+import { comunidadLinks } from '../data/socialLinks'
 import waQr from '../assets/wa-qr.webp'
 
 // Color del nivel "Participantes" (el mismo de Miembrosequipo.jsx)
@@ -81,15 +81,6 @@ export default function Solicitud() {
               </a>
             </div>
 
-            {/* Botón píldora: abre el formulario de inscripción */}
-            <a
-              className="sol-btn"
-              href={FORM_URL || undefined}
-              target={FORM_URL ? '_blank' : undefined}
-              rel={FORM_URL ? 'noopener noreferrer' : undefined}
-            >
-              {s.unete}
-            </a>
           </div>
         </div>
       </div>

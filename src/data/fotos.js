@@ -1,6 +1,7 @@
 // src/data/fotos.js
-// Fotos del equipo. Las claves deben coincidir con los ids de src/data/team.js.
-// Si una persona no tiene foto aquí, se muestran sus iniciales.
+// Fotos del equipo. Las claves deben coincidir con los ids de PEOPLE en
+// src/data/team.js: si no coinciden, la tarjeta se queda sin foto y muestra
+// las iniciales.
 import fotoMaria from '../assets/team/maria-julia-pareja.webp'
 import fotoRenzo from '../assets/team/renzo-cienfuegos.webp'
 import fotoKelvin from '../assets/team/kelvin-cahuana.webp'

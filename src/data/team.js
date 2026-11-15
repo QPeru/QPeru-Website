@@ -71,7 +71,7 @@ export const PEOPLE = {
     universidad: 'ICMC-USP',
     cv: { resumen: '', formacion: [], experiencia: [], habilidades: [], linkedin: 'https://www.linkedin.com/in/marco-mayta-835781170/', github: '' },
   },
-  farino: {
+  marino: {
     nombre: 'Marino Chuquilín',
     universidad: 'UA',
     cv: { resumen: '', formacion: [], experiencia: [], habilidades: [], linkedin: 'https://www.linkedin.com/in/marinoch/', github: '' },
@@ -157,7 +157,7 @@ export const AREAS = [
     lemaEn: 'Scientific Research · Innovation · Collaboration',
     color: '#810000',
     director: 'marco',
-    subdirector: 'farino',
+    subdirector: 'marino',
   },
   {
     id: 'relaciones',

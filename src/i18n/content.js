@@ -115,6 +115,12 @@ export const content = {
         ]
       }
     },
+    colaboraciones: {
+      title: 'Colaboraciones',
+      texto: 'Colaboramos con universidades, organizaciones y comunidades tanto dentro como fuera del Perú.',
+      nacionales: 'Colaboraciones nacionales',
+      internacionales: 'Colaboraciones internacionales'
+    },
     sobreNosotros: {
       title: 'Organización',
       mvv: {
@@ -289,6 +295,12 @@ export const content = {
           'Nobody here just watches: every activity is designed for you to take part, ask questions and share what you discover.'
         ]
       }
+    },
+    colaboraciones: {
+      title: 'Collaborations',
+      texto: 'We collaborate with universities, organizations and communities both inside and outside Peru.',
+      nacionales: 'National collaborations',
+      internacionales: 'International collaborations'
     },
     sobreNosotros: {
       title: 'Organization',

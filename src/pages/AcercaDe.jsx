@@ -1,10 +1,11 @@
 import { useReveal } from '../hooks/useReveal'
 import { useLanguage } from '../context/LanguageContext'
+import Colaboraciones from '../components/Colaboraciones'
 import logo from '../assets/LOGO2 FINAL nav.svg'
 
 // Página interna del enlace "Acerca de" del navbar.
 // Estructura: cabecera con el logo centrado y debajo
-// 1) Descripción de QPerú 2) Visión 3) Misión.
+// 1) Descripción de QPerú 2) Visión 3) Misión 4) Colaboraciones.
 // Visión y Misión se reutilizan desde t.sobreNosotros (misma fuente que
 // la página /mision) para que el texto no se duplique ni desincronice.
 export default function AcercaDe() {
@@ -75,6 +76,9 @@ export default function AcercaDe() {
           </ul>
         </div>
       </section>
+
+      {/* 4. Colaboraciones nacionales e internacionales */}
+      <Colaboraciones />
     </>
   )
 }

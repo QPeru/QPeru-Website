@@ -732,6 +732,104 @@ p + p { margin-top: 1rem; }
 /* El lede de cada sección entra como primer párrafo del bloque de texto */
 .acerca-col > .lede { margin-bottom: 1rem; }
 
+/* ── "Acerca de": colaboraciones nacionales e internacionales ──
+   Dos bloques apilados, cada uno con su título y su rejilla de tarjetas.
+   Las tarjetas aparecen solas cuando se cargan en src/data/colaboraciones.js;
+   mientras el array esté vacío solo se ve el título. */
+.colab-bloques {
+  display: grid;
+  gap: clamp(2rem, 4vw, 3.5rem);
+  margin-top: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.colab-bloque > h3 {
+  text-align: center;
+  font-size: clamp(1.15rem, 1.7vw, 1.4rem);
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: var(--tinta);
+}
+
+/* Rejilla de logos: 2 columnas en celular, 3 en tablet, 4 en desktop */
+.colab-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(12px, 2vw, 24px);
+}
+
+@media (min-width: 700px) {
+  .colab-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@media (min-width: 1100px) {
+  .colab-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
+.colab-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: clamp(16px, 2vw, 26px);
+  background: var(--superficie);
+  border: 1px solid var(--linea);
+  border-radius: 10px;
+  text-align: center;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+a.colab-card:hover {
+  border-color: var(--rojo);
+  transform: translateY(-3px);
+}
+
+/* Recuadro de la foto: 4:3, la imagen cubre sin deformarse */
+.colab-card__foto {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 8px;
+  background: var(--bg);
+}
+
+.colab-card__foto img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Inicial mientras no haya foto (mismo tono que el resto de la página) */
+.colab-card__foto > span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  color: var(--rojo);
+}
+
+.colab-card__texto {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.colab-card__texto strong {
+  font-size: 0.98rem;
+  line-height: 1.3;
+}
+
+.colab-card__texto small {
+  font-size: 0.85rem;
+  color: var(--gris);
+}
+
 /* ── Introducción (también la usa la sección "Origen de QPeru") ── */
 .intro { background: var(--bg); padding: 120px 0; }
 

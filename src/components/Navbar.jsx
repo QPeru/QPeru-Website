@@ -11,14 +11,9 @@ import './Navbar.css'
 // Las etiquetas visibles vienen de t.nav.menu (ver src/i18n/content.js).
 // Los submenús se nombran automáticamente "Subíndice 1..n" (ver más abajo).
 const MENU = [
-  {
-    key: 'acercaDe',
-    children: [
-      { href: '#' },
-      { href: '#' },
-      { href: '#' },
-    ],
-  },
+  // "Acerca de": botón que lleva a la página interna con la estructura
+  // completa (Descripción de QPerú, Visión y Misión → src/pages/AcercaDe.jsx)
+  { key: 'acercaDe', href: '/acerca-de' },
   {
     key: 'eventos',
     children: [
@@ -74,7 +69,7 @@ export default function Navbar() {
   const temaOscuro = theme !== 'light'
 
   // Texto de cada subíndice: si trae es/en se muestra traducido; si no,
-  // se numera como "Subíndice 1..n" (menús antiguos: acerca de, eventos…)
+  // se numera como "Subíndice 1..n" (menús antiguos: eventos, blog…)
   const textoSub = (sub, j) => {
     if (sub.es || sub.en) return lang === 'en' && sub.en ? sub.en : sub.es
     return `${nav.menu.subindice} ${j + 1}`

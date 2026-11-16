@@ -710,12 +710,10 @@ p + p { margin-top: 1rem; }
 
 /* ── "Acerca de": cuerpo en una sola columna, títulos centrados ──
    (sin .split: el título y el texto van apilados y a todo el ancho) */
-.acerca-col > .eyebrow,
 .acerca-col > h2 {
   text-align: center;
+  margin-bottom: 1.4em;
 }
-
-.acerca-col > h2 { margin-bottom: 1.4em; }
 
 /* Columna de texto más angosta y centrada: se le suma margen lateral
    al ancho del contenedor para que el bloque quede como en la referencia.

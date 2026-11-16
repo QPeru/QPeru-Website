@@ -54,7 +54,6 @@ export default function Equipo() {
       >
         {area && <span className="area-wash" aria-hidden="true" />}
         <div className="container">
-          <p className="eyebrow">{eq.eyebrow}</p>
           <h2>{titulo}</h2>
         </div>
       </section>

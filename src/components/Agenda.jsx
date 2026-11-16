@@ -8,7 +8,6 @@ export default function Agenda() {
   return (
     <section className="section" id="agenda">
       <div className="container">
-        <p className="eyebrow">{e.eyebrow}</p>
         <h2>{e.title}</h2>
         <div className="agenda-card">
           <p className="agenda-estado"><span className="pulse-dot" aria-hidden="true"></span>&nbsp; {e.estado}</p>

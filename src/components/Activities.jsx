@@ -54,7 +54,6 @@ export default function Activities() {
   return (
     <section className="section section-humo" id="actividades">
       <div className="container">
-        <p className="eyebrow">{a.eyebrow}</p>
         <h2>{a.title}</h2>
 
         {/* ANCLA: Actividades pasadas */}

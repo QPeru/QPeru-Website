@@ -49,7 +49,6 @@ export const content = {
       ]
     },
     activities: {
-      eyebrow: '|actividades⟩',
       title: 'Actividades',
       subtituloPasadas: 'Actividades pasadas',
       subtituloFuturas: 'Actividades futuras',
@@ -107,7 +106,6 @@ export const content = {
     acercaDe: {
       intro: 'Inspirado en las Líneas de Nazca, QPerú nació con el fin de conectar a estudiantes, investigadores, educadores y profesionales para dar forma al futuro cuántico del país.',
       descripcion: {
-        eyebrow: '|descripción⟩',
         title: 'Descripción de QPerú',
         lede: 'QPerú es una comunidad peruana abierta que divulga y democratiza la computación cuántica con talleres, charlas y comunidad activa.',
         parrafos: [
@@ -120,12 +118,10 @@ export const content = {
     sobreNosotros: {
       title: 'Organización',
       mvv: {
-        eyebrow: '|misión-visión-valores⟩',
         title: 'Misión, visión y valores',
         intro: 'Lo que nos mueve, hacia dónde vamos y los principios con los que construimos QPerú.'
       },
       mision: {
-        eyebrow: '|misión⟩',
         title1: 'Divulgar y',
         title2: 'democratizar.',
         lede: 'Nuestra misión es divulgar y democratizar la computación cuántica en el Perú a través de talleres, charlas y una comunidad activa.',
@@ -137,14 +133,12 @@ export const content = {
         ]
       },
       vision: {
-        eyebrow: '|visión⟩',
         title1: 'Hacia dónde',
         title2: 'vamos.',
         lede: 'Ser la comunidad de referencia en computación cuántica del Perú.',
         texto: 'Buscamos formar una nueva generación de talento peruano capaz de participar como estudiantes, investigadores o profesionales en la segunda revolución cuántica, dentro y fuera del país.'
       },
       valores: {
-        eyebrow: '|valores⟩',
         title: 'Nuestros valores',
         items: [
           { id: 1, title: 'Comunidad', description: 'Unir a las comunidades cuánticas del Perú mediante la colaboración y el conocimiento compartido.' },
@@ -159,7 +153,6 @@ export const content = {
       title: 'EQUIPO DE TRABAJO'
     },
     eventos: {
-      eyebrow: '|agenda⟩',
       title: 'Próximas actividades',
       estado: 'Calendario 2026 en preparación',
       texto: 'Los primeros talleres y charlas se anunciarán pronto. Únete a la comunidad y sé de las primeras personas en enterarte.',
@@ -232,7 +225,6 @@ export const content = {
       ]
     },
     activities: {
-      eyebrow: '|activities⟩',
       title: 'Activities',
       subtituloPasadas: 'Past activities',
       subtituloFuturas: 'Upcoming activities',
@@ -289,7 +281,6 @@ export const content = {
     acercaDe: {
       intro: 'Inspired by the Nazca Lines, QPerú was born to connect students, researchers, educators and professionals to shape the quantum future of the country.',
       descripcion: {
-        eyebrow: '|description⟩',
         title: 'Description of QPerú',
         lede: 'QPerú is an open Peruvian community that spreads and democratizes quantum computing through workshops, talks and an active community.',
         parrafos: [
@@ -302,12 +293,10 @@ export const content = {
     sobreNosotros: {
       title: 'Organization',
       mvv: {
-        eyebrow: '|mission-vision-values⟩',
         title: 'Mission, vision and values',
         intro: 'What drives us, where we are headed and the principles we build QPerú on.'
       },
       mision: {
-        eyebrow: '|mission⟩',
         title1: 'Spread and',
         title2: 'democratize.',
         lede: 'Our mission is to spread and democratize quantum computing in Peru through workshops, talks and an active community.',
@@ -319,14 +308,12 @@ export const content = {
         ]
       },
       vision: {
-        eyebrow: '|vision⟩',
         title1: 'Where we’re',
         title2: 'headed.',
         lede: "To be Peru's leading community in quantum computing.",
         texto: 'We want to build a new generation of Peruvian talent able to take part - as students, researchers or professionals - in the second quantum revolution, in Peru and abroad.'
       },
       valores: {
-        eyebrow: '|values⟩',
         title: 'Our core values',
         items: [
           { id: 1, title: 'Community', description: 'Uniting quantum communities across Peru through collaboration and shared knowledge.' },
@@ -338,11 +325,9 @@ export const content = {
       }
     },
     equipo: {
-      eyebrow: '|team⟩',
       title: 'Our team'
     },
     eventos: {
-      eyebrow: '|agenda⟩',
       title: 'Upcoming activities',
       estado: '2026 calendar in the works',
       texto: "Our first workshops and talks will be announced soon. Join the community to be among the first to know.",

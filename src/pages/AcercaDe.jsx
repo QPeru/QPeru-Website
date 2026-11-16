@@ -34,7 +34,6 @@ export default function AcercaDe() {
       {/* 1. Descripción de QPerú */}
       <section className="section section-humo" id="descripcion">
         <div className="container acerca-col reveal-group" ref={descRef}>
-          <p className="eyebrow">{a.descripcion.eyebrow}</p>
           <h2>{a.descripcion.title}</h2>
           <p className="lede">{a.descripcion.lede}</p>
           {a.descripcion.parrafos.map((p, i) => (
@@ -46,7 +45,6 @@ export default function AcercaDe() {
       {/* 2. Visión */}
       <section className="section section-humo" id="vision">
         <div className="container acerca-col reveal-group" ref={visionRef}>
-          <p className="eyebrow">{vision.eyebrow}</p>
           <h2>
             {vision.title1}
             <br />
@@ -60,7 +58,6 @@ export default function AcercaDe() {
       {/* 3. Misión */}
       <section className="section section-humo" id="mision">
         <div className="container acerca-col reveal-group" ref={misionRef}>
-          <p className="eyebrow">{mision.eyebrow}</p>
           <h2>
             {mision.title1}
             <br />

@@ -16,7 +16,6 @@ export default function MisionVisionValores() {
       {/* Cabecera */}
       <section className="section hero-blend">
         <div className="container reveal-group" ref={headRef}>
-          <p className="eyebrow">{mvv.eyebrow}</p>
           <h1>{mvv.title}</h1>
           <p className="lede" style={{ maxWidth: '62ch', marginTop: '1.5rem' }}>
             {mvv.intro}
@@ -28,7 +27,6 @@ export default function MisionVisionValores() {
       <section className="section section-humo" id="mision">
         <div className="container split reveal-group" ref={misionRef}>
           <div>
-            <p className="eyebrow">{mision.eyebrow}</p>
             <h2>
               {mision.title1}
               <br />
@@ -54,7 +52,6 @@ export default function MisionVisionValores() {
       <section className="section section-humo" id="vision">
         <div className="container split reveal-group" ref={visionRef}>
           <div>
-            <p className="eyebrow">{vision.eyebrow}</p>
             <h2>
               {vision.title1}
               <br />
@@ -71,7 +68,6 @@ export default function MisionVisionValores() {
       {/* 3. Valores */}
       <section className="section section-humo" id="valores">
         <div className="container">
-          <p className="eyebrow">{valores.eyebrow}</p>
           <h2>{valores.title}</h2>
 
           <div className="reveal-group" ref={valoresRef}>

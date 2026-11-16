@@ -679,6 +679,55 @@ p + p { margin-top: 1rem; }
 
 .equipo-lista .tm-wrap { padding-top: 24px; }
 
+/* ── "Acerca de": cabecera con el logo centrado ──
+   Misma estructura y sangría que el resto de páginas internas (.section +
+   .container), solo que el encabezado es el logo en el medio y no un título. */
+.acerca-logo { text-align: center; }
+
+.acerca-logo .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.acerca-logo__img {
+  display: block;
+  width: auto;
+  height: clamp(64px, 9vw, 132px);
+}
+
+/* Párrafo de presentación debajo del logo: centrado y en cursiva.
+   max-width: 100% → sus bordes izquierdo/derecho coinciden exactamente
+   con los de los bloques de texto de las secciones (misma sangría). */
+.acerca-intro {
+  max-width: 100%;
+  margin-top: clamp(2rem, 4vw, 3.5rem);
+  font-style: italic;
+  line-height: 1.7;
+  color: var(--gris);
+  text-wrap: pretty;
+}
+
+/* ── "Acerca de": cuerpo en una sola columna, títulos centrados ──
+   (sin .split: el título y el texto van apilados y a todo el ancho) */
+.acerca-col > .eyebrow,
+.acerca-col > h2 {
+  text-align: center;
+}
+
+.acerca-col > h2 { margin-bottom: 1.4em; }
+
+/* Columna de texto más angosta y centrada: se le suma margen lateral
+   al ancho del contenedor para que el bloque quede como en la referencia.
+   En pantallas chicas vuelve al ancho completo (solo resta el padding). */
+.acerca-col {
+  max-width: min(1080px, 100%);
+  margin-inline: auto;
+}
+
+/* El lede de cada sección entra como primer párrafo del bloque de texto */
+.acerca-col > .lede { margin-bottom: 1rem; }
+
 /* ── Introducción (también la usa la sección "Origen de QPeru") ── */
 .intro { background: var(--bg); padding: 120px 0; }
 
@@ -1177,6 +1226,20 @@ p + p { margin-top: 1rem; }
 .reveal-group.visto > *:nth-child(4) { transition-delay: 0.3s; }
 .reveal-group.visto > *:nth-child(5) { transition-delay: 0.4s; }
 .reveal-group.visto > *:nth-child(6) { transition-delay: 0.5s; }
+
+/* Texto solo para lectores de pantalla (títulos invisibles) */
+.solo-lectores {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
 
 /* Punto pulsante (estado en vivo / próximamente) */
 .pulse-dot {

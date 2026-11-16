@@ -104,6 +104,19 @@ export const content = {
     unete: {
       qrSub: 'Grupo de WhatsApp'
     },
+    acercaDe: {
+      intro: 'Inspirado en las Líneas de Nazca, QPerú nació con el fin de conectar a estudiantes, investigadores, educadores y profesionales para dar forma al futuro cuántico del país.',
+      descripcion: {
+        eyebrow: '|descripción⟩',
+        title: 'Descripción de QPerú',
+        lede: 'QPerú es una comunidad peruana abierta que divulga y democratiza la computación cuántica con talleres, charlas y comunidad activa.',
+        parrafos: [
+          'Nació para acercar la computación cuántica al Perú: una comunidad abierta que organiza talleres, charlas y espacios de estudio para estudiantes, profesionales y curiosos de todo el país.',
+          'Trabajamos en español, inglés y —pronto— quechua, porque creemos que el conocimiento cuántico no debería estar reservado a unos pocos laboratorios ni a quienes hablan un solo idioma.',
+          'Aquí nadie viene solo a mirar: cada actividad está pensada para que participes, preguntes y compartas lo que descubres.'
+        ]
+      }
+    },
     sobreNosotros: {
       title: 'Organización',
       mvv: {
@@ -272,6 +285,19 @@ export const content = {
     },
     unete: {
       qrSub: 'WhatsApp group'
+    },
+    acercaDe: {
+      intro: 'Inspired by the Nazca Lines, QPerú was born to connect students, researchers, educators and professionals to shape the quantum future of the country.',
+      descripcion: {
+        eyebrow: '|description⟩',
+        title: 'Description of QPerú',
+        lede: 'QPerú is an open Peruvian community that spreads and democratizes quantum computing through workshops, talks and an active community.',
+        parrafos: [
+          'It was born to bring quantum computing closer to Peru: an open community that runs workshops, talks and study spaces for students, professionals and the curious from all over the country.',
+          'We work in Spanish, English and —soon— Quechua, because we believe quantum knowledge should not be reserved for a few labs or for those who speak a single language.',
+          'Nobody here just watches: every activity is designed for you to take part, ask questions and share what you discover.'
+        ]
+      }
     },
     sobreNosotros: {
       title: 'Organization',

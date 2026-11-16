@@ -1,5 +1,9 @@
 import { useEffect, useRef } from 'react'
 
+// Fondo de video en bucle "boomerang": el archivo trae la ida y la vuelta
+// (10s = 2× los 5.088s de quantum.mp4, mismo 1728x992), así que al terminar
+// cae en el mismo frame del inicio y el `loop` no se nota. No hace falta
+// invertir la reproducción en JS (haría doble vuelta y se vería raro).
 export default function VideoBackground() {
   const videoRef = useRef(null)
 
@@ -30,7 +34,7 @@ export default function VideoBackground() {
     <video
       ref={videoRef}
       className="video-bg"
-      src="/quantum.mp4"
+      src="/quantum_loop_boomerang.mp4"
       autoPlay
       muted
       loop

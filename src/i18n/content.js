@@ -364,5 +364,191 @@ export const content = {
       privacidad: 'Privacy policy',
       derechos: 'All rights reserved.'
     }
+  },
+  qu: {
+    // BORRADOR en quechua sureño unificado (Qhichwa) — primer bloque del sitio QPerú.
+    // Traduce solo textos visibles; claves, id, horario y href se conservan tal cual.
+    // Requiere REVISIÓN POR UN HABLANTE NATIVO antes de publicarse: siguiendo
+    // docs/quechua/glosario.md, lo dudoso lleva el comentario `// REVISAR` en su línea.
+    meta: {
+      titulo: 'QPeru - Kuantika yupay llaqta, sinami hukkunawan', // REVISAR
+      descripcion: 'QPerú kichasqa Piruw llaqtam, kuantika yupayta chaninchan hina llapanraykuchin: tallerwan, rimanakuykunawan, llaqta kallpanwan - Kastillapi, Inglispi ñawpaqta Qhichwapi.' // REVISAR
+    },
+    nav: {
+      // Menú hamburguesa, selector de idioma y textos de accesibilidad
+      menu: {
+        acercaDe: 'Ñuqanchikmanta', // REVISAR
+        eventos: 'Llamkanakuykuna', // REVISAR
+        publicaciones: 'Blog',
+        equipo: 'Llamkakuna',
+        solicitud: 'Ayninkuy', // REVISAR
+        subindice: 'Siku' // REVISAR
+      },
+      idiomas: { es: 'Kastilla', en: 'Inglis', qu: 'Qhichwa' },
+      aria: {
+        idioma: 'Simi',
+        elegirIdioma: 'Simi akllay',
+        temaClaro: 'Wachkay', // REVISAR
+        temaOscuro: 'Yana tikray', // REVISAR
+        abrirMenu: 'Menuta kichay',
+        navegacion: 'Ñawpaq puriy', // REVISAR
+        inicio: 'QPerú - qallapi', // REVISAR
+        redes: 'QPerú rimanakuykuna' // REVISAR
+      }
+    },
+    hero: {
+      fecha: 'Pacha',
+      scroll: 'Urayman puriy', // REVISAR
+      bajar: 'Qhipa secciónman awiy' // REVISAR (glosario §3)
+    },
+    intro: {
+      altMascota: 'QPerú ruwaycham: huk kuntur', // REVISAR
+      titulo: 'QPeru 2026',
+      texto: 'QPerúqa kuantika yupayta Piruwman hukllachiypaq qallarirqan: kichasqa llaqta, tallerwan, rimanakuykunawan, yachay wasikunata kamachisqan, yachakuqkunapaq, llamkakunapaq, yachay munakuqkunapaq, tukuy Piruwpi.', // REVISAR
+      cta: 'Aswan rikuy'
+    },
+    origen: {
+      title: 'QPeru qallariy', // REVISAR
+      cta: 'Aswan yachay',
+      parrafos: [
+        'Kaypi QPeru imayna qallarirqan willakuyta: piykuna apaykurqanku, hayk\'a watapi, ima yuyaywan.', // REVISAR
+        'Kay listaman aswan yuyaykuna taqiyta munankichu, chayta kamachinankapas.' // REVISAR
+      ]
+    },
+    activities: {
+      title: 'Llamkanakuykuna', // REVISAR
+      subtituloPasadas: 'Kanraq llamkanakuykuna', // REVISAR
+      subtituloFuturas: 'Ñawpaq llamkanakuykuna',
+      verImagen: 'Imajen rikuy',
+      pasadas: [
+        {
+          id: 1,
+          title: 'Kuantika yupay rimanakuy UCSMpi, Arequipapi', // REVISAR
+          description: 'QPerúpaq ñawpaq rimanakuy, Universidad Católica de Santa Maríapi. Kuantika yupay qallariy kikin, Arequipa yachakuqkunapaq llaqtan rikuchiy.' // REVISAR
+        },
+        {
+          id: 2,
+          title: 'Workshop: Q-Day - Are You Shor You’re Ready?', // REVISAR: juego de palabras en inglés, se conserva tal cual
+          description: 'Leonardo Cienfuegoswan. Kuantika manchaykunata rikuy kunan qillqanakuypi, llamkaypi imayna utqaylla chaninchay: qillqanakuy utqaylla, kuantikamanta qhipa kutiy, kanraq ruraykunapi.', // REVISAR
+          horario: '12:00 - 13:30',
+          cta: 'Llamkanakuyta rikuy →',
+          href: 'https://luma.com/azxbqx8m'
+        },
+        {
+          id: 3,
+          title: 'Workshop: Kanraq yuyaykunamanta aswan - Hinas ruraykuna, kamachiykuna hukllakuy kuantika hukllaypaq', // REVISAR
+          description: 'María Julia Parejawan. IA + HPC + kuantika algoritmos — QAOA, VQE, Annealing — apaypi, qullqipi, mikhuykunapi, rumikuna yachaypi churanspa, kallpan rikuykunawan, kanraq ruraykunapi.', // REVISAR
+          horario: '16:30 - 18:00',
+          cta: 'Llamkanakuyta rikuy →',
+          href: 'https://luma.com/tbi68knv'
+        }
+      ],
+      futuras: [
+        {
+          id: 1,
+          title: 'CSWeekpi rimanakuy - Leo',
+          description: 'Sábado 15, yuyayta manaraq chaninchanqa.' // REVISAR
+        },
+        {
+          id: 2,
+          title: 'CSWeekpi rimanakuy - Maju',
+          description: 'Sábado 15, yuyayta manaraq chaninchanqa.' // REVISAR
+        },
+        {
+          id: 3,
+          title: 'Qiskit Fall Fest 2026',
+          description: 'Ñawpaqta, IEEE Computer Society PUCP hukllakuywan, PUCP Yachay Llaqtawan.' // REVISAR
+        }
+      ]
+    },
+
+    contacto: {
+      whatsappTitulo: 'WhatsApp',
+      discordTitulo: 'Discord',
+      discordSub: 'Llaqtan servidor' // REVISAR
+    },
+    unete: {
+      qrSub: 'WhatsApp grupo'
+    },
+    acercaDe: {
+      intro: 'Líneas de Nazca kiksimuspa, QPerú yachakuqkuna, yachay churakuqkuna, yachachiqkuna, llamkakunata hukllachiykarqan: Piruw kuantika ñawpaqta ruraypaq.', // REVISAR
+      descripcion: {
+        title: 'QPerú willakuy', // REVISAR
+        lede: 'QPerú kichasqa Piruw llaqtam, kuantika yupayta chaninchan hina llapanraykuchin: tallerwan, rimanakuykunawan, llaqta kallpanwan.', // REVISAR
+        parrafos: [
+          'QPerúqa kuantika yupayta Piruwman hukllachiypaq qallarirqan: kichasqa llaqta, tallerwan, rimanakuykunawan, yachay wasikunata kamachisqan, yachakuqkunapaq, llamkakunapaq, yachay munakuqkunapaq, tukuy Piruwpi.', // REVISAR
+          'Kastillapi, Inglispi ñawpaqta Qhichwapi llamkanchik, ichaqa chaninchanchik: kuantika yachayqa yachay wasikuna hukllakunapi, huk simi rimakuqkunallapas, mana apaychakuyta kanqachu.', // REVISAR
+          'Kaypi huklla rikuyta qamtaq hamuychu: tukuy llamkanakuykuna qampaq kanqa kiknay, tapuy, yachakusqaykita yupaychay.' // REVISAR
+        ]
+      }
+    },
+    colaboraciones: {
+      title: 'Ayninkuykuna',
+      texto: 'Yachay wasikuna, kamachiykuna, llaqtakunawan ayninkuyku: Piruw ukupi hawapipas.', // REVISAR
+      nacionales: 'Piruw ayninkuykuna', // REVISAR
+      internacionales: 'Huk suyu ayninkuykuna' // REVISAR
+    },
+    sobreNosotros: {
+      title: 'Kamachiy',
+      mvv: {
+        title: 'Kamachiy, ñawpaq, yupaychaykuna', // REVISAR
+        intro: 'Ñuqanchikta makisqan, maykaman risunchik, QPerúta rurasunpaq yuyaykuna.' // REVISAR
+      },
+      mision: {
+        title1: 'Chaninchay',
+        title2: 'llapanraykuy.', // REVISAR
+        lede: 'Ñuqanchik kamachiyqa kuantika yupayta Piruwpi chaninchaymi llapanraykuy, tallerkunawan, rimanakuykunawan kanan llaqtawan.', // REVISAR
+        texto: 'Ñuqanchik yuyaychanchikmi kuantikaqa manam uchillakuna yachay wasikunaman churakusqachu: huk yachaymi kay suyuqa, chayta yachayta, rimanakuyta, rurayta munan. Chayrayku tukuy ñuqanchik llamkanakuykunapi kanan kikunakuyta munanchik. Kaypimqa mana hukllapachu rikuyta hamuchkan.', // REVISAR
+        facts: [
+          { k: 'Kichasqa', v: 'Tukuy llaqtakunaman kichasqa llamkanakuykuna' }, // REVISAR
+          { k: 'Llaqta', v: 'Piruw llaqtakunan kawsaypi kanan' }, // REVISAR
+          { k: 'Kimsa simiyuq', v: 'Hispana simi · English · Qhichwa chayamusqan' } // REVISAR
+        ]
+      },
+      vision: {
+        title1: 'Maykaman',
+        title2: 'risunchik.',
+        lede: 'Piruw kuantika yupaypi ñawpaq llaqta kankay.', // REVISAR
+        texto: 'Ñuqanchik musuq piruw kallpay runakuna, yachakuqkuna, yachachiqkuna, llamkakunahina iskay kuantika tikraypi kikunakuyta munanchik, kay suyupi karupipas.' // REVISAR
+      },
+      valores: {
+        title: 'Ñuqanchik yupaychaykuna', // REVISAR
+        items: [
+          { id: 1, title: 'Llaqta', description: 'Piruwpa kuantika llaqtakunata ayninkuywan yupanchasqan yachaywan huñuy.' }, // REVISAR
+          { id: 2, title: 'Kikin', description: 'Piruwpa kuantika llaqtakunaman hatun siminta churay, tukuy suyukunapi rikuchiykunawan.' }, // REVISAR
+          { id: 3, title: 'Musuqyachiy', description: 'Musuq yuyaykunata, yachay qhawaykunata kallpachay.' }, // REVISAR
+          { id: 4, title: 'Kichasqay', description: 'Kuantika yachachiyta kichasqay, tukuykunaman llapanchiywan.' }, // REVISAR
+          { id: 5, title: 'Yachay chiqap', description: 'Chiqapmanta yachakuyta, yachaypi chiqapkanata, yachay sumakta kallpachay.' } // REVISAR
+        ]
+      }
+    },
+    equipo: {
+      title: 'LLAMKAKUNA'
+    },
+    eventos: {
+      title: 'Qhipa llamkanakuykuna', // REVISAR
+      estado: '2026 pachakuna churakusqan', // REVISAR
+      texto: 'Ñawpaq tallerkunata, rimanakuykunata utqaylla chaninchakunqa. Llaqtaman ayninkuy, chaypaq ñawpaq yachanqayki.', // REVISAR
+      cta: 'Ñawpaq chaninchay' // REVISAR
+    },
+    solicitud: {
+      title: 'QPerú kikinkuna', // REVISAR
+      // Mensajes que van apareciendo en la burbuja al tocar al oso
+      burbujas: [
+        '¡Llaqtaman ayninkuy, ñuqanchikwan kikunakuy!', // REVISAR
+        'QR-ta skenay, WhatsApp grupo-man yayki.', // REVISAR
+        'Kaypimqa mana hukllapachu yachan: imata rikusqaykita yupanchay.', // REVISAR
+        '¿Huk yuyaykiyuqkanki? Chayta apamuy ñuqanchik tallerkunaman, rimanakuykunaman.', // REVISAR
+        'Ñuqanchikta rimanakuykunapi qhawakuy, tukuy llamkanakuykunata ñawpaq yuyaychayki.' // REVISAR
+      ],
+      cambiarMensaje: 'Willakuyta tikraypaq Ursota makuy.', // REVISAR
+      altMascota: 'QPerú michuq' // REVISAR
+    },
+    footer: {
+      nombre: 'QPerú · Piruw kuantika llaqta',
+      correo: 'Qillqanakuy', // REVISAR
+      privacidad: 'Mana rikukuy política', // REVISAR
+      derechos: 'Tukuy hakuchiykuna churakusqan.' // REVISAR
+    }
   }
 }

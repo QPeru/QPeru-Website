@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { PEOPLE, FUNDADORES, LEADERSHIP_BOARD, AREAS, MIEMBROS_CORE, UNIVERSIDADES, UNIVERSIDADES_EN } from '../data/team'
+import { PEOPLE, FUNDADORES, LEADERSHIP_BOARD, AREAS, MIEMBROS_CORE, UNIVERSIDADES, UNIVERSIDADES_EN, SIMBOLO_BOARD } from '../data/team'
 import { useLanguage } from '../context/LanguageContext'
 import './Miembrosequipo.css'
 
@@ -41,6 +41,22 @@ const TXT = {
     linkedin: 'LinkedIn of',
     github: 'GitHub of',
   },
+  // ── Quechua sureño unificado (Qhichwa) — BORRADOR, requiere revisión
+  // nativa. Términos dudosos marcados en docs/quechua/glosario.md. ──
+  qu: {
+    fundadores: { t: 'QPeru Qallariqkuna', s: 'QPeru qallariy ñawpaq' }, // REVISAR
+    board: { t: 'QPeru Leadership Board', s: 'Hatun kamachiy, llapan kananchik' }, // REVISAR
+    coord: { t: 'Sinami kamachiqkuna', s: 'Sinamipa hatun kanan kikin' }, // REVISAR
+    core: { t: 'Kikin llamkakuna', s: 'Sinamiman mana kanqan kikin' }, // REVISAR
+    vacante: 'Mana kanqa', // REVISAR
+    rolFund: 'Qallariq', // REVISAR
+    rolBoard: 'Leadership Board', // préstamo
+    rolDir: 'Kamachiq', // REVISAR
+    rolSub: 'Kamachiq huk', // REVISAR
+    rolCore: 'Kikin llamkaq', // REVISAR
+    linkedin: 'LinkedIn',
+    github: 'GitHub',
+  },
 }
 
 function iniciales(nombre) {
@@ -51,6 +67,15 @@ function iniciales(nombre) {
     .map((p) => p[0])
     .join('')
     .toUpperCase()
+}
+
+// Nombre corto de la tarjeta: solo el primer nombre y el primer apellido.
+// "María Julia Pareja Abarca" → "María Pareja" · "Renzo Leonardo
+// Cienfuegos Cárdenas" → "Renzo Cienfuegos". Si ya tiene dos palabras
+// ("Luis Morales", "Dire Espinal") se queda igual.
+function nombreCorto(nombre) {
+  const p = nombre.split(' ').filter(Boolean)
+  return p.length > 2 ? `${p[0]} ${p[2]}` : nombre
 }
 
 // Nombre completo de la universidad junto a su sigla: "UNI (…)"
@@ -83,17 +108,21 @@ function Tarjeta({ id, rol, foto, L, en }) {
     )
   }
 
+  // Nombre que se ve en la tarjeta: primer nombre + primer apellido.
+  // El completo sigue en el alt de la foto y en los aria-label.
+  const nombre = nombreCorto(p.nombre)
+
   return (
     <article className="tm-card">
       <div className="tm-foto">
         {foto && !falla ? (
           <img src={foto} alt={p.nombre} onError={() => setFalla(true)} />
         ) : (
-          <span aria-hidden="true">{iniciales(p.nombre)}</span>
+          <span aria-hidden="true">{iniciales(nombre)}</span>
         )}
       </div>
 
-      <h3 className="tm-nombre">{p.nombre}</h3>
+      <h3 className="tm-nombre">{nombre}</h3>
       <p className="tm-rol">{rol}</p>
       <p className="tm-uni">{universidad(p.universidad, en)}</p>
 
@@ -137,8 +166,10 @@ function Tarjeta({ id, rol, foto, L, en }) {
   )
 }
 
-// Un nivel de la jerarquía: título, subtítulo y una barra con el color del nivel
-function Nivel({ id, color, titulo, sub, children, className = '' }) {
+// Un nivel de la jerarquía: título, subtítulo y una barra con el color del nivel.
+// simbolo: signo de identificación del departamento (si lo trae), a la
+// derecha del título ("Leadership Board de QPerú Ψ").
+function Nivel({ id, color, titulo, sub, children, className = '', simbolo = null }) {
   return (
     <section
       className={`tm-nivel ${className}`.trim()}
@@ -146,7 +177,14 @@ function Nivel({ id, color, titulo, sub, children, className = '' }) {
       aria-labelledby={`tm-${id}`}
     >
       <header className="tm-nivel__head">
-        <h2 id={`tm-${id}`}>{titulo}</h2>
+        <h2 id={`tm-${id}`}>
+          {titulo}
+          {simbolo && (
+            <span className="tm-simbolo" aria-hidden="true">
+              {simbolo}
+            </span>
+          )}
+        </h2>
         <p>{sub}</p>
         <span className="tm-nivel__bar" aria-hidden="true" />
       </header>
@@ -164,6 +202,13 @@ export default function MiembrosEquipo({ fotos = {}, tema = 'claro', area = null
   const { lang } = useLanguage()
   const L = TXT[lang] || TXT.es
   const en = lang === 'en'
+
+  // Nombre y lema de cada área según el idioma (qu > en > es).
+  // En quechua se usa a.nombreQu / a.lemaQu (docs/quechua/glosario.md §4).
+  const nombreArea = (a) =>
+    (lang === 'qu' && a.nombreQu) || (en ? a.nombreEn : a.nombre) || a.nombre
+  const lemaArea = (a) =>
+    (lang === 'qu' && a.lemaQu) || (en ? a.lemaEn : a.lema) || a.lema
 
   // En español el rol sale de PEOPLE ("Fundadora" -> "Co-fundadora")
   const rolFundador = (id) =>
@@ -203,7 +248,7 @@ export default function MiembrosEquipo({ fotos = {}, tema = 'claro', area = null
       </Nivel>
 
       {/* 2. Leadership Board (bloque distinto al de co-fundadores) */}
-      <Nivel id="board" color={COLOR.board} titulo={L.board.t} sub={L.board.s}>
+      <Nivel id="board" color={COLOR.board} titulo={L.board.t} sub={L.board.s} simbolo={SIMBOLO_BOARD}>
         {fila(LEADERSHIP_BOARD.map((id) => ({ key: `b-${id}`, id, rol: L.rolBoard })))}
       </Nivel>
 
@@ -215,8 +260,13 @@ export default function MiembrosEquipo({ fotos = {}, tema = 'claro', area = null
               (con el título y el fondeado del área) quede a la vista. */}
           {AREAS.map((a) => (
             <div className="tm-area" key={a.id} style={{ '--c': a.color }}>
-              <h3>{en ? a.nombreEn || a.nombre : a.nombre}</h3>
-              <p>{en ? a.lemaEn || a.lema : a.lema}</p>
+              <h3>
+                {nombreArea(a)}
+                <span className="tm-simbolo" aria-hidden="true">
+                  {a.simbolo}
+                </span>
+              </h3>
+              <p>{lemaArea(a)}</p>
               {fila([
                 { key: `d-${a.id}`, id: a.director, rol: L.rolDir },
                 { key: `s-${a.id}`, id: a.subdirector, rol: L.rolSub },

@@ -5,8 +5,9 @@ const LanguageContext = createContext(null)
 const STORAGE_KEY = 'qperu-lang'
 
 // Idiomas disponibles en el selector del navbar.
-// "qu" (quechua) todavía no tiene traducción: hasta que se agregue
-// "qu" en src/i18n/content.js, se muestra el contenido en español.
+// "qu" = quechua sureño unificado (Qhichwa): bloque propio en
+// src/i18n/content.js (borrador con revisión nativa pendiente) y en
+// src/data/reglamento.js. Ver docs/quechua/README.md.
 export const LANGS = ['es', 'en', 'qu']
 
 export function LanguageProvider({ children }) {

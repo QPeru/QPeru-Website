@@ -97,4 +97,52 @@ export const reglamento = {
       },
     ],
   },
+  qu: {
+    eyebrow: 'kamachiykuna', // REVISAR (glosario: "reglamento")
+    title: ['Kamachiykuna', 'sinamikunapa.'], // REVISAR ("área" = sinami, sin consenso)
+    verMas: 'Aswan rikuy',
+    verMenos: 'Aswan pakay', // REVISAR (no hay par registrado en el glosario)
+    items: [
+      {
+        t: 'Huk huk sinamikuna kamachiq huknyuq kanqa, kamachiq hukniyuq pas kanqa, akllasqa ayninkuykunanwanmi kanqa.', // REVISAR (sinami, akllasqa, ayninkuy)
+        mas: 'Huk huk sinamikan kamachiqniyuqkasqanmi: ima rikuchisqanpaq hukllatan kamachin, hina pas llamkaykunata hukllatan kamachiyta. Kamachiq hukqa kanqachun kanqa: mana kamachiq chaypi kasqanchu p\'unchawpi hukllatan kawsachin, hina pas llamkaykunata kikinpi huñuyta yanapaway. Akllasqa ayninkuykunaqa imayna ruraykunata ruraykuna, ichaqa kay kamachiykunaqa huk siqta rimanakuy sutiwanmi kikinta rikuchin.', // REVISAR (kamachiy = "estructura/coordinación")
+      },
+      {
+        t: 'Kamachiqkunaqa QPeru Directiva akllakusqan kanqa, huk qillqasqa ruraypi.', // REVISAR (Directiva = préstamo de origen)
+        mas: 'Directivami kamachiqkunata akllan, chaymi QPeru yachaynintin kanqan, mana kikin runa kikinnallachu. Rurayniyta qillqasqanmi: sutiwan, yupaychakunawan, yuyaykuykunawan; chaymi rurayniyta mana pakasqachu rikuchin, hina pas kutiyta. Chayraykuqa huk huk runaqa ima raykutaq akllakusqantachu yachachin.', // REVISAR ("convocatoria, criterios y decisión")
+      },
+      {
+        t: 'Kamachiykunaqa huk watawan kanqa, musuqtiypaq yupaychayniyuqwan.', // REVISAR ("cargos de dirección")
+        mas: 'Huk watapi kamachiyta rurasqanmi yuyaykuyta, kanraq rikuchisqakunata, ima runapas hukllataq kanqachu. Musuqtiypaqman yupaychasqanmi allin rurayniyta, hina pas musuq runakunata chaypi sayayta; chaymi kamachiyta kawsachin, kichasqallapas.', // REVISAR ("evaluación para renovación")
+      },
+      {
+        t: 'Huk huk kamachiqqa huk llamkay plan ruwasun, hina pas llamkaykunata kikinpi kallpaynintin, kanqanintinpas churun.', // REVISAR (plan = préstamo; "funciones")
+        mas: 'Llamkay planmi sinamikunap yuyaykuykunata kikin ruwaqniyuqpi churay. Kallpaynintin, kanqanintin churayqa mana akllasqakunata aswan llamkanakuyta, hina pas utlla p\'unchawniyntin yanapawayta; chaymi rurasqanmi allinchayn.', // REVISAR ("capacidades y disponibilidad")
+      },
+      {
+        t: 'Huk huk sinamiqa killa killapi willakuy huk rikuchin, kimsa killapi rikuchisqanpaq yupaychaypas huk rikuchin.', // REVISAR ("resumen mensual", "trimestral")
+        mas: 'Killa killapi willakuykunaqa Directivata willakun, hina pas punchawpi kutiyta yanapaway. Kimsa killapi yupaychayqa tukuy qhawayta rikuchin: ima rurasqan, ima waqaq, ima kutiyta. Chaynintinmi huk huk sinamin llamkayta rikuchiyta yupaychasqata.', // REVISAR ("avances", "panorama")
+      },
+      {
+        t: 'Sinamikuna hukkunapi kanqan llamkaykunapaqqa huk kuraq kamachiq kanqa, hina pas huk huk sinamin llamkayniy qillqasqa yuyaykuykunapas.', // REVISAR ("proyecto", "responsable principal")
+        mas: 'Sinamikuna ayninkuykunapi, mana kamachiqchasqachu kanqa, llamkaykunaqa iskay kanqa, hina pas mana rurasqachu kawsan. Huk kuraq kamachiqmi huklla rikuchiy; huk huk sinamin rurayniyta qillqasqanmi mana yuyaykuykuna chinkachisqan, hina pas llamkayniyqa kutiyta.', // REVISAR ("acuerdos documentados")
+      },
+      {
+        t: 'Tukuy kikinqa yupaychanqa yachay chiqapta, mana rikuyta, llapanraykuyta, hina pas QPeru kamachisqan políticakunata.', // REVISAR ("integridad científica", "inclusión")
+        mas: 'QPeruqa yachayniyuqwan ayninkuymin, hina pas hukkunallan llaqtakunawan. Yachay chiqapta yupaychasqanmi yachay willakuykuna allin kanantanchu. Mana rikuy llapanraykuykunapas tukuy runakuna allinpi kanman. QPeru políticakunapas huklla kamachiy hukllatan kanqa.', // REVISAR ("marco común de conducta")
+      },
+      {
+        t: 'Kamachiq wichisqanmanta, hina pas mana llamkakuychu kasqanmanta, QPeru Directivami hukllatan kamachiy huk akllasun, hina pas qillqakuna yaykuykunakunap apamusqanpas ruwasun.', // REVISAR ("renuncia", "inactividad", "coordinación interina")
+        mas: 'Huk kamachiq wichusqanmanta sinamikuna mana chinkasqachu kanqa. Hukllatan kamachiyqa hukllatan kamachiyta kanman, kamachiyta kutichiyta, hina pas qillqakunata yaykuykunakunata apamusqanmi mana willakuy, cuentas hina pas llamkaykunapas chinkachisqachu.', // REVISAR (cuentas = préstamo; "accesos")
+      },
+      {
+        t: 'Kikin llamkakunanqa kamachiypi, kamachiq hukpi, hina pas Directivapi kananakuyta kanqa, kikin rikuchisqa yupaychaynintin.', // REVISAR ("méritos demostrables")
+        mas: 'Kay yuyaykuyqa QPerupaq ñan rikuchin. Wichaykunata rikuchisqan yupaychaynintin kanqanmi hukllatan yanapaway, kikinllataq kamachiykunaman kunkanakuyta.', // REVISAR ("ascensos", "constancia y aportes")
+      },
+      {
+        t: 'Akllakuykuna, QPeru yuyaykuykunapas yupaychaykunapas qillqasqan kanqa, kikin rikuyta.', // REVISAR ("nombramientos")
+        mas: 'Akllakuykunata, yuyaykuykunata, yupaychaykunatapas qillqasqan kananmi rikuchiyta, hina pas yupaychayta. Tukuy yuyaykuykuna kutiykuyta, chaymanta kikin willayta, hina pas kutiyta kan; kamachiykunaqa huk kikin yuyaykuykunata pakasqapin kawsachin.', // REVISAR ("transparencia y responsabilidad")
+      },
+    ],
+  },
 }

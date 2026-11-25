@@ -54,6 +54,8 @@ const MENU = [
       href: `/sobre-nosotros#area-${a.id}`,
       es: a.nombre,
       en: a.nombreEn,
+      qu: a.nombreQu,
+      simbolo: a.simbolo,
     })),
   },
   { key: 'solicitud', href: '/solicitud' },
@@ -81,10 +83,25 @@ export default function Navbar() {
   const temaOscuro = theme !== 'light'
 
   // Texto de cada subíndice: si trae es/en se muestra traducido; si no,
-  // se numera como "Subíndice 1..n" (menús antiguos: eventos, blog…)
+  // se numera como "Subíndice 1..n" (menús antiguos: eventos, blog…).
+  // Si el ítem trae símbolo, va a la derecha del nombre ("λ Asuntos
+  // Académicos" → "Asuntos Académicos λ").
   const textoSub = (sub, j) => {
-    if (sub.es || sub.en) return lang === 'en' && sub.en ? sub.en : sub.es
-    return `${nav.menu.subindice} ${j + 1}`
+    const base =
+      lang === 'qu' && sub.qu
+        ? sub.qu
+        : sub.es || sub.en
+          ? lang === 'en' && sub.en
+            ? sub.en
+            : sub.es
+          : `${nav.menu.subindice} ${j + 1}`
+    return sub.simbolo ? (
+      <>
+        {base} <span className="nav__simbolo">{sub.simbolo}</span>
+      </>
+    ) : (
+      base
+    )
   }
 
   // Cerrar submenú al hacer clic fuera o presionar Escape

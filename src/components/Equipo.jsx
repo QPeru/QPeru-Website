@@ -37,9 +37,12 @@ export default function Equipo() {
   }, [areaId])
 
   // Título del encabezado: el del área si vino de un subíndice, si no el
-  // "Equipo de trabajo" de siempre.
+  // "Equipo de trabajo" de siempre. Cada departamento lleva su símbolo a
+  // la derecha del nombre (λ, ∇, ∪, §, ∝, ⊗ → src/data/team.js).
+  // En quechua se usa area.nombreQu (docs/quechua/glosario.md §4).
   const titulo = area
-    ? (lang === 'en' ? area.nombreEn || area.nombre : area.nombre)
+    ? (lang === 'qu' && area.nombreQu) ||
+      (lang === 'en' ? area.nombreEn || area.nombre : area.nombre)
     : eq.title
 
   return (
@@ -54,7 +57,14 @@ export default function Equipo() {
       >
         {area && <span className="area-wash" aria-hidden="true" />}
         <div className="container">
-          <h2>{titulo}</h2>
+          <h2>
+            {titulo}
+            {area && (
+              <span className="tm-simbolo" aria-hidden="true">
+                {area.simbolo}
+              </span>
+            )}
+          </h2>
         </div>
       </section>
 

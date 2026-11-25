@@ -140,13 +140,18 @@ export const LEADERSHIP_BOARD = ['maria', 'renzo', 'kelvin'];
 
 // 3. Coordinadores de Área: una sección por área.
 //    director / subdirector: id de PEOPLE o null (se muestra como "Vacante").
+//    simbolo: signo de identificación del departamento; se muestra a la
+//    derecha de su nombre en los subíndices del navbar y en su página.
 export const AREAS = [
   {
     id: 'academica',
     nombre: 'Asuntos Académicos',
     nombreEn: 'Academic Affairs',
+    nombreQu: 'Yachachiy masiy', // REVISAR
+    simbolo: 'λ',
     lema: 'Educación · Formación · Mentoría',
     lemaEn: 'Education · Training · Mentorship',
+    lemaQu: 'Yachachiy · Yachakuy · Yanapay', // REVISAR
     color: '#c1a370',
     director: 'kelvin',
     subdirector: 'nicole',
@@ -155,8 +160,11 @@ export const AREAS = [
     id: 'investigacion',
     nombre: 'Investigación',
     nombreEn: 'Research',
+    nombreQu: 'Yachay', // REVISAR
+    simbolo: '∇',
     lema: 'Investigación científica · Innovación · Colaboración',
     lemaEn: 'Scientific Research · Innovation · Collaboration',
+    lemaQu: 'Yachay · Musuqchay · Ayninkuy', // REVISAR
     color: '#810000',
     director: 'marco',
     subdirector: 'marino',
@@ -165,8 +173,11 @@ export const AREAS = [
     id: 'relaciones',
     nombre: 'Relaciones Públicas',
     nombreEn: 'Public Relations',
+    nombreQu: 'Rimanakuykuna', // REVISAR
+    simbolo: '∪',
     lema: 'Alianzas · Networking · Relaciones institucionales',
     lemaEn: 'Partnerships · Networking · Institutional Relations',
+    lemaQu: 'Ayni · Rimanakuy · Kamachiy', // REVISAR
     color: '#8c52ff',
     director: 'jimena',
     subdirector: 'aaron',
@@ -175,8 +186,11 @@ export const AREAS = [
     id: 'legal',
     nombre: 'Asuntos Legales',
     nombreEn: 'Legal Affairs',
+    nombreQu: 'Yupaychay masiy', // REVISAR
+    simbolo: '§',
     lema: 'Cumplimiento · Ética · Protección de datos',
     lemaEn: 'Compliance · Ethics · Data Protection',
+    lemaQu: 'Kamachiy · Yupaychay · Yachay rikuchiy', // REVISAR
     color: '#3876ff',
     director: 'adriana',
     subdirector: null,
@@ -185,8 +199,11 @@ export const AREAS = [
     id: 'marketing',
     nombre: 'Marketing',
     nombreEn: 'Marketing',
+    nombreQu: 'Marketing', // préstamo (Cap. IV §6.1 c)
+    simbolo: '∝',
     lema: 'Comunicaciones · Marca · Difusión',
     lemaEn: 'Communications · Branding · Public Outreach',
+    lemaQu: 'Chaninchay · Suti · Rimanchik', // REVISAR
     color: '#226646',
     director: 'fabian',
     subdirector: null,
@@ -195,13 +212,19 @@ export const AREAS = [
     id: 'operaciones',
     nombre: 'Operaciones y Logística',
     nombreEn: 'Operations & Logistics',
+    nombreQu: 'Ruray chakiy', // REVISAR
+    simbolo: '⊗',
     lema: 'Eventos · Infraestructura · Recursos',
     lemaEn: 'Event Management · Infrastructure · Resource Coordination',
+    lemaQu: 'Llamkanakuy · Wasikuna · Apachiy', // REVISAR
     color: '#cda630',
     director: 'dire',
     subdirector: null,
   },
 ];
+
+// Símbolo del Leadership Board (mismo uso que los de AREAS).
+export const SIMBOLO_BOARD = 'Ψ';
 
 // Miembros core: sin área específica (junto a los coordinadores en la jerarquía).
 // Rocío y Diego siguen en PEOPLE; para mostrarlos de nuevo, agrega 'rocio' / 'diego' aquí.

@@ -315,7 +315,7 @@ html[data-theme="light"] header.nav {
   top: 100%;
   left: 50%;
   min-width: 260px;
-  max-width: 340px;
+  max-width: 400px; /* holgura para que "Operaciones y Logística ⊗" no parta de línea */
   margin: 0;
   padding: 8px 0;
   list-style: none;
@@ -347,12 +347,22 @@ html[data-theme="light"] header.nav {
   line-height: 1.35;
   text-decoration: none;
   border-left: 3px solid transparent;
+  /* el nombre y su símbolo (λ ∇ ∪ § ∝ ⊗) van siempre en una sola línea:
+     el desplegable se ensancha solo si hace falta */
+  white-space: nowrap;
   transition: background 0.15s ease, border-color 0.15s ease;
 }
 
 .nav__dropdown a:hover {
   background: var(--drop-hover-bg);
   border-left-color: var(--nav-accent);
+}
+
+/* Símbolo de identificación del departamento, a la derecha de su nombre
+   (los subíndices de "Equipo": λ ∇ ∪ § ∝ ⊗) */
+.nav__simbolo {
+  margin-left: 6px;
+  opacity: 0.85;
 }
 
 /* Botón hamburguesa (solo móvil/tablet) */
@@ -455,6 +465,9 @@ html[data-theme="light"] header.nav {
     border-radius: 10px;
     box-shadow: none;
   }
+
+  /* En pantallas angostas el nombre y su símbolo pueden partir de línea */
+  .nav__dropdown a { white-space: normal; }
 
   .nav__item.is-open > .nav__dropdown {
     display: block;

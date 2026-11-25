@@ -15,6 +15,11 @@
   /* color de respaldo del punto del área (si un área no define color propio) */
   --tm-punto: #E0B04A;
 
+  /* tamaño de letra compartido por los títulos de nivel (Co-Fundadores,
+     Leadership Board, Coordinadores de Área, Miembros Core) y los
+     nombres de cada área: todos igual y en negrita */
+  --tm-title: clamp(1.4rem, 2.1vw, 1.8rem);
+
   /* tema claro (como la referencia) */
   --tm-body-bg: #ffffff;
   --tm-heading: #7a7a7a;
@@ -68,10 +73,19 @@
   margin: 0;
   font-family: inherit;
   font-weight: 700;
-  font-size: clamp(1.6rem, 2.6vw, 2.2rem);
+  font-size: var(--tm-title); /* mismo tamaño que los nombres de área */
   line-height: 1.15;
   letter-spacing: 0;
   color: var(--tm-heading);
+}
+
+/* Símbolo de identificación del departamento, a la derecha de su nombre:
+   subíndices del navbar, encabezado de la página del área, título del
+   nivel (Leadership Board Ψ) y nombre de cada área en la lista. */
+.tm-simbolo {
+  margin-left: 0.35em;
+  font-weight: 600;
+  opacity: 0.9;
 }
 
 .tm-nivel__head p {
@@ -121,8 +135,9 @@
   margin: 0;
   font-family: inherit;
   font-weight: 600;
-  /* más grande que antes, pero siempre menor que el título del nivel (h2) */
-  font-size: clamp(1.4rem, 2.1vw, 1.8rem);
+  /* mismo tamaño que los títulos de nivel (Co-Fundadores, Leadership
+     Board, Coordinadores de Área y Miembros Core) */
+  font-size: var(--tm-title);
   line-height: 1.2;
   color: var(--tm-name);
 }
@@ -207,12 +222,14 @@
   color: #6b6b6b;
 }
 
+/* Nombre de la tarjeta: grande y en negrita, como la referencia
+   (misma tipografía Poppins, rectos) */
 .tm-nombre {
   margin: 0;
   font-family: inherit;
-  font-style: italic;
-  font-weight: 500;
-  font-size: 1.1rem;
+  font-style: normal; /* nombres rectos (sin cursiva), en todo el equipo */
+  font-weight: 700;
+  font-size: 1.5rem;
   line-height: 1.3;
   color: var(--tm-name);
 }
@@ -228,21 +245,15 @@
 
 .tm-uni { margin-top: 2px; font-size: 0.78rem; }
 
-/* ── Miembros Core: tarjeta idéntica a la referencia ──
-   Misma tipografía, tamaño y estructura que el resto de la jerarquía
-   (Poppins, texto centrado, meta en cursiva, foto sobresaliendo arriba).
-   Lo único que cambia: el nombre va en negrita cursiva y un poco más
-   grande, la sangría superior da más aire bajo la foto y la línea
-   inferior es dorada (--tm-punto) en vez de la roja de marca. */
+/* ── Miembros Core: tarjeta de la referencia ──
+   Misma tipografía, tamaño de letra (var(--tm-title) en los títulos y
+   1.5rem/700 en los nombres) y estructura que el resto de la jerarquía.
+   Lo único que cambia: la sangría superior da más aire bajo la foto,
+   la línea inferior es dorada (--tm-punto) en vez de la roja de marca
+   y el nombre lleva el punto dorado. */
 .tm-nivel--core .tm-card {
   padding: calc(var(--tm-foto-h) / 2 + 40px) 20px 24px;
   border-bottom: 4px solid var(--tm-punto);
-}
-
-.tm-nivel--core .tm-nombre {
-  font-size: 1.2rem;
-  font-style: italic;
-  font-weight: 700;
 }
 
 /* punto dorado alineado con la línea del nombre (mismo tono que el

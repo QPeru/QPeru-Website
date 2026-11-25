@@ -228,6 +228,37 @@
 
 .tm-uni { margin-top: 2px; font-size: 0.78rem; }
 
+/* ── Miembros Core: tarjeta idéntica a la referencia ──
+   Misma tipografía, tamaño y estructura que el resto de la jerarquía
+   (Poppins, texto centrado, meta en cursiva, foto sobresaliendo arriba).
+   Lo único que cambia: el nombre va en negrita cursiva y un poco más
+   grande, la sangría superior da más aire bajo la foto y la línea
+   inferior es dorada (--tm-punto) en vez de la roja de marca. */
+.tm-nivel--core .tm-card {
+  padding: calc(var(--tm-foto-h) / 2 + 40px) 20px 24px;
+  border-bottom: 4px solid var(--tm-punto);
+}
+
+.tm-nivel--core .tm-nombre {
+  font-size: 1.2rem;
+  font-style: italic;
+  font-weight: 700;
+}
+
+/* punto dorado alineado con la línea del nombre (mismo tono que el
+   de la referencia). La tarjeta vacante no lo lleva. */
+.tm-nivel--core .tm-card:not(.tm-card--vacante) .tm-nombre::before {
+  content: "";
+  display: inline-block;
+  width: 11px;
+  height: 11px;
+  margin-right: 8px;
+  border-radius: 50%;
+  vertical-align: middle;
+  transform: translateY(-2px);
+  background: var(--tm-punto);
+}
+
 /* Puesto vacante */
 .tm-card--vacante {
   border-style: dashed;

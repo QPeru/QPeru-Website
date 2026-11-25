@@ -138,9 +138,13 @@ function Tarjeta({ id, rol, foto, L, en }) {
 }
 
 // Un nivel de la jerarquía: título, subtítulo y una barra con el color del nivel
-function Nivel({ id, color, titulo, sub, children }) {
+function Nivel({ id, color, titulo, sub, children, className = '' }) {
   return (
-    <section className="tm-nivel" style={{ '--nivel': color }} aria-labelledby={`tm-${id}`}>
+    <section
+      className={`tm-nivel ${className}`.trim()}
+      style={{ '--nivel': color }}
+      aria-labelledby={`tm-${id}`}
+    >
       <header className="tm-nivel__head">
         <h2 id={`tm-${id}`}>{titulo}</h2>
         <p>{sub}</p>
@@ -223,7 +227,7 @@ export default function MiembrosEquipo({ fotos = {}, tema = 'claro', area = null
       </Nivel>
 
       {/* Miembros core (junto a los coordinadores en la jerarquía) */}
-      <Nivel id="core" color={COLOR.core} titulo={L.core.t} sub={L.core.s}>
+      <Nivel id="core" color={COLOR.core} titulo={L.core.t} sub={L.core.s} className="tm-nivel--core">
         {fila(MIEMBROS_CORE.map((id) => ({ key: `c-${id}`, id, rol: L.rolCore })))}
       </Nivel>
     </div>

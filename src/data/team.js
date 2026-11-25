@@ -15,6 +15,7 @@ export const UNIVERSIDADES = {
   UCSP: 'Universidad Católica de San Pablo',
   ISIL: 'Instituto San Ignacio de Loyola',
   UAM: 'Universidad Autónoma de Madrid',
+  UA: 'University of Arizona',
   UPN: 'Universidad Privada del Norte',
   'ICMC-USP': 'Instituto de Ciências Matemáticas e de Computação da Universidade de São Paulo',
 };
@@ -31,6 +32,7 @@ export const UNIVERSIDADES_EN = {
   UCSP: 'Catholic University of San Pablo',
   ISIL: 'San Ignacio de Loyola Institute',
   UAM: 'Autonomous University of Madrid',
+  UA: 'University of Arizona',
   UPN: 'Private University of the North',
   'ICMC-USP': 'Institute of Mathematical and Computer Sciences of the University of São Paulo',
 };
@@ -122,7 +124,7 @@ export const PEOPLE = {
     cv: { resumen: '', formacion: [], experiencia: [], habilidades: [], linkedin: '', github: '' },
   },
   luis: {
-    nombre: 'Luis Fernando Morales Rojas',
+    nombre: 'Luis Morales',
     universidad: 'UAM',
     cv: { resumen: '', formacion: [], experiencia: [], habilidades: [], linkedin: '', github: '' },
   },

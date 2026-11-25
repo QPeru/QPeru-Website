@@ -12,8 +12,20 @@ import './Navbar.css'
 // Los submenús se nombran automáticamente "Subíndice 1..n" (ver más abajo).
 const MENU = [
   // "Acerca de": botón que lleva a la página interna con la estructura
-  // completa (Descripción de QPerú, Visión y Misión → src/pages/AcercaDe.jsx)
-  { key: 'acercaDe', href: '/acerca-de' },
+  // completa (Descripción de QPerú, Visión y Misión → src/pages/AcercaDe.jsx).
+  // Subíndices con nombre propio (es/en): cada uno lleva a su página.
+  // El 4.º todavía no tiene nombre: sin "es/en" se numera solo como
+  // "Subíndice 4" (ver textoSub) hasta que se le ponga etiqueta.
+  {
+    key: 'acercaDe',
+    href: '/acerca-de',
+    children: [
+      { href: '/mision', es: 'Misión y Visión', en: 'Mission and Vision' },
+      { href: '/organizacion', es: 'Organización', en: 'Organization' },
+      { href: '/reglamento', es: 'Reglamentos y Políticas', en: 'Regulations and Policies' },
+      { href: '/acerca-de#colaboraciones' },
+    ],
+  },
   {
     key: 'eventos',
     children: [

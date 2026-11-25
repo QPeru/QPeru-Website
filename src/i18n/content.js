@@ -14,7 +14,7 @@ export const content = {
         eventos: 'Eventos',
         publicaciones: 'Blog',
         equipo: 'Equipo',
-        solicitud: 'Solicitud',
+        solicitud: 'Únete',
         subindice: 'Subíndice'
       },
       idiomas: { es: 'Español', en: 'Inglés', qu: 'Quechua' },

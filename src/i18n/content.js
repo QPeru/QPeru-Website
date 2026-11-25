@@ -5,7 +5,7 @@ export const content = {
     // Título de la pestaña y meta description (se actualizan al cambiar de idioma)
     meta: {
       titulo: 'QPeru - Comunidad de computación cuántica y áreas afines',
-      descripcion: 'QPerú es una comunidad peruana abierta que divulga y democratiza la computación cuántica con talleres, charlas y comunidad activa - en español, inglés y pronto quechua.'
+      descripcion: 'QPerú es una comunidad peruana abierta que divulga y democratiza la computación cuántica con talleres, charlas y comunidad activa - en español, inglés y quechua.'
     },
     nav: {
       // Menú hamburguesa, selector de idioma y textos de accesibilidad
@@ -110,7 +110,7 @@ export const content = {
         lede: 'QPerú es una comunidad peruana abierta que divulga y democratiza la computación cuántica con talleres, charlas y comunidad activa.',
         parrafos: [
           'Nació para acercar la computación cuántica al Perú: una comunidad abierta que organiza talleres, charlas y espacios de estudio para estudiantes, profesionales y curiosos de todo el país.',
-          'Trabajamos en español, inglés y —pronto— quechua, porque creemos que el conocimiento cuántico no debería estar reservado a unos pocos laboratorios ni a quienes hablan un solo idioma.',
+          'Trabajamos en español, inglés y quechua, porque creemos que el conocimiento cuántico no debería estar reservado a unos pocos laboratorios ni a quienes hablan un solo idioma.',
           'Aquí nadie viene solo a mirar: cada actividad está pensada para que participes, preguntes y compartas lo que descubres.'
         ]
       }
@@ -135,7 +135,7 @@ export const content = {
         facts: [
           { k: 'Abierta', v: 'Actividades accesibles para todo el ecosistema' },
           { k: 'Local', v: 'Enfocada en el ecosistema peruano' },
-          { k: 'Trilingüe', v: 'Español · English · Quechua en camino' }
+          { k: 'Trilingüe', v: 'Español · English · Quechua' }
         ]
       },
       vision: {
@@ -187,7 +187,7 @@ export const content = {
   en: {
     meta: {
       titulo: 'QPeru - Quantum computing and related fields community',
-      descripcion: 'QPerú is an open Peruvian community that spreads and democratizes quantum computing through workshops, talks and an active community - in Spanish, English and soon Quechua.'
+      descripcion: 'QPerú is an open Peruvian community that spreads and democratizes quantum computing through workshops, talks and an active community - in Spanish, English and Quechua.'
     },
     nav: {
       // Hamburger menu, language selector and accessibility labels
@@ -291,7 +291,7 @@ export const content = {
         lede: 'QPerú is an open Peruvian community that spreads and democratizes quantum computing through workshops, talks and an active community.',
         parrafos: [
           'It was born to bring quantum computing closer to Peru: an open community that runs workshops, talks and study spaces for students, professionals and the curious from all over the country.',
-          'We work in Spanish, English and —soon— Quechua, because we believe quantum knowledge should not be reserved for a few labs or for those who speak a single language.',
+          'We work in Spanish, English and Quechua, because we believe quantum knowledge should not be reserved for a few labs or for those who speak a single language.',
           'Nobody here just watches: every activity is designed for you to take part, ask questions and share what you discover.'
         ]
       }
@@ -316,7 +316,7 @@ export const content = {
         facts: [
           { k: 'Open', v: 'Activities accessible to the whole ecosystem' },
           { k: 'Local', v: 'Focused on the Peruvian ecosystem' },
-          { k: 'Trilingual', v: 'Spanish · English · Quechua coming soon' }
+          { k: 'Trilingual', v: 'Spanish · English · Quechua' }
         ]
       },
       vision: {
@@ -372,7 +372,7 @@ export const content = {
     // docs/quechua/glosario.md, lo dudoso lleva el comentario `// REVISAR` en su línea.
     meta: {
       titulo: 'QPeru - Kuantika yupay llaqta, sinami hukkunawan', // REVISAR
-      descripcion: 'QPerú kichasqa Piruw llaqtam, kuantika yupayta chaninchan hina llapanraykuchin: tallerwan, rimanakuykunawan, llaqta kallpanwan - Kastillapi, Inglispi ñawpaqta Qhichwapi.' // REVISAR
+      descripcion: 'QPerú kichasqa Piruw llaqtam, kuantika yupayta chaninchan hina llapanraykuchin: tallerwan, rimanakuykunawan, llaqta kallpanwan - Kastillapi, Inglispi Qhichwapi.' // REVISAR
     },
     nav: {
       // Menú hamburguesa, selector de idioma y textos de accesibilidad
@@ -477,7 +477,7 @@ export const content = {
         lede: 'QPerú kichasqa Piruw llaqtam, kuantika yupayta chaninchan hina llapanraykuchin: tallerwan, rimanakuykunawan, llaqta kallpanwan.', // REVISAR
         parrafos: [
           'QPerúqa kuantika yupayta Piruwman hukllachiypaq qallarirqan: kichasqa llaqta, tallerwan, rimanakuykunawan, yachay wasikunata kamachisqan, yachakuqkunapaq, llamkakunapaq, yachay munakuqkunapaq, tukuy Piruwpi.', // REVISAR
-          'Kastillapi, Inglispi ñawpaqta Qhichwapi llamkanchik, ichaqa chaninchanchik: kuantika yachayqa yachay wasikuna hukllakunapi, huk simi rimakuqkunallapas, mana apaychakuyta kanqachu.', // REVISAR
+          'Kastillapi, Inglispi Qhichwapi llamkanchik, ichaqa chaninchanchik: kuantika yachayqa yachay wasikuna hukllakunapi, huk simi rimakuqkunallapas, mana apaychakuyta kanqachu.', // REVISAR
           'Kaypi huklla rikuyta qamtaq hamuychu: tukuy llamkanakuykuna qampaq kanqa kiknay, tapuy, yachakusqaykita yupaychay.' // REVISAR
         ]
       }
@@ -502,7 +502,7 @@ export const content = {
         facts: [
           { k: 'Kichasqa', v: 'Tukuy llaqtakunaman kichasqa llamkanakuykuna' }, // REVISAR
           { k: 'Llaqta', v: 'Piruw llaqtakunan kawsaypi kanan' }, // REVISAR
-          { k: 'Kimsa simiyuq', v: 'Hispana simi · English · Qhichwa chayamusqan' } // REVISAR
+          { k: 'Kimsa simiyuq', v: 'Hispana simi · English · Qhichwa' } // REVISAR
         ]
       },
       vision: {

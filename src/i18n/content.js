@@ -30,13 +30,12 @@ export const content = {
       }
     },
     hero: {
-      fecha: 'Fecha',
       scroll: 'Scroll down',
       bajar: 'Bajar a la siguiente sección'
     },
     intro: {
       altMascota: 'Mascota de QPerú: un cóndor andino',
-      titulo: 'QPeru 2026',
+      titulo: 'QPeru',
       texto: 'QPerú nació para acercar la computación cuántica al Perú: una comunidad abierta que organiza talleres, charlas y espacios de estudio para estudiantes, profesionales y curiosos de todo el país.',
       cta: 'Ver más'
     },
@@ -212,13 +211,12 @@ export const content = {
       }
     },
     hero: {
-      fecha: 'Date',
       scroll: 'Scroll down',
       bajar: 'Scroll to the next section'
     },
     intro: {
       altMascota: 'QPerú mascot: an Andean condor',
-      titulo: 'QPeru 2026',
+      titulo: 'QPeru',
       texto: 'QPerú was created to bring quantum computing to Peru: an open community that organizes workshops, talks and study spaces for students, professionals and curious minds across the country.',
       cta: 'Learn more'
     },
@@ -397,13 +395,12 @@ export const content = {
       }
     },
     hero: {
-      fecha: 'Pacha',
       scroll: 'Urayman puriy', // REVISAR
       bajar: 'Qhipa secciónman awiy' // REVISAR (glosario §3)
     },
     intro: {
       altMascota: 'QPerú ruwaycham: huk kuntur', // REVISAR
-      titulo: 'QPeru 2026',
+      titulo: 'QPeru',
       texto: 'QPerúqa kuantika yupayta Piruwman hukllachiypaq qallarirqan: kichasqa llaqta, tallerwan, rimanakuykunawan, yachay wasikunata kamachisqan, yachakuqkunapaq, llamkakunapaq, yachay munakuqkunapaq, tukuy Piruwpi.', // REVISAR
       cta: 'Aswan rikuy'
     },

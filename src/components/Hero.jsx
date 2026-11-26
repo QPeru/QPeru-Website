@@ -16,14 +16,8 @@ export default function Hero() {
 
         <h1 className="qhero-title">
         <span className="qhero-line1"><span>Q</span>Peru</span>
-        <span className="qhero-line2">2026</span>
         </h1>
 
-        <p className="qhero-sub">
-         {h.fecha}
-        </p>
-
-        
       </div>
 
       <button type="button" className="qhero-scroll" onClick={bajar} aria-label={h.bajar}>

@@ -1,6 +1,9 @@
-/* ===== Valores en escalera =====
+/* ===== Valores en escalera — panel HUD futurista =====
    Todo se mide en "unidades de diseño" (--u), que se ajustan al ancho
-   disponible, así la composición escala completa sin deformarse. */
+   disponible, así la composición escala completa sin deformarse.
+   Colores de cada escalón intactos: rojo #8b0000 · gris #dcdcdc · oro #c0a068.
+   Interacción: hover/foco → eleva + brillo + "scan"; clic o Enter/Espacio →
+   fija el escalón y atenúa los demás (Escape lo suelta). */
 
 .stairs {
   container-type: inline-size;
@@ -12,22 +15,27 @@
   --u: calc(100cqw / var(--d));
   position: relative;
   height: calc(var(--u) * var(--h));
+  isolation: isolate;
 }
 
-/* Escalón base: 265 x 156, con la esquina inferior derecha doblada */
+/* ── Escalón base: 265 x 156, con la esquina inferior derecha doblada ── */
 .stair {
   position: absolute;
   left: calc(var(--u) * 219 * var(--i));
   top: calc(var(--u) * (33 + 46 * (var(--n) - 1 - var(--i))));
   width: calc(var(--u) * 265);
   height: calc(var(--u) * 156);
-  padding: calc(var(--u) * 16) calc(var(--u) * 60) calc(var(--u) * 12) calc(var(--u) * 14);
+  /* Texto centrado de verdad: la derecha lleva 60 = 14 de margen + 46 del
+     doblez, así el bloque cae en el centro exacto del escalón. */
+  padding: calc(var(--u) * 24) calc(var(--u) * 60) calc(var(--u) * 24) calc(var(--u) * 14);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
   overflow: hidden;
+  cursor: pointer;
+  z-index: calc(var(--i) + 1);
   clip-path: polygon(
     0 0,
     100% 0,
@@ -35,6 +43,30 @@
     calc(100% - var(--u) * 46) 100%,
     0 100%
   );
+  /* marco fino + textura tecnológica (rejilla vertical) */
+  box-shadow: inset 0 0 0 var(--u) var(--marco);
+  background-image:
+    linear-gradient(180deg, var(--sheen), transparent 60%),
+    repeating-linear-gradient(90deg, var(--textura) 0 var(--u), transparent var(--u) calc(var(--u) * 14));
+  transition:
+    transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+    filter 0.35s ease,
+    opacity 0.3s ease,
+    box-shadow 0.35s ease;
+}
+
+/* Barra de acento superior (crece al interactuar) */
+.stair::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: calc(var(--u) * 3);
+  background: var(--acento);
+  transform: scaleX(0.28);
+  transform-origin: left center;
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 /* Triángulo del doblez */
@@ -49,12 +81,50 @@
   clip-path: polygon(0 0, 100% 0, 0 100%);
 }
 
+/* Número de orden (01, 02…) */
+.stair__num {
+  position: absolute;
+  top: calc(var(--u) * 9);
+  left: calc(var(--u) * 14);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: calc(var(--u) * 13);
+  letter-spacing: 0.22em;
+  color: var(--acento);
+  opacity: 0.6;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+}
+
+/* Barrido de escaneo */
+.stair__scan {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 38%, var(--acento) 50%, transparent 62%);
+  opacity: 0;
+  transform: translateX(-70%);
+  pointer-events: none;
+}
+
 .stair h3 {
   font-family: var(--f-display);
   font-weight: 700;
   font-size: calc(var(--u) * 25);
   line-height: 1.1;
+  letter-spacing: 0.01em;
   margin: 0 0 calc(var(--u) * 8);
+  position: relative;
+}
+
+/* filete bajo el título (se ensancha al interactuar) */
+.stair h3::after {
+  content: "";
+  display: block;
+  width: calc(var(--u) * 46);
+  height: calc(var(--u) * 2);
+  margin: calc(var(--u) * 7) auto 0;
+  background: var(--acento);
+  opacity: 0.85;
+  transition: width 0.35s ease;
 }
 
 .stair p {
@@ -63,18 +133,39 @@
   margin: 0;
 }
 
-/* Colores */
-.stair--rojo { background: #8b0000; }
+/* ── Colores (los mismos de siempre) ── */
+.stair--rojo {
+  --acento: #ff8a8a;
+  --brillo: rgba(255, 120, 120, 0.55);
+  --marco: rgba(255, 255, 255, 0.3);
+  --sheen: rgba(255, 255, 255, 0.16);
+  --textura: rgba(255, 255, 255, 0.06);
+  background-color: #8b0000;
+}
 .stair--rojo h3,
 .stair--rojo p { color: #fff; }
 
-.stair--gris { background: #dcdcdc; }
+.stair--gris {
+  --acento: #8b0000;
+  --brillo: rgba(139, 0, 0, 0.4);
+  --marco: rgba(0, 0, 0, 0.22);
+  --sheen: rgba(255, 255, 255, 0.75);
+  --textura: rgba(0, 0, 0, 0.05);
+  background-color: #dcdcdc;
+}
 .stair--gris h3 { color: #8b0000; }
 .stair--gris p { color: #1b1b1b; }
 .stair--gris::after { background: rgba(255, 255, 255, 0.7); }
 
 /* Último escalón: flecha dorada */
-.stair--oro { background: #c0a068; }
+.stair--oro {
+  --acento: #fff6e3;
+  --brillo: rgba(214, 178, 112, 0.65);
+  --marco: rgba(255, 255, 255, 0.45);
+  --sheen: rgba(255, 255, 255, 0.2);
+  --textura: rgba(255, 255, 255, 0.1);
+  background-color: #c0a068;
+}
 .stair--oro h3 { color: #fff; }
 .stair--oro p { color: #1b1b1b; }
 
@@ -82,8 +173,9 @@
   top: 0;
   width: calc(var(--u) * 347);
   height: calc(var(--u) * 220);
-  padding: calc(var(--u) * 47) calc(var(--u) * 124) 0 calc(var(--u) * 14);
-  justify-content: flex-start;
+  /* centrado vertical y horizontal dentro del cuerpo de la flecha */
+  padding: calc(var(--u) * 47) calc(var(--u) * 124) calc(var(--u) * 47) calc(var(--u) * 14);
+  justify-content: center;
   clip-path: polygon(
     0 calc(var(--u) * 33),
     calc(var(--u) * 237) calc(var(--u) * 33),
@@ -94,10 +186,71 @@
     0 calc(var(--u) * 187)
   );
 }
-
 .stair--last::after { display: none; }
+/* el borde superior de la flecha está más abajo (hay que esquivar el corte) */
+.stair--last::before { top: calc(var(--u) * 33); width: calc(var(--u) * 237); }
+.stair--last .stair__num { top: calc(var(--u) * 44); }
 
-/* Pantallas pequeñas: tarjetas apiladas con el mismo estilo */
+/* ── Interacción ── */
+.stair:hover,
+.stair:focus-visible,
+.stair.is-active {
+  transform: translateY(calc(var(--u) * -10));
+  filter: drop-shadow(0 calc(var(--u) * 10) calc(var(--u) * 18) rgba(0, 0, 0, 0.5))
+    drop-shadow(0 0 calc(var(--u) * 14) var(--brillo));
+  z-index: 40;
+}
+
+.stair:hover::before,
+.stair:focus-visible::before,
+.stair.is-active::before { transform: scaleX(1); }
+
+.stair:hover h3::after,
+.stair:focus-visible h3::after,
+.stair.is-active h3::after { width: calc(var(--u) * 90); }
+
+.stair:hover .stair__num,
+.stair:focus-visible .stair__num,
+.stair.is-active .stair__num { opacity: 1; transform: translateX(calc(var(--u) * 3)); }
+
+.stair:hover .stair__scan,
+.stair:focus-visible .stair__scan,
+.stair.is-active .stair__scan { animation: stair-scan 1.05s ease-out; }
+
+/* foco de teclado visible (además del brillo) */
+.stair:focus-visible {
+  outline: none;
+  box-shadow: inset 0 0 0 calc(var(--u) * 3) var(--acento);
+}
+
+/* uno fijo → los demás se atenúan */
+.stairs__track.has-active .stair:not(.is-active) {
+  opacity: 0.4;
+  filter: saturate(0.55);
+}
+.stairs__track.has-active .stair:not(.is-active):hover {
+  opacity: 0.75;
+  filter: none;
+}
+
+@keyframes stair-scan {
+  0% { opacity: 0.4; transform: translateX(-70%); }
+  100% { opacity: 0; transform: translateX(70%); }
+}
+
+/* Entrada escalonada al hacerse visible el bloque (useReveal → .visto).
+   fill-mode "backwards": al terminar el hover vuelve a mandar. */
+.reveal-group.visto .stair {
+  animation: stair-in 0.65s cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
+  animation-delay: calc(var(--i) * 0.09s + 0.05s);
+}
+
+@keyframes stair-in {
+  from { opacity: 0; transform: translateY(calc(var(--u) * 46)); }
+  to { opacity: 1; transform: none; }
+}
+
+/* Pantallas pequeñas: tarjetas apiladas, texto centrado */
 @media (max-width: 1000px) {
   .stairs__track {
     height: auto;
@@ -112,15 +265,33 @@
     top: auto;
     width: auto;
     height: auto;
-    padding: 22px 24px;
-    border-radius: 12px;
+    padding: 26px 22px 24px;
+    border-radius: 14px;
     clip-path: none;
-    align-items: flex-start;
-    text-align: left;
+    align-items: center;
+    text-align: center;
     z-index: auto !important;
   }
 
-  .stair::after { display: none; }
+  .stair::after { display: none; } /* sin doblez en móvil */
+  .stair::before,
+  .stair--last::before { top: 0; width: 100%; }
+
   .stair h3 { font-size: 1.5rem; margin-bottom: 6px; }
   .stair p { font-size: 1rem; }
+
+  /* el número pasa a ser una línea encima del título */
+  .stair__num,
+  .stair--last .stair__num {
+    position: static;
+    margin-bottom: 6px;
+    font-size: 0.8rem;
+    letter-spacing: 0.3em;
+  }
+}
+
+/* Sin animaciones para quien lo pida */
+@media (prefers-reduced-motion: reduce) {
+  .stair { transition: none; animation: none; }
+  .stair__scan { display: none; }
 }

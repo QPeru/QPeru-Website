@@ -29,20 +29,20 @@ const MENU = [
   },
   {
     key: 'eventos',
+    // Dos subíndices (antes eran 5 "Subíndice N"): los eventos pasados
+    // van a /actividades y los próximos a /eventos (Agenda).
     children: [
-      { href: '/#actividades' },
-      { href: '#' },
-      { href: '#' },
-      { href: '/#actividades' },
-      { href: '#' },
+      { href: '/actividades', es: 'Eventos Anteriores', en: 'Past events', qu: 'Kanraq llamkanakuykuna' }, // REVISAR
+      { href: '/eventos', es: 'Próximos eventos', en: 'Upcoming events', qu: 'Qhipa llamkanakuykuna' }, // REVISAR
     ],
   },
   {
     key: 'publicaciones',
+    // Dos subíndices (antes eran 3 "Subíndice N" / "Siku N"). Las páginas
+    // aún no existen: cambia los href '#' cuando las crees.
     children: [
-      { href: '#' },
-      { href: '#' },
-      { href: '#' },
+      { href: '#', es: 'Noticias', en: 'News', qu: 'Chaninchikuna' }, // REVISAR
+      { href: '#', es: 'Artículos', en: 'Articles', qu: 'Qillqakuna' }, // REVISAR
     ],
   },
   {

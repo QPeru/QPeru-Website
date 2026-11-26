@@ -89,6 +89,10 @@
 | Escanea el QR y entra al grupo | **QR-ta skenay chay llapan WhatsApp grupo-man** | `skenay` = préstamo REVISAR |
 | Toca al oso | **Ursota makuy** | REVISAR |
 | Bajar a la siguiente sección | **Qhipa secciónman awiy** | REVISAR |
+| Eventos Anteriores | **Kanraq llamkanakuykuna** | REVISAR |
+| Próximos eventos | **Qhipa llamkanakuykuna** | REVISAR |
+| Noticias | **Chaninchikuna** | REVISAR (de `chaninchay` 'anunciar') |
+| Artículos | **Qillqakuna** | REVISAR (de `qillqay` 'escribir') |
 | Cambiar a tema claro/oscuro | **Wachkay / Yana tikray** | REVISAR |
 | Abrir menú | **Menuta kichay** | |
 | Elegir idioma | **Simita akllay** | |

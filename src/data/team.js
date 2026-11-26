@@ -199,7 +199,7 @@ export const AREAS = [
     id: 'marketing',
     nombre: 'Marketing',
     nombreEn: 'Marketing',
-    nombreQu: 'Marketing', // préstamo (Cap. IV §6.1 c)
+    nombreQu: 'Riqsichiy', // "Marketing" — término acordado por QPerú
     simbolo: '∝',
     lema: 'Comunicaciones · Marca · Difusión',
     lemaEn: 'Communications · Branding · Public Outreach',

@@ -379,7 +379,7 @@ export const content = {
       menu: {
         acercaDe: 'Ñuqanchikmanta', // REVISAR
         eventos: 'Llamkanakuykuna', // REVISAR
-        publicaciones: 'Blog',
+        publicaciones: 'Llika qillqana', // "Blog" — término acordado por QPerú
         equipo: 'Llamkakuna',
         solicitud: 'Ayninkuy', // REVISAR
         subindice: 'Siku' // REVISAR

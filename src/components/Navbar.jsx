@@ -20,9 +20,10 @@ const MENU = [
     key: 'acercaDe',
     href: '/acerca-de',
     children: [
-      { href: '/mision', es: 'Misión y Visión', en: 'Mission and Vision' },
-      { href: '/organizacion', es: 'Organización', en: 'Organization' },
-      { href: '/reglamento', es: 'Reglamentos y Políticas', en: 'Regulations and Policies' },
+      // `qu` = traducción al quechua sureño unificado (docs/quechua/glosario.md §4)
+      { href: '/mision', es: 'Misión y Visión', en: 'Mission and Vision', qu: 'Kamachiy ñawpaq' }, // REVISAR
+      { href: '/organizacion', es: 'Organización', en: 'Organization', qu: 'Kamachiy' }, // REVISAR
+      { href: '/reglamento', es: 'Reglamentos y Políticas', en: 'Regulations and Policies', qu: 'Kamachiykuna política' }, // REVISAR
       { href: '/acerca-de#colaboraciones' },
     ],
   },

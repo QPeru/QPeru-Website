@@ -11,7 +11,7 @@
 2. **Letras vetadas** en palabras quechuas: `j c cc qu f b d e g o v x z` (Cap. III §2.5.3). No escribir "computación" como palabra quechua.
 3. **`q` = uvular, `k` = velar**: *qillqay* (escribir), *kawsay* (vivir).
 4. **Nombres propios y marcas** se escriben con la grafía de origen: `QPerú, WhatsApp, Discord, Qiskit, CSWeek, IEEE, PUCP, UCSM, Nazca, Arequipa`.
-5. **Préstamos tecnológicos recientes** con la grafía de origen (Cap. IV §6.1 c): `blog, workshop, online, marketing, QR, servidor, imajen, paragraph`. No abusar: si hay término quechua, se usa el quechua.
+5. **Préstamos tecnológicos recientes** con la grafía de origen (Cap. IV §6.1 c): `workshop, online, QR, servidor, imajen, paragraph`. No abusar: si hay término quechua, se usa el quechua. *(Ya acordados por QPerú y fuera de los préstamos: **blog = Llika qillqana**, **Marketing = Riqsichiy**.)*
 6. Mayúscula inicial en oración y en nombres propios; minúscula en el resto (Cap. VI §2).
 7. Interjecciones y vocativos con tilde cuando son agudas (`¡Añay!`, `¡Hamuyyá!`) — ver Cap. VI §1.
 
@@ -63,7 +63,7 @@
 | política | **política** | préstamo (§6.1 c) |
 | privacidad | **mana rikukuy** | REVISAR |
 | evento / actividad | **llamkanakuy** | REVISAR |
-| blog | **blog** | préstamo |
+| blog | **Llika qillqana** | ✅ acordado por QPerú (antes: préstamo `blog`) |
 | redes sociales | **rimanakuykuna** | REVISAR |
 | contacto | **rimanakuy** | |
 | correo | **qillqanakuy** | REVISAR |
@@ -102,7 +102,7 @@
 | Investigación | **Yachay** | ∇ |
 | Relaciones Públicas | **Rimanakuykuna** | ∪ |
 | Asuntos Legales | **Yupaychay masiy** | § |
-| Marketing | **Marketing** (préstamo) | ∝ |
+| Marketing | **Riqsichiy** | ∝ — ✅ acordado por QPerú |
 | Operaciones y Logística | **Ruray chakiy** | ⊗ |
 | Co-Fundadores | **Qallariqkuna** | |
 | Miembros Core | **Kikin llamkakuna** | |

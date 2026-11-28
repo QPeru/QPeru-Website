@@ -120,6 +120,93 @@ export const content = {
       nacionales: 'Colaboraciones nacionales',
       internacionales: 'Colaboraciones internacionales'
     },
+    // Contenido de la página de un área (hoy solo "Operaciones y Logística").
+    // Estructura OBLIGATORIA (misma para la tabla de contenido y el cuerpo):
+    //   Título → Nuestro rol → Áreas de trabajo → Cómo trabajamos →
+    //   Qué hemos logrado → Nuestro equipo → Aliados y colaboradores →
+    //   Únete al área → Contacto del área
+    // Los textos marcados CONTENIDO POR DEFINIR son de relleno: sustituir por
+    // datos reales del área antes de publicar.
+    // SOLO en español: las claves en EN y QU quedan pendientes; el componente
+    // hace fallback a content.es hasta que se traduzcan.
+    areaOperaciones: {
+      // Tabla de contenido lateral (columna izquierda)
+      tocTitulo: 'Tabla de contenido',
+      // 1. Nuestro rol
+      rolTitulo: 'Nuestro rol',
+      rol: 'Hacemos posible que las iniciativas de educación cuántica de QPeru se planifiquen, coordinen y ejecuten con solidez en todo el Perú.',
+      rolTexto:
+        'Somos el equipo que sostiene la operación detrás de cada taller, charla y campaña: ordenamos las prioridades, coordinamos con las demás áreas de QPeru y cuidamos que cada actividad llegue a su fecha con los recursos listos. Trabajamos con un responsable claro por iniciativa, de modo que siempre se sabe a quién preguntar y qué sigue.',
+      // 2. Áreas de trabajo
+      areasTitulo: 'Áreas de trabajo',
+      areas: [
+        {
+          titulo: 'Programas y eventos',
+          desc: 'Cronogramas, sedes y plataformas. Definimos fechas, responsables y logística de cada actividad: reservamos los espacios, preparamos la plataforma y damos seguimiento hasta el cierre del evento.',
+          dato: null // N.º de eventos: pendiente de definir (se oculta)
+        },
+        {
+          titulo: 'Alianzas',
+          desc: 'Enlace con universidades y grupos de investigación. Construimos y mantenemos relaciones con las instituciones que aportan sedes, ponentes, difusión y apoyo técnico para las actividades.',
+          dato: null // N.º de alianzas: pendiente de definir (se oculta)
+        },
+        {
+          titulo: 'Recursos y soporte',
+          desc: 'Materiales, presupuesto y soporte técnico. Gestionamos lo que cada actividad necesita y acompañamos a quienes organizan, desde la compra de materiales hasta el soporte el día del evento.',
+          dato: null // Recursos gestionados: pendiente de definir (se oculta)
+        }
+      ],
+      // 3. Cómo trabajamos
+      comoTrabajamosTitulo: 'Cómo trabajamos',
+      comoTrabajamos:
+        'Trabajamos por ciclos. Primero acordamos el objetivo, el calendario y el responsable de la iniciativa; después repartimos tareas con las demás áreas de QPeru y con el equipo del área; y por último hacemos seguimiento de cada hito hasta el cierre. Cada actividad nace con un punto de contacto definido, así que quien participa sabe a quién preguntar en cada etapa y qué se espera de él.',
+      // 4. Qué hemos logrado — CONTENIDO POR DEFINIR
+      logrosTitulo: 'Qué hemos logrado',
+      logros: [
+        {
+          t: 'Actividades planificadas',
+          d: 'Cronograma, sedes y plataformas definidos para cada iniciativa del área, con responsables y fechas acordadas antes de arrancar.'
+        },
+        {
+          t: 'Coordinación con las áreas',
+          d: 'Un punto de contacto claro por proyecto para trabajar junto al resto de QPeru, evitando tareas duplicadas y retrasos.'
+        },
+        {
+          t: 'Soporte entregado a tiempo',
+          d: 'Materiales, presupuesto y acompañamiento técnico disponibles para cada actividad, con seguimiento desde la planificación hasta el cierre.'
+        }
+      ], // REVISAR: sustituir por logros reales
+      // 5. Nuestro equipo: van las tarjetas que ya existen
+      equipoTitulo: 'Nuestro equipo',
+      // 6. Aliados y colaboradores — CONTENIDO POR DEFINIR
+      aliadosTitulo: 'Aliados y colaboradores',
+      aliados: [
+        {
+          t: 'Universidades',
+          d: 'Sedes, audiencia y apoyo académico para las actividades del área; también ponentes y espacios de práctica para los talleres.'
+        },
+        {
+          t: 'Grupos de investigación',
+          d: 'Colaboración técnica y referentes en computación cuántica que enriquecen el contenido de las charlas y de los talleres.'
+        },
+        {
+          t: 'Comunidades',
+          d: 'Difusión y participación en los talleres y charlas de QPeru, para que la información llegue a quienes quieren aprender.'
+        }
+      ], // REVISAR: sustituir por aliados reales
+      // 7. Únete al área
+      uneteTitulo: 'Únete al área',
+      unete: {
+        texto:
+          'Súmate al área como voluntario/a o colabora como institución: buscamos personas que quieran organizar, coordinar y hacer posible cada actividad, y aliados que aporten sedes, contenidos o recursos.',
+        voluntariado: 'Voluntariado',
+        colaboracion: 'Colaboración'
+      },
+      // 8. Contacto del área — CONTENIDO POR DEFINIR
+      contactoTitulo: 'Contacto del área',
+      contacto:
+        'Escríbenos por el grupo de WhatsApp o por Discord y te conectamos con la coordinación del área. Respondemos dudas sobre actividades, alianzas y formas de participar; también atendemos propuestas de instituciones que quieran aliarse con QPeru.' // REVISAR: dato real
+    },
     sobreNosotros: {
       title: 'Organización',
       mvv: {

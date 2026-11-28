@@ -214,6 +214,9 @@ export const AREAS = [
     nombreEn: 'Operations & Logistics',
     nombreQu: 'Ruray chakiy', // REVISAR
     simbolo: '⊗',
+    // ids de PEOPLE que aparecen en "Miembros importantes" (sección de la
+    // página del área). Vacío hasta que QPerú pase los nombres.
+    destacados: [],
     lema: 'Eventos · Infraestructura · Recursos',
     lemaEn: 'Event Management · Infrastructure · Resource Coordination',
     lemaQu: 'Llamkanakuy · Wasikuna · Apachiy', // REVISAR

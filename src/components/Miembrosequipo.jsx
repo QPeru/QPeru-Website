@@ -123,7 +123,7 @@ function Tarjeta({ id, rol, foto, L, en }) {
       </div>
 
       <h3 className="tm-nombre">{nombre}</h3>
-      <p className="tm-rol">{rol}</p>
+      {rol && <p className="tm-rol">{rol}</p>}
       <p className="tm-uni">{universidad(p.universidad, en)}</p>
 
       {(p.cv.linkedin || p.cv.github) && (
@@ -196,8 +196,9 @@ function Nivel({ id, color, titulo, sub, children, className = '', simbolo = nul
 // fotos: objeto { idPersona: urlImportada }, p. ej. { maria: fotoMaria }
 // tema:  'claro' (fondo blanco, como la referencia) o 'oscuro' (fondo del sitio)
 // area:  si se pasa un área de AREAS (subíndice del menú), se muestra SOLO
-//        su director y su subdirector; la lista oficial de la jerarquía se
-//        omite. Sin área, se muestra la lista completa.
+//        su director, su subdirector y sus miembros destacados (ids en
+//        team.js); la lista oficial de la jerarquía se omite. Sin área, se
+//        muestra la lista completa.
 export default function MiembrosEquipo({ fotos = {}, tema = 'claro', area = null }) {
   const { lang } = useLanguage()
   const L = TXT[lang] || TXT.es
@@ -234,6 +235,8 @@ export default function MiembrosEquipo({ fotos = {}, tema = 'claro', area = null
           {fila([
             { key: `d-${area.id}`, id: area.director, rol: L.rolDir },
             { key: `s-${area.id}`, id: area.subdirector, rol: L.rolSub },
+            // miembros destacados del área (si team.js trae ids)
+            ...(area.destacados || []).map((id) => ({ key: `x-${id}`, id, rol: null })),
           ])}
         </div>
       </div>

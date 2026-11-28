@@ -1,0 +1,305 @@
+/* ===== Página de área: "Operaciones y Logística" =====
+   Estructura obligatoria (tabla de contenido + cuerpo, en el mismo orden):
+     1 Nuestro rol · 2 Áreas de trabajo · 3 Cómo trabajamos ·
+     4 Qué hemos logrado · 5 Nuestro equipo · 6 Aliados y colaboradores ·
+     7 Únete al área · 8 Contacto del área
+   · .area-toc  → tabla de contenido lateral (columna izquierda, sticky)
+   · .area-h    → título de cada sección
+   · .area-seccion → cada bloque, con ancla propia y separación común
+   Se apoya en las variables del tema (--gris, --tinta, --linea) para
+   funcionar en claro y oscuro. El dorado del área (--c) solo es acento.
+   La tabla va alineada al borde izquierdo del .container, es decir, al
+   mismo margen que el título de la página. */
+
+/* ── Título de sección: número dorado + título + filete (formato informe) ── */
+.area-h {
+  display: flex;
+  align-items: center;
+  gap: clamp(10px, 1.2vw, 16px);
+  margin: 0 0 clamp(18px, 2.4vw, 26px);
+  font-family: var(--f-display);
+  font-size: clamp(1.15rem, 1.7vw, 1.45rem);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: var(--tinta);
+}
+
+.area-h__num {
+  font-family: var(--f-mono);
+  font-size: 0.72em;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--c, #cda630); /* número en el dorado del área */
+}
+
+.area-h__linea {
+  flex: 1;
+  height: 1px;
+  background: var(--linea); /* filete fino que cierra el título */
+}
+
+/* ── Estructura: tabla de contenido + contenido ── */
+.area-layout {
+  display: grid;
+  grid-template-columns: minmax(190px, 250px) minmax(0, 1fr);
+  gap: clamp(28px, 4vw, 60px);
+}
+
+.area-main { min-width: 0; }
+
+/* el hero ya deja su padding inferior: aquí no sumamos demasiado */
+.section.area-pagina {
+  padding-top: clamp(8px, 2vw, 24px);
+  padding-bottom: clamp(40px, 6vw, 72px);
+}
+
+/* ── Tabla de contenido (estilo de la referencia) ── */
+.area-toc__inner {
+  position: sticky;
+  top: clamp(84px, 12vh, 130px);
+}
+
+.area-toc__linea {
+  display: block;
+  width: 46px;
+  height: 4px;
+  margin-bottom: 14px;
+  background: var(--c, #cda630); /* filete dorado sobre el rótulo */
+}
+
+.area-toc__titulo {
+  margin: 0 0 18px;
+  font-family: var(--f-display);
+  font-size: clamp(1rem, 1.3vw, 1.2rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  color: var(--tinta);
+}
+
+.area-toc ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 14px;
+}
+
+.area-toc a {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  font-size: 0.97rem;
+  line-height: 1.35;
+  color: var(--gris);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.area-toc__num {
+  font-family: var(--f-mono);
+  font-size: 0.78em;
+  letter-spacing: 0.08em;
+  color: var(--c, #cda630);
+  opacity: 0.75;
+}
+
+.area-toc a:hover { color: var(--tinta); }
+
+/* sección que se está leyendo */
+.area-toc a.is-active {
+  color: var(--tinta);
+  font-weight: 700;
+}
+
+.area-toc a.is-active .area-toc__num { opacity: 1; }
+
+/* barra dorada marcando la sección activa */
+.area-toc a.is-active::before {
+  content: "";
+  position: absolute;
+  left: -14px;
+  top: 0.15em;
+  bottom: 0.15em;
+  width: 3px;
+  background: var(--c, #cda630);
+}
+
+/* ── Secciones del cuerpo ── */
+.area-seccion { scroll-margin-top: 110px; }
+
+.area-seccion + .area-seccion {
+  margin-top: clamp(44px, 5.5vw, 72px);
+}
+
+/* ── 1. Rol: bloque jerárquico (sin barra) ──
+   Nivel 1 → frase destacada, grande y en negrita.
+   Nivel 2 → texto de apoyo sangrado con filete gris: la jerarquía se lee
+   de arriba hacia abajo y de izquierda a derecha. */
+.area-rol__frase {
+  margin: 0;
+  max-width: 62ch;
+  font-family: var(--f-display);
+  font-size: clamp(1.3rem, 2.3vw, 1.85rem);
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--tinta);
+  text-wrap: pretty;
+}
+
+.area-rol__apoyo {
+  margin: 18px 0 0;
+  max-width: 70ch;
+  padding-left: clamp(14px, 1.6vw, 22px);
+  border-left: 1px solid var(--linea); /* rama del nivel 2 */
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--gris);
+}
+
+/* ── 2. Rejilla de 3 bloques (una columna en móvil) ── */
+.area-detalle__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: start;
+  gap: clamp(20px, 3vw, 40px);
+}
+
+/* Bloques de "Áreas de trabajo": misma forma que la frase de rol
+   (barra dorada a la izquierda + texto), sin caja ni borde. */
+.area-card {
+  position: relative;
+  padding-left: clamp(14px, 1.6vw, 22px);
+  border-left: 4px solid var(--c, #cda630);
+  transition: transform 0.25s ease;
+}
+
+.area-card:hover { transform: translateX(4px); }
+
+.area-card h4 {
+  margin: 0 0 6px;
+  font-size: clamp(1rem, 1.3vw, 1.15rem);
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--tinta);
+}
+
+.area-card p {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--gris); /* texto en gris claro */
+}
+
+/* dato de impacto (se oculta mientras venga en null) */
+.area-card__dato {
+  display: inline-block;
+  margin-top: 12px;
+  font-family: var(--f-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  color: var(--c, #cda630);
+}
+
+/* ── 3 y 6. Texto corrido y listas (Cómo trabajamos · Logros · Aliados · Contacto) ── */
+.area-texto {
+  max-width: 72ch;
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--gris);
+}
+
+.area-lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: clamp(14px, 2vw, 20px);
+}
+
+.area-lista li {
+  padding-left: clamp(14px, 1.6vw, 22px);
+  border-left: 4px solid var(--c, #cda630); /* mismo estilo de barra */
+}
+
+.area-lista h4 {
+  margin: 0 0 4px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--tinta);
+}
+
+.area-lista p {
+  margin: 0;
+  max-width: 72ch;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--gris);
+}
+
+/* ── 7. Cierre "Únete al área" ── */
+.area-unete__texto {
+  margin: 0 0 18px;
+  max-width: 60ch;
+  font-size: clamp(1rem, 1.4vw, 1.15rem);
+  line-height: 1.5;
+  color: var(--gris);
+}
+
+.area-unete__btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* Botones propios del área: mismo dorado como acento (no el rojo marca) */
+.area-btn {
+  border: 2px solid var(--c, #cda630);
+  color: var(--tinta);
+  background: transparent;
+}
+
+.area-btn:hover {
+  background: var(--c, #cda630);
+  color: #141414;
+}
+
+.area-btn--solido {
+  background: var(--c, #cda630);
+  color: #141414;
+}
+
+.area-btn--solido:hover {
+  background: transparent;
+  color: var(--tinta);
+}
+
+/* ── Responsive: una columna, la tabla pasa arriba en fila ── */
+@media (max-width: 1000px) {
+  .area-layout {
+    grid-template-columns: 1fr;
+    gap: clamp(24px, 4vw, 36px);
+  }
+
+  .area-toc__inner { position: static; }
+
+  .area-toc ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 18px;
+  }
+
+  /* en fila, la barra dorada de la sección activa no aplica */
+  .area-toc a.is-active::before { display: none; }
+
+  .area-detalle__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .area-card { transition: none; }
+  .area-card:hover { transform: none; }
+}
